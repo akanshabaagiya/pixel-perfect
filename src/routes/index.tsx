@@ -41,12 +41,17 @@ function Index() {
     <div className="relative overflow-x-hidden">
       <Nav />
       <Hero />
-      <Product />
-      <Features />
-      <About />
+      <Intro />
+      <Showcase />
+      <Capabilities />
+      <MultiTenant />
       <Developers />
-      <Contact />
+      <Audience />
+      <About />
+      <Security />
+      <OpenSource />
       <Faq />
+      <Contact />
       <FinalCta />
       <Footer />
     </div>
@@ -100,12 +105,12 @@ function Eyebrow({ children }: { children: ReactNode }) {
   );
 }
 
-function SectionHead({ eyebrow, title, sub }: { eyebrow: string; title: string; sub?: string }) {
+function SectionHead({ eyebrow, title, sub, step }: { eyebrow: string; title: string; sub?: string; step?: string }) {
   return (
     <div className="reveal mx-auto max-w-2xl text-center">
-      <Eyebrow>{eyebrow}</Eyebrow>
+      <Eyebrow>{step ? `${step} — ${eyebrow}` : eyebrow}</Eyebrow>
       <h2 className="mt-5 text-3xl font-semibold tracking-tight text-ink sm:text-5xl">{title}</h2>
-      {sub && <p className="mt-4 text-base text-muted-foreground sm:text-lg">{sub}</p>}
+      {sub && <p className="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg">{sub}</p>}
     </div>
   );
 }
@@ -113,16 +118,16 @@ function SectionHead({ eyebrow, title, sub }: { eyebrow: string; title: string; 
 /* ---------- nav ---------- */
 
 function Nav() {
-  const links = ["Product", "Features", "About", "Developers", "FAQs"];
+  const links: [string, string][] = [["Product", "#product"], ["Features", "#features"], ["Developers", "#developers"], ["About", "#about"], ["FAQs", "#faqs"]];
   return (
     <header className="fixed inset-x-0 top-4 z-50 px-4">
       <nav className="glass mx-auto flex max-w-6xl items-center justify-between rounded-2xl border border-border/80 px-4 py-2.5 shadow-soft">
         <Logo />
         <div className="hidden items-center gap-7 md:flex">
-          {links.map((l) => (
+          {links.map(([l, href]) => (
             <a
               key={l}
-              href={`#${l.toLowerCase()}`}
+              href={href}
               className="text-sm text-muted-foreground transition-colors hover:text-ink"
             >
               {l}
@@ -132,6 +137,9 @@ function Nav() {
         <div className="flex items-center gap-2">
           <a href={DOCS} className="hidden px-3 text-sm font-medium text-ink sm:block">
             Documentation
+          </a>
+          <a href="#" className="hidden px-3 text-sm font-medium text-ink lg:block">
+            Sign in
           </a>
           <a
             href={GITHUB}
@@ -160,14 +168,18 @@ function Hero() {
             <span className="font-display font-normal italic text-gradient">Modern Teams.</span>
           </h1>
           <p className="mt-6 max-w-lg text-lg leading-relaxed text-muted-foreground">
-            Self-host your HR infrastructure, manage your people, and keep complete control of your data — without
-            per-seat SaaS fees.
+            Self-hostable, multi-tenant human resource management. Control your data, manage your people, and scale
+            your operations without per-seat fees.
           </p>
-          <div className="mt-9">
+          <div className="mt-9 flex flex-wrap gap-3">
             <Btn href={GITHUB}>
               View on GitHub <span className="transition-transform group-hover:translate-x-1">→</span>
             </Btn>
+            <Btn href={DOCS} variant="ghost">Read Documentation</Btn>
           </div>
+          <p className="mt-6 text-sm font-medium text-muted-foreground">
+            Self-hosted · Multi-tenant · Docker-ready · Open source
+          </p>
         </div>
         <div className="animate-fade-up min-w-0 [animation-delay:150ms]">
           <div className="animate-float">
@@ -287,113 +299,355 @@ function DashboardPreview() {
   );
 }
 
-/* ---------- product bento ---------- */
+/* ---------- 01 intro ---------- */
 
-function Tile({ title, desc, children, className = "" }: { title: string; desc: string; children: ReactNode; className?: string }) {
-  return (
-    <div
-      className={`reveal group relative overflow-hidden rounded-3xl border border-border bg-card p-6 shadow-soft transition-all duration-500 hover:-translate-y-1 hover:shadow-float ${className}`}
-    >
-      <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full glow-violet opacity-60 transition-opacity group-hover:opacity-100" />
-      <h3 className="relative text-lg font-semibold text-ink">{title}</h3>
-      <p className="relative mt-1 text-sm text-muted-foreground">{desc}</p>
-      <div className="relative mt-6 text-[11px]">{children}</div>
-    </div>
-  );
-}
-
-function Product() {
+function Intro() {
+  const pillars = [
+    ["Employee records", "Profiles, hierarchies and custom fields."],
+    ["Time & leave", "Attendance, shifts, leave types and holidays."],
+    ["Compensation & expenses", "Salary templates and reimbursements."],
+    ["Exits", "Structured offboarding workflows."],
+  ];
   return (
     <section id="product" className="relative px-4 py-24">
       <SectionHead
-        eyebrow="PRODUCT"
-        title="Everything your team needs to manage people."
-        sub="Karya brings essential HR operations together in one simple, self-hosted workspace."
+        step="01"
+        eyebrow="INTRODUCE"
+        title="People operations, connected from entry to exit."
+        sub="Karya brings the everyday systems behind employee records, attendance, leave, compensation, expenses, and offboarding into one self-hosted HRMS."
       />
-      <div className="mx-auto mt-16 grid max-w-6xl gap-5 md:grid-cols-6">
-        <Tile title="Employee Management" desc="Employee directory, profiles and organizational information." className="md:col-span-4">
-          <div className="overflow-hidden rounded-xl border border-border">
-            <div className="grid grid-cols-[2fr_1.5fr_1fr_1fr] bg-surface px-3 py-2 font-medium text-muted-foreground">
-              <span>Name</span><span>Role</span><span>Dept</span><span>Status</span>
-            </div>
-            {[
-              ["Priya Sharma", "HR Lead", "People", "Active"],
-              ["Arjun Mehta", "Backend Engineer", "Engineering", "Active"],
-              ["Sara Khan", "Designer", "Product", "On leave"],
-              ["Dev Rao", "Ops Manager", "Operations", "Active"],
-            ].map((r) => (
-              <div key={r[0]} className="grid grid-cols-[2fr_1.5fr_1fr_1fr] items-center border-t border-border px-3 py-2.5">
-                <span className="flex min-w-0 items-center gap-2 font-medium text-ink">
-                  <span className="h-6 w-6 shrink-0 rounded-full bg-accent" />
-                  <span className="truncate">{r[0]}</span>
-                </span>
-                <span className="truncate text-muted-foreground">{r[1]}</span>
-                <span className="truncate text-muted-foreground">{r[2]}</span>
-                <span>
-                  <span className={`rounded-full px-2 py-0.5 ${r[3] === "Active" ? "bg-accent text-accent-foreground" : "bg-surface-2 text-muted-foreground"}`}>{r[3]}</span>
-                </span>
-              </div>
-            ))}
+      <div className="mx-auto mt-14 grid max-w-5xl gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {pillars.map(([t, d], i) => (
+          <div key={t} className="reveal rounded-2xl border border-border bg-card p-5 shadow-soft">
+            <span className="font-mono text-xs text-primary">0{i + 1}</span>
+            <h3 className="mt-3 font-semibold text-ink">{t}</h3>
+            <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{d}</p>
           </div>
-        </Tile>
-        <Tile title="Attendance" desc="Check-ins, attendance tracking and workforce visibility." className="md:col-span-2">
-          <div className="rounded-xl border border-border p-4 text-center">
-            <div className="text-muted-foreground">Checked in at</div>
-            <div className="mt-1 font-mono text-3xl font-medium text-ink">09:12</div>
-            <div className="mt-4 grid grid-cols-7 gap-1">
-              {Array.from({ length: 28 }).map((_, i) => (
-                <span key={i} className={`aspect-square rounded ${i % 7 > 4 ? "bg-surface-2" : i === 17 ? "bg-lavender/50" : "bg-primary/70"}`} />
-              ))}
-            </div>
-          </div>
-        </Tile>
-        <Tile title="Leave Management" desc="Leave balances, requests, policies and approvals." className="md:col-span-3">
-          <div className="grid grid-cols-3 gap-2">
-            {[["Casual", 8, 12], ["Sick", 5, 7], ["Earned", 14, 18]].map(([k, a, t]) => (
-              <div key={k as string} className="rounded-xl border border-border p-3">
-                <div className="text-muted-foreground">{k}</div>
-                <div className="mt-1 text-xl font-semibold text-ink">{a}<span className="text-xs text-muted-foreground">/{t}</span></div>
-                <div className="mt-2 h-1 rounded-full bg-surface-2"><div className="h-full rounded-full bg-primary" style={{ width: `${((a as number) / (t as number)) * 100}%` }} /></div>
-              </div>
-            ))}
-          </div>
-          <div className="mt-3 flex items-center justify-between rounded-xl border border-border p-3">
-            <span className="text-ink"><b>Sara Khan</b> · 12–14 Oct · Casual</span>
-            <span className="flex gap-1.5">
-              <span className="rounded-full border border-border px-2 py-0.5 text-muted-foreground">Decline</span>
-              <span className="rounded-full bg-ink px-2 py-0.5 text-primary-foreground">Approve</span>
-            </span>
-          </div>
-        </Tile>
-        <Tile title="Compensation" desc="Salary structures, compensation components and payroll-related information." className="md:col-span-3">
-          <div className="rounded-xl border border-border p-4">
-            {[["Basic", 50], ["HRA", 20], ["Special allowance", 18], ["Provident fund", 12]].map(([k, v]) => (
-              <div key={k as string} className="mb-2.5 last:mb-0">
-                <div className="flex justify-between text-ink"><span>{k}</span><span className="text-muted-foreground">{v}%</span></div>
-                <div className="mt-1 h-1.5 rounded-full bg-surface-2"><div className="h-full rounded-full bg-lavender" style={{ width: `${(v as number) * 1.8}%` }} /></div>
-              </div>
-            ))}
-          </div>
-        </Tile>
+        ))}
       </div>
     </section>
   );
 }
 
-/* ---------- why ---------- */
+/* ---------- 02 showcase ---------- */
 
-function Features() {
+function PeopleView() {
+  return (
+    <div className="overflow-hidden rounded-xl border border-border">
+      <div className="grid grid-cols-[2fr_1.5fr_1fr_1fr] bg-surface px-3 py-2 font-medium text-muted-foreground">
+        <span>Name</span><span>Role</span><span>Dept</span><span>Status</span>
+      </div>
+      {[
+        ["Priya Sharma", "HR Lead", "People", "Active"],
+        ["Arjun Mehta", "Backend Engineer", "Engineering", "Active"],
+        ["Sara Khan", "Designer", "Product", "On leave"],
+        ["Dev Rao", "Ops Manager", "Operations", "Active"],
+      ].map((r) => (
+        <div key={r[0]} className="grid grid-cols-[2fr_1.5fr_1fr_1fr] items-center border-t border-border px-3 py-2.5">
+          <span className="flex min-w-0 items-center gap-2 font-medium text-ink">
+            <span className="h-6 w-6 shrink-0 rounded-full bg-accent" />
+            <span className="truncate">{r[0]}</span>
+          </span>
+          <span className="truncate text-muted-foreground">{r[1]}</span>
+          <span className="truncate text-muted-foreground">{r[2]}</span>
+          <span>
+            <span className={`rounded-full px-2 py-0.5 ${r[3] === "Active" ? "bg-accent text-accent-foreground" : "bg-surface-2 text-muted-foreground"}`}>{r[3]}</span>
+          </span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function AttendanceView() {
+  return (
+    <div className="rounded-xl border border-border p-4 text-center">
+      <div className="text-muted-foreground">Checked in at</div>
+      <div className="mt-1 font-mono text-3xl font-medium text-ink">09:12</div>
+      <div className="mx-auto mt-4 grid max-w-xs grid-cols-7 gap-1">
+        {Array.from({ length: 28 }).map((_, i) => (
+          <span key={i} className={`aspect-square rounded ${i % 7 > 4 ? "bg-surface-2" : i === 17 ? "bg-lavender/50" : "bg-primary/70"}`} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function LeaveView() {
+  return (
+    <div>
+      <div className="grid grid-cols-3 gap-2">
+        {[["Casual", 8, 12], ["Sick", 5, 7], ["Earned", 14, 18]].map(([k, a, t]) => (
+          <div key={k as string} className="rounded-xl border border-border p-3">
+            <div className="text-muted-foreground">{k}</div>
+            <div className="mt-1 text-xl font-semibold text-ink">{a}<span className="text-xs text-muted-foreground">/{t}</span></div>
+            <div className="mt-2 h-1 rounded-full bg-surface-2"><div className="h-full rounded-full bg-primary" style={{ width: `${((a as number) / (t as number)) * 100}%` }} /></div>
+          </div>
+        ))}
+      </div>
+      <div className="mt-3 flex flex-wrap items-center justify-between gap-2 rounded-xl border border-border p-3">
+        <span className="text-ink"><b>Sara Khan</b> · 12–14 Oct · Casual</span>
+        <span className="flex gap-1.5">
+          <span className="rounded-full border border-border px-2 py-0.5 text-muted-foreground">Decline</span>
+          <span className="rounded-full bg-ink px-2 py-0.5 text-primary-foreground">Approve</span>
+        </span>
+      </div>
+    </div>
+  );
+}
+
+function PayrollView() {
+  return (
+    <div className="rounded-xl border border-border p-4">
+      {[["Basic", 50], ["HRA", 20], ["Special allowance", 18], ["Provident fund", 12]].map(([k, v]) => (
+        <div key={k as string} className="mb-2.5 last:mb-0">
+          <div className="flex justify-between text-ink"><span>{k}</span><span className="text-muted-foreground">{v}%</span></div>
+          <div className="mt-1 h-1.5 rounded-full bg-surface-2"><div className="h-full rounded-full bg-lavender" style={{ width: `${(v as number) * 1.8}%` }} /></div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function ProfileView() {
+  return (
+    <div className="rounded-xl border border-border p-4">
+      <div className="flex items-center gap-3">
+        <span className="h-10 w-10 rounded-full bg-accent" />
+        <div>
+          <div className="text-sm font-semibold text-ink">Arjun Mehta</div>
+          <div className="text-muted-foreground">Backend Engineer · Engineering</div>
+        </div>
+      </div>
+      <div className="mt-4 grid grid-cols-2 gap-2">
+        {[["Reports to", "Neha Iyer"], ["Grade", "L3"], ["Cost center", "ENG-01"], ["Salary", "••••••"]].map(([k, v]) => (
+          <div key={k} className="rounded-lg border border-border p-2.5">
+            <div className="text-muted-foreground">{k}</div>
+            <div className="mt-0.5 font-medium text-ink">{v}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function Showcase() {
+  const tabs: [string, string, ReactNode][] = [
+    ["Overview", "A daily snapshot of headcount, attendance, pending leave and payroll status.", null],
+    ["People", "A searchable employee directory with roles, departments and status.", <PeopleView key="p" />],
+    ["Attendance", "Employee check-ins and a monthly view of attendance records.", <AttendanceView key="a" />],
+    ["Leave", "Leave balances by type, with requests routed for approval.", <LeaveView key="l" />],
+    ["Payroll", "Compensation structures broken down into salary components.", <PayrollView key="c" />],
+    ["Employee info", "Profiles with reporting lines, grades, cost centers and masked sensitive fields.", <ProfileView key="e" />],
+  ];
+  const [active, setActive] = useState(0);
+  const [name, desc, view] = tabs[active] as [string, string, ReactNode];
+  return (
+    <section className="relative px-4 py-24">
+      <div className="pointer-events-none absolute left-1/2 top-1/2 h-[500px] w-[900px] -translate-x-1/2 -translate-y-1/2 rounded-full glow-lavender blur-3xl" />
+      <div className="relative">
+        <SectionHead step="02" eyebrow="SHOW" title="See Karya in action." sub="A single workspace for the everyday work behind your people operations." />
+        <div className="reveal mx-auto mt-10 flex max-w-3xl flex-wrap justify-center gap-2">
+          {tabs.map(([t], i) => (
+            <button
+              key={t}
+              onClick={() => setActive(i)}
+              className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${i === active ? "bg-ink text-primary-foreground" : "border border-border bg-card text-ink hover:border-lavender"}`}
+            >
+              {t}
+            </button>
+          ))}
+        </div>
+        <p className="mx-auto mt-5 max-w-xl text-center text-muted-foreground">{desc}</p>
+        <div className="reveal mx-auto mt-8 max-w-4xl">
+          {view ? (
+            <BrowserFrame url={`karya.yourcompany.com/${name.toLowerCase().replace(" ", "-")}`}>
+              <div className="bg-card p-5 text-[11px] sm:p-8">{view}</div>
+            </BrowserFrame>
+          ) : (
+            <DashboardPreview />
+          )}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------- 03 capabilities ---------- */
+
+function Capabilities() {
   const items = [
-    ["Self-Hosted", "Run Karya on your own infrastructure.", "◎"],
-    ["Open Source", "Inspect, modify and extend the platform under AGPL-3.0.", "</>"],
-    ["Multi-Tenant", "Manage multiple organizations from a single installation.", "▦"],
-    ["Built for Control", "Use role-based access controls and audit logs to maintain visibility and accountability.", "◈"],
+    ["Employee Directory & Profiles", "Model reporting hierarchies, customize employee fields, and keep workforce records organized.", "◉"],
+    ["Time & Attendance", "Support employee check-in and check-out, attendance records, and shift management.", "◷"],
+    ["Leave Operations", "Configure leave types and holiday calendars while routing requests through approval workflows.", "▤"],
+    ["Compensation Structures", "Define salary templates, grades, compensation lines, and cost or revenue center mappings.", "₹"],
+    ["Reimbursements", "Give employees a clear expense submission path and managers an approval workflow.", "⇄"],
+    ["Exit Management", "Coordinate voluntary exits and offboarding through a defined operational workflow.", "↗"],
+    ["Role-Based Access", "Use granular role-based access control to align application access with responsibilities.", "◈"],
+    ["Audit Logs", "Keep comprehensive audit records for accountability and operational review.", "≡"],
+    ["Sensitive-Field Masking", "Apply field-level sensitivity settings to protect personal information such as salary data.", "◐"],
   ];
   return (
     <section id="features" className="relative px-4 py-24">
+      <SectionHead
+        step="03"
+        eyebrow="CAPABILITIES"
+        title="Everything your workforce needs, in one system."
+        sub="From daily attendance to compensation structures and employee exits, Karya keeps essential HR operations connected."
+      />
+      <div className="mx-auto mt-14 grid max-w-6xl gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {items.map(([t, d, i]) => (
+          <div key={t} className="reveal gradient-border rounded-2xl p-6 shadow-soft transition-all duration-500 hover:-translate-y-1 hover:shadow-float">
+            <span className="grid h-10 w-10 place-items-center rounded-xl bg-accent font-mono text-sm text-accent-foreground">{i}</span>
+            <h3 className="mt-5 font-semibold text-ink">{t}</h3>
+            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{d}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+/* ---------- 04 multi-tenant ---------- */
+
+function MultiTenant() {
+  const node = "rounded-2xl border border-border bg-card px-5 py-4 text-center shadow-soft";
+  return (
+    <section className="px-4 py-24">
+      <div className="reveal mx-auto grid max-w-6xl items-center gap-12 rounded-3xl border border-border bg-surface p-8 sm:p-14 lg:grid-cols-2">
+        <div>
+          <Eyebrow>04 — ARCHITECTURE</Eyebrow>
+          <h2 className="mt-5 text-3xl font-semibold tracking-tight text-ink sm:text-5xl">
+            One installation. <span className="font-display font-normal italic text-primary">Distinct organizations.</span>
+          </h2>
+          <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
+            Karya separates instance administration from each organization's workspace, making one deployment useful for
+            a single business, agency, or holding company.
+          </p>
+        </div>
+        <div className="flex flex-col items-center">
+          <div className={`${node} w-full max-w-xs`}>
+            <div className="font-semibold text-ink">Instance administration</div>
+            <div className="mt-1 font-mono text-xs text-primary">/superadmin</div>
+          </div>
+          <div className="h-8 w-px bg-lavender" />
+          <div className="h-px w-1/2 bg-lavender" />
+          <div className="grid w-full max-w-md grid-cols-2 gap-4">
+            {[["Organization A", "/org-a"], ["Organization B", "/org-b"]].map(([o, u]) => (
+              <div key={o} className="flex flex-col items-center">
+                <div className="h-6 w-px bg-lavender" />
+                <div className={`${node} w-full`}>
+                  <div className="font-semibold text-ink">{o}</div>
+                  <div className="mt-1 font-mono text-xs text-primary">{u}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------- 05 self-hosting ---------- */
+
+function Developers() {
+  return (
+    <section id="developers" className="px-4 py-24">
+      <SectionHead
+        step="05"
+        eyebrow="SELF-HOSTING"
+        title="Run Karya on infrastructure you control."
+        sub="The supported deployment journey is designed around Docker: clone the project, start the services, and create your instance administrator."
+      />
+      <div className="reveal mx-auto mt-12 max-w-2xl overflow-hidden rounded-2xl border border-border bg-ink shadow-float">
+        <div className="flex gap-1.5 border-b border-primary-foreground/10 px-4 py-3">
+          <span className="h-2.5 w-2.5 rounded-full bg-primary-foreground/20" />
+          <span className="h-2.5 w-2.5 rounded-full bg-primary-foreground/20" />
+          <span className="h-2.5 w-2.5 rounded-full bg-primary-foreground/20" />
+        </div>
+        <pre className="overflow-x-auto p-6 font-mono text-sm leading-7 text-primary-foreground/85">
+          <span className="text-lavender">$</span> git clone {"<repository-url>"}{"\n"}
+          <span className="text-lavender">$</span> cd karya{"\n"}
+          <span className="text-lavender">$</span> docker-compose up -d{"\n"}
+          <span className="text-success">✓ Karya is ready on your infrastructure</span>
+        </pre>
+      </div>
+    </section>
+  );
+}
+
+/* ---------- 06 audience ---------- */
+
+function Audience() {
+  const items = [
+    ["IT & DevOps", "Deploy with Docker, maintain the instance, and keep employee data within your infrastructure.", "</>"],
+    ["HR & Founders", "Set up employee structures, policies, access, and organization-level operations.", "▦"],
+    ["Employees", "Check in, request leave, view pay slips, and submit reimbursements through one workspace.", "◉"],
+  ];
+  return (
+    <section className="relative px-4 py-24">
+      <SectionHead step="06" eyebrow="WHO IT'S FOR" title="One system, clear paths for every team." />
+      <div className="mx-auto mt-14 grid max-w-6xl gap-5 md:grid-cols-3">
+        {items.map(([t, d, i]) => (
+          <div key={t} className="reveal relative overflow-hidden rounded-3xl border border-border bg-card p-7 shadow-soft transition-all duration-500 hover:-translate-y-1 hover:shadow-float">
+            <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full glow-violet opacity-60" />
+            <span className="relative grid h-10 w-10 place-items-center rounded-xl bg-accent font-mono text-sm text-accent-foreground">{i}</span>
+            <h3 className="relative mt-6 text-lg font-semibold text-ink">{t}</h3>
+            <p className="relative mt-2 leading-relaxed text-muted-foreground">{d}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+/* ---------- 07 about ---------- */
+
+function About() {
+  return (
+    <section id="about" className="px-4 py-24">
+      <div className="reveal mx-auto grid max-w-6xl gap-10 rounded-3xl border border-border bg-surface p-8 sm:p-14 lg:grid-cols-2">
+        <div>
+          <Eyebrow>07 — ABOUT KARYA</Eyebrow>
+          <h2 className="mt-5 text-3xl font-semibold tracking-tight text-ink sm:text-5xl">
+            HR software that <span className="font-display font-normal italic text-primary">stays yours.</span>
+          </h2>
+          <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
+            Karya is an <span className="font-semibold text-ink">AGPL-3.0</span> licensed HRMS for organizations that
+            prefer transparency, adaptability, and ownership over proprietary lock-in.
+          </p>
+        </div>
+        <div className="grid gap-4">
+          {[
+            ["Data sovereignty", "Host your employee data inside infrastructure your organization controls."],
+            ["Operational breadth", "Bring employee profiles, time, leave, compensation, expenses, and exits together."],
+          ].map(([t, d]) => (
+            <div key={t} className="rounded-2xl border border-border bg-card p-6 shadow-soft">
+              <h3 className="font-semibold text-ink">{t}</h3>
+              <p className="mt-2 leading-relaxed text-muted-foreground">{d}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------- 08 security ---------- */
+
+function Security() {
+  const items = [
+    ["Role-based access", "Control application access based on responsibilities.", "◈"],
+    ["Audit logs", "Maintain comprehensive records for operational accountability.", "≡"],
+    ["Sensitive-field masking", "Protect sensitive employee information such as salary data.", "◐"],
+    ["Multi-tenant separation", "Keep organizations separated within a shared Karya installation.", "▦"],
+  ];
+  return (
+    <section className="relative px-4 py-24">
       <div className="pointer-events-none absolute left-1/2 top-1/2 h-[500px] w-[900px] -translate-x-1/2 -translate-y-1/2 rounded-full glow-lavender blur-3xl" />
       <div className="relative">
-        <SectionHead eyebrow="WHY KARYA" title="Your people. Your data. Your infrastructure." />
+        <SectionHead step="08" eyebrow="CONTROL" title="Built for control, privacy, and accountability." />
         <div className="mx-auto mt-14 grid max-w-6xl gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {items.map(([t, d, i]) => (
             <div key={t} className="reveal gradient-border rounded-2xl p-6 shadow-soft transition-all duration-500 hover:-translate-y-1 hover:shadow-float">
@@ -408,53 +662,28 @@ function Features() {
   );
 }
 
-/* ---------- about ---------- */
+/* ---------- open source ---------- */
 
-function About() {
-  const tags = ["Open source", "Self-hostable", "Multi-tenant", "Customizable", "Designed for modern organizations"];
+function OpenSource() {
   return (
-    <section id="about" className="px-4 py-24">
-      <div className="reveal mx-auto grid max-w-6xl gap-10 rounded-3xl border border-border bg-surface p-8 sm:p-14 lg:grid-cols-2">
-        <div>
-          <Eyebrow>ABOUT KARYA</Eyebrow>
-          <h2 className="mt-5 text-3xl font-semibold tracking-tight text-ink sm:text-5xl">
-            HR software built around <span className="font-display font-normal italic text-primary">ownership.</span>
-          </h2>
-        </div>
-        <div>
-          <p className="text-lg leading-relaxed text-muted-foreground">
-            Karya is an open-source HRMS designed for organizations that want modern people operations without giving
-            up control of their infrastructure or employee data. Released under{" "}
-            <span className="font-semibold text-ink">AGPL-3.0</span>.
-          </p>
-          <div className="mt-6 flex flex-wrap gap-2">
-            {tags.map((t) => (
-              <span key={t} className="rounded-full border border-border bg-card px-3 py-1.5 text-sm text-ink">{t}</span>
-            ))}
+    <section className="px-4 py-16">
+      <div className="reveal relative mx-auto max-w-6xl overflow-hidden rounded-3xl bg-cta px-6 py-16 shadow-float sm:px-14">
+        <div className="pointer-events-none absolute -right-20 top-0 h-80 w-80 rounded-full glow-lavender blur-3xl animate-drift" />
+        <div className="relative grid items-center gap-8 lg:grid-cols-[1.4fr_1fr]">
+          <div>
+            <span className="text-[11px] font-semibold tracking-[0.18em] text-lavender">OPEN SOURCE · AGPL-3.0</span>
+            <h2 className="mt-4 text-3xl font-semibold tracking-tight text-primary-foreground sm:text-4xl">
+              Put your people operations on your infrastructure.
+            </h2>
+            <p className="mt-4 max-w-lg text-primary-foreground/80">
+              Inspect the source, deploy Karya on your infrastructure, and shape it around your organization.
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-3 lg:justify-end">
+            <Btn href={GITHUB} variant="light">View on GitHub <span className="transition-transform group-hover:translate-x-1">→</span></Btn>
+            <Btn href="#developers" variant="outline-light">Deploy Guide</Btn>
           </div>
         </div>
-      </div>
-    </section>
-  );
-}
-
-/* ---------- developers ---------- */
-
-function Developers() {
-  return (
-    <section id="developers" className="px-4 py-24">
-      <SectionHead eyebrow="DEVELOPERS" title="Read the code. Run it yourself." sub="Clone the repository and deploy Karya on infrastructure you control." />
-      <div className="reveal mx-auto mt-12 max-w-2xl overflow-hidden rounded-2xl border border-border bg-ink shadow-float">
-        <div className="flex gap-1.5 border-b border-primary-foreground/10 px-4 py-3">
-          <span className="h-2.5 w-2.5 rounded-full bg-primary-foreground/20" />
-          <span className="h-2.5 w-2.5 rounded-full bg-primary-foreground/20" />
-          <span className="h-2.5 w-2.5 rounded-full bg-primary-foreground/20" />
-        </div>
-        <pre className="overflow-x-auto p-6 font-mono text-sm leading-7 text-primary-foreground/80">
-          <span className="text-lavender">$</span> git clone {GITHUB.replace("https://", "")}/karya{"\n"}
-          <span className="text-lavender">$</span> cd karya{"\n"}
-          <span className="text-primary-foreground/40"># follow the docs to configure and deploy</span>
-        </pre>
       </div>
     </section>
   );
@@ -464,17 +693,17 @@ function Developers() {
 
 function Contact() {
   const [sent, setSent] = useState(false);
-  const field = "w-full rounded-xl border border-input bg-card px-4 py-3 text-sm text-ink outline-none transition focus:border-lavender focus:ring-4 focus:ring-ring/20";
+  const field = "w-full rounded-xl border border-input bg-card px-4 py-3 text-sm text-ink outline-none transition placeholder:text-muted-foreground focus:border-lavender focus:ring-4 focus:ring-ring/20";
   return (
     <section id="contact" className="relative px-4 py-24">
       <div className="pointer-events-none absolute right-0 top-10 h-96 w-96 rounded-full glow-violet blur-2xl" />
       <div className="relative mx-auto grid max-w-5xl gap-12 lg:grid-cols-[1fr_1.2fr]">
         <div className="reveal">
-          <Eyebrow>CONTACT US</Eyebrow>
-          <h2 className="mt-5 text-3xl font-semibold tracking-tight text-ink sm:text-4xl">Have a question about Karya?</h2>
-          <p className="mt-4 text-muted-foreground">
-            Whether you're exploring Karya, deploying it for your organization, or contributing to the project, we'd love
-            to hear from you.
+          <Eyebrow>10 — CONTACT US</Eyebrow>
+          <h2 className="mt-5 text-3xl font-semibold tracking-tight text-ink sm:text-4xl">Let's talk about Karya.</h2>
+          <p className="mt-4 leading-relaxed text-muted-foreground">
+            Have a question about deploying Karya, using it for your organization, or contributing to the project? Get
+            in touch.
           </p>
         </div>
         <form
@@ -486,7 +715,7 @@ function Contact() {
           <input placeholder="Organization" className={`${field} sm:col-span-2`} />
           <textarea required rows={4} placeholder="Message" className={`${field} resize-none sm:col-span-2`} />
           <button className="group inline-flex items-center justify-center gap-2 rounded-full bg-ink px-5 py-3 text-sm font-semibold text-primary-foreground transition-all hover:-translate-y-0.5 hover:bg-primary sm:col-span-2">
-            {sent ? "Thanks — we'll be in touch." : <>Get in touch <span className="transition-transform group-hover:translate-x-1">→</span></>}
+            {sent ? "Thanks — we'll be in touch." : <>Send message <span className="transition-transform group-hover:translate-x-1">→</span></>}
           </button>
         </form>
       </div>
@@ -498,16 +727,16 @@ function Contact() {
 
 function Faq() {
   const qs = [
-    ["What is Karya?", "Karya is an open-source, self-hostable Human Resource Management System for managing employee and workforce operations."],
-    ["Is Karya open source?", "Yes. Karya is released under the AGPL-3.0 license."],
-    ["Can I self-host Karya?", "Yes. Karya is designed to be deployed on your own infrastructure."],
-    ["Can one Karya installation support multiple organizations?", "Yes. Karya uses a multi-tenant architecture that allows multiple organizations to operate within a single installation."],
-    ["Does Karya charge per employee?", "Karya is an open-source, self-hosted project and does not use a per-seat SaaS pricing model."],
-    ["What can I manage with Karya?", "Karya supports employee management, attendance, leave management, compensation structures, reimbursements, policies, access control and audit logs."],
+    ["What is Karya?", "Karya is an open-source, self-hostable Human Resource Management System designed to bring essential people operations into one platform."],
+    ["Is Karya open source?", "Yes. Karya is licensed under AGPL-3.0."],
+    ["Can Karya be self-hosted?", "Yes. Karya is designed to run on infrastructure controlled by the organization."],
+    ["Can one installation support multiple organizations?", "Yes. Karya uses a multi-tenant architecture that allows multiple organizations to operate within a single installation."],
+    ["What can I manage with Karya?", "Karya supports employee records, attendance, leave operations, compensation structures, reimbursements, exits, access control, audit logs, and sensitive-field controls."],
+    ["Who is Karya designed for?", "Karya is designed for IT and DevOps teams, HR teams and founders, and employees using the HR workspace."],
   ];
   return (
     <section id="faqs" className="px-4 py-24">
-      <SectionHead eyebrow="FAQS" title="Frequently asked questions." />
+      <SectionHead step="09" eyebrow="FAQS" title="Frequently asked questions." />
       <div className="mx-auto mt-12 max-w-3xl space-y-3">
         {qs.map(([q, a]) => (
           <details key={q} className="reveal group rounded-2xl border border-border bg-card px-6 shadow-soft transition-colors open:border-lavender">
@@ -515,7 +744,7 @@ function Faq() {
               {q}
               <span className="faq-icon grid h-7 w-7 shrink-0 place-items-center rounded-full bg-accent text-accent-foreground transition-transform duration-300">+</span>
             </summary>
-            <p className="pb-5 text-muted-foreground animate-fade-up">{a}</p>
+            <p className="pb-5 leading-relaxed text-muted-foreground animate-fade-up">{a}</p>
           </details>
         ))}
       </div>
@@ -530,11 +759,12 @@ function FinalCta() {
     <section className="px-4 py-16">
       <div className="reveal relative mx-auto max-w-6xl overflow-hidden rounded-3xl bg-cta px-6 py-20 text-center shadow-float sm:px-16">
         <div className="pointer-events-none absolute -left-20 top-0 h-80 w-80 rounded-full glow-lavender blur-3xl animate-drift" />
-        <h2 className="relative mx-auto max-w-2xl text-3xl font-semibold tracking-tight text-primary-foreground sm:text-5xl">
-          Take control of your HR infrastructure.
+        <span className="relative text-[11px] font-semibold tracking-[0.18em] text-lavender">OPEN SOURCE · AGPL-3.0</span>
+        <h2 className="relative mx-auto mt-4 max-w-2xl text-3xl font-semibold tracking-tight text-primary-foreground sm:text-5xl">
+          Own your HR infrastructure.
         </h2>
-        <p className="relative mx-auto mt-5 max-w-xl text-primary-foreground/75">
-          Deploy Karya, explore the code, and build HR operations around the way your organization works.
+        <p className="relative mx-auto mt-5 max-w-xl text-primary-foreground/80">
+          Inspect the source, deploy Karya on your infrastructure, and shape it around your organization.
         </p>
         <div className="relative mt-9 flex flex-wrap justify-center gap-3">
           <Btn href={GITHUB} variant="light">View on GitHub <span className="transition-transform group-hover:translate-x-1">→</span></Btn>
@@ -549,7 +779,7 @@ function FinalCta() {
 
 function Footer() {
   const cols: [string, [string, string][]][] = [
-    ["Product", [["Features", "#features"], ["About", "#about"], ["Developers", "#developers"]]],
+    ["Product", [["Overview", "#product"], ["Features", "#features"], ["Self-hosting", "#developers"], ["About", "#about"]]],
     ["Resources", [["Documentation", DOCS], ["GitHub", GITHUB], ["FAQs", "#faqs"]]],
     ["Contact", [["Contact Us", "#contact"]]],
   ];
@@ -558,7 +788,7 @@ function Footer() {
       <div className="mx-auto grid max-w-6xl gap-10 sm:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1fr]">
         <div>
           <Logo />
-          <p className="mt-4 max-w-xs text-sm text-muted-foreground">Open-source HR infrastructure for modern teams.</p>
+          <p className="mt-4 max-w-xs text-sm text-muted-foreground">Open-source, self-hostable, multi-tenant HRMS for teams that want to own their HR infrastructure.</p>
         </div>
         {cols.map(([h, ls]) => (
           <div key={h}>
