@@ -441,7 +441,7 @@ function Showcase() {
     ["Employee info", "Profiles with reporting lines, grades, cost centers and masked sensitive fields.", <ProfileView key="e" />],
   ];
   const [active, setActive] = useState(0);
-  const [name, desc, view] = tabs[active];
+  const [name, desc, view] = tabs[active] as [string, string, ReactNode];
   return (
     <section className="relative px-4 py-24">
       <div className="pointer-events-none absolute left-1/2 top-1/2 h-[500px] w-[900px] -translate-x-1/2 -translate-y-1/2 rounded-full glow-lavender blur-3xl" />
