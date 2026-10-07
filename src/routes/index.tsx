@@ -16,7 +16,7 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: "Karya | The Open-Source HRMS for Modern Teams" },
       {
         property: "og:description",
-        content: "Self-host your HR infrastructure and keep complete control of your data. AGPL-3.0.",
+        content: "Self-host your HR infrastructure and keep complete control of your data.",
       },
     ],
   }),
@@ -544,7 +544,7 @@ function WhyOpenSource() {
       <div className="relative">
         <SectionHead
           step="07"
-          eyebrow="OPEN SOURCE · AGPL-3.0"
+          eyebrow="OPEN SOURCE"
           title="Why open source and self-hosted?"
           sub="Karya gives organizations control over where their HR data lives, how the platform is configured, and how the software evolves."
         />
@@ -668,7 +668,7 @@ const FAQS: [string, [string, string][]][] = [
   ["General", [
     ["What is Karya?", "Karya is an open-source, self-hostable HRMS. It brings employee records, attendance, leave, compensation, reimbursements, policies and exits into one system you run yourself."],
     ["Who is Karya built for? Is it suitable for small teams and large companies?", "Karya is built for organizations that want to own their HR system: IT and DevOps teams who run it, HR teams and founders who configure it, and employees who use it every day. Its roles, fields and multi-tenant setup are meant to adapt to different sizes and structures."],
-    ["What does \"open source\" mean here, and which license do you use?", "The source code is public and licensed under AGPL-3.0. You can inspect it, run it, modify it and fork it under the terms of that license."],
+    ["What does \"open source\" mean here?", "The source code is public. You can inspect it, run it, modify it and fork it under the terms of its open-source license."],
     ["Is Karya really free? Are there any hidden costs?", "There are no license or per-seat fees. Your costs are the infrastructure you host it on and the time your team spends running it."],
     ["Is there a hosted or cloud version, or only self-hosting?", "Karya is currently self-hosted only. No hosted or cloud version is offered at this time."],
   ]],
@@ -743,7 +743,7 @@ function FinalCta() {
     <section className="px-4 py-16">
       <div className="reveal relative mx-auto max-w-6xl overflow-hidden rounded-3xl bg-cta px-6 py-20 text-center shadow-float sm:px-16">
         <div className="pointer-events-none absolute -left-20 top-0 h-80 w-80 rounded-full glow-lavender blur-3xl animate-drift" />
-        <span className="relative text-[11px] font-semibold tracking-[0.18em] text-lavender">OPEN SOURCE · AGPL-3.0</span>
+        <span className="relative text-[11px] font-semibold tracking-[0.18em] text-lavender">OPEN SOURCE</span>
         <h2 className="relative mx-auto mt-4 max-w-2xl text-3xl font-semibold tracking-tight text-primary-foreground sm:text-5xl">
           Self-host Karya today.
         </h2>
@@ -834,7 +834,7 @@ function About() {
             HR software that <span className="font-display font-normal italic text-primary">stays yours.</span>
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
-            Karya is an <span className="font-semibold text-ink">AGPL-3.0</span> licensed HRMS for organizations that
+            Karya is an <span className="font-semibold text-ink">open-source</span> HRMS for organizations that
             prefer transparency, adaptability, and ownership over proprietary lock-in.
           </p>
         </div>
