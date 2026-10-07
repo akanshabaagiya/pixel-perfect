@@ -1,7 +1,7 @@
 export type DocPage = {
   slug: string;
   title: string;
-  summary?: string;
+  summary?: string | undefined;
   /** Paragraphs or code blocks. Absent = documentation pending. */
   body?: ({ p: string } | { code: string } | { list: string[] })[];
 };

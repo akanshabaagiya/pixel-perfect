@@ -878,7 +878,7 @@ function Contact() {
           <input placeholder="Organization" className={`${field} sm:col-span-2`} />
           <textarea required rows={4} placeholder="Message" className={`${field} resize-none sm:col-span-2`} />
           <button className="group inline-flex items-center justify-center gap-2 rounded-full bg-ink px-5 py-3 text-sm font-semibold text-primary-foreground transition-all hover:-translate-y-0.5 hover:bg-primary sm:col-span-2">
-            {sent ? "Thanks — we'll be in touch." : <>Send message <span className="transition-transform group-hover:translate-x-1">→</span></>}
+            {sent ? "Thanks, we'll be in touch." : <>Send message <span className="transition-transform group-hover:translate-x-1">→</span></>}
           </button>
         </form>
       </div>
