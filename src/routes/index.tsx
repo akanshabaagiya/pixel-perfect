@@ -730,7 +730,7 @@ function Faq() {
         ))}
       </div>
       <div key={cat} className="mx-auto mt-8 max-w-3xl space-y-3 animate-fade-up">
-        {FAQS[cat][1].map(([q, a]) => <FaqItem key={q} q={q} a={a} />)}
+        {(FAQS[cat]?.[1] ?? []).map(([q, a]) => <FaqItem key={q} q={q} a={a} />)}
       </div>
     </section>
   );
