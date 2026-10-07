@@ -1,58 +1,89 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, Outlet, useRouterState } from "@tanstack/react-router";
 import { useState } from "react";
 import { Footer, Nav } from "@/components/site";
 import { DOC_SECTIONS } from "@/lib/docs";
 
 export const Route = createFileRoute("/docs")({
-  head: () => ({
-    meta: [
-      { title: "Karya Documentation" },
-      { name: "description", content: "Everything you need to deploy, configure, use and contribute to Karya." },
-      { property: "og:title", content: "Karya Documentation" },
-      { property: "og:description", content: "Deploy, configure, use and contribute to Karya." },
-    ],
-  }),
-  component: DocsPage,
+  component: DocsLayout,
 });
 
-function DocsPage() {
+function DocsSidebar({ onNavigate }: { onNavigate?: () => void }) {
   const [q, setQ] = useState("");
+  const path = useRouterState({ select: (s) => s.location.pathname });
   const query = q.toLowerCase();
+  return (
+    <nav aria-label="Documentation">
+      <input
+        value={q}
+        onChange={(e) => setQ(e.target.value)}
+        placeholder="Search the docs"
+        aria-label="Search the docs"
+        className="w-full rounded-xl border border-input bg-card px-3 py-2 text-sm text-ink outline-none focus:border-lavender"
+      />
+      <Link
+        to="/docs"
+        onClick={onNavigate}
+        className={`mt-5 block rounded-lg px-3 py-1.5 text-sm font-semibold ${path === "/docs" || path === "/docs/" ? "bg-secondary text-ink" : "text-muted-foreground hover:text-ink"}`}
+      >
+        Overview
+      </Link>
+      {DOC_SECTIONS.map((sec) => {
+        const pages = sec.pages.filter((p) => p.title.toLowerCase().includes(query));
+        if (!pages.length) return null;
+        return (
+          <div key={sec.title} className="mt-5">
+            <p className="px-3 text-xs font-semibold uppercase tracking-wider text-ink">{sec.title}</p>
+            <ul className="mt-1.5 space-y-0.5">
+              {pages.map((p) => {
+                const active = path === `/docs/${p.slug}`;
+                return (
+                  <li key={p.slug}>
+                    <Link
+                      to="/docs/$slug"
+                      params={{ slug: p.slug }}
+                      onClick={onNavigate}
+                      aria-current={active ? "page" : undefined}
+                      className={`flex items-center justify-between rounded-lg px-3 py-1.5 text-sm transition-colors ${active ? "bg-secondary font-medium text-ink" : "text-muted-foreground hover:bg-secondary/60 hover:text-ink"}`}
+                    >
+                      <span>{p.title}</span>
+                      {!p.body && <span className="text-[10px] text-primary">Pending</span>}
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        );
+      })}
+    </nav>
+  );
+}
+
+function DocsLayout() {
+  const [open, setOpen] = useState(false);
   return (
     <div className="relative overflow-x-hidden">
       <Nav />
-      <main className="mx-auto max-w-6xl px-4 pb-24 pt-32">
-        <h1 className="text-4xl font-semibold tracking-tight text-ink sm:text-5xl">Karya Documentation</h1>
-        <p className="mt-4 max-w-xl text-lg text-muted-foreground">
-          Everything you need to deploy, configure, use and contribute to Karya.
-        </p>
-        <input
-          value={q}
-          onChange={(e) => setQ(e.target.value)}
-          placeholder="Search the docs"
-          className="mt-8 w-full max-w-xl rounded-xl border border-input bg-card px-4 py-3 text-sm text-ink outline-none focus:border-lavender"
-        />
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {DOC_SECTIONS.map((sec) => {
-            const pages = sec.pages.filter((p) => p.title.toLowerCase().includes(query));
-            if (!pages.length) return null;
-            return (
-              <div key={sec.title} className="gradient-border rounded-2xl p-6 shadow-soft">
-                <h2 className="font-semibold text-ink">{sec.title}</h2>
-                <ul className="mt-3 space-y-1.5">
-                  {pages.map((p) => (
-                    <li key={p.slug} className="text-sm text-muted-foreground">
-                      {p.title}
-                      {!p.body && <span className="ml-2 text-xs text-primary">Pending</span>}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            );
-          })}
+      <div className="mx-auto flex max-w-7xl gap-10 px-4 pb-24 pt-28">
+        <aside className="sticky top-28 hidden max-h-[calc(100vh-8rem)] w-64 shrink-0 overflow-y-auto pb-8 lg:block">
+          <DocsSidebar />
+        </aside>
+        <div className="min-w-0 flex-1">
+          <button
+            onClick={() => setOpen((o) => !o)}
+            aria-expanded={open}
+            className="mb-6 rounded-xl border border-input bg-card px-4 py-2 text-sm font-semibold text-ink lg:hidden"
+          >
+            {open ? "Close topics" : "Browse topics"}
+          </button>
+          {open && (
+            <div className="mb-8 rounded-2xl border border-input bg-card p-4 lg:hidden">
+              <DocsSidebar onNavigate={() => setOpen(false)} />
+            </div>
+          )}
+          <Outlet />
         </div>
-        <Link to="/" className="mt-10 inline-block text-sm font-semibold text-primary">Back to home</Link>
-      </main>
+      </div>
       <Footer />
     </div>
   );
