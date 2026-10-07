@@ -68,9 +68,8 @@ function Hero() {
           </p>
           <div className="mt-9 flex flex-wrap gap-3">
             <Btn href={GITHUB}>
-              View on GitHub <Arrow />
+              Start now <Arrow />
             </Btn>
-            <Btn href={DOCS} variant="ghost">Read the Docs</Btn>
           </div>
           <p className="mt-6 text-sm font-medium text-muted-foreground">
             Self-hosted · Multi-tenant · Docker-ready · Open source
@@ -190,8 +189,6 @@ function Intro() {
   return (
     <section id="product" className="relative px-4 py-24">
       <SectionHead
-        step="01"
-        eyebrow="INTRODUCE"
         title="People operations, connected from entry to exit."
         sub="Karya brings the everyday systems behind employee records, attendance, leave, compensation, expenses, and offboarding into one self-hosted HRMS."
       />
@@ -299,7 +296,7 @@ function ProfileView() {
         </div>
       </div>
       <div className="mt-4 grid grid-cols-2 gap-2">
-        {[["Reports to", "Neha Iyer"], ["Grade", "L3"], ["Cost center", "ENG-01"], ["Salary", "••••••"]].map(([k, v]) => (
+        {[["Reports to", "Neha Iyer"], ["Level", "L3"], ["Cost center", "ENG-01"], ["Salary", "••••••"]].map(([k, v]) => (
           <div key={k} className="rounded-lg border border-border p-2.5">
             <div className="text-muted-foreground">{k}</div>
             <div className="mt-0.5 font-medium text-ink">{v}</div>
@@ -317,7 +314,7 @@ function Showcase() {
     ["Attendance", "Employee check-ins and a monthly view of attendance records.", <AttendanceView key="a" />],
     ["Leave", "Leave balances by type, with requests routed for approval.", <LeaveView key="l" />],
     ["Payroll", "Compensation structures broken down into salary components.", <PayrollView key="c" />],
-    ["Employee info", "Profiles with reporting lines, grades, cost centers and masked sensitive fields.", <ProfileView key="e" />],
+    ["Employee info", "Profiles with reporting lines, levels, cost centers and masked sensitive fields.", <ProfileView key="e" />],
   ];
   const [active, setActive] = useState(0);
   const [name, desc, view] = tabs[active] as [string, string, ReactNode];
@@ -325,7 +322,7 @@ function Showcase() {
     <section className="relative px-4 py-24">
       <div className="pointer-events-none absolute left-1/2 top-1/2 h-[500px] w-[900px] -translate-x-1/2 -translate-y-1/2 rounded-full glow-lavender blur-3xl" />
       <div className="relative">
-        <SectionHead step="02" eyebrow="SHOW" title="See Karya in action." sub="A single workspace for the everyday work behind your people operations." />
+        <SectionHead title="See Karya in action." sub="A single workspace for the everyday work behind your people operations." />
         <div className="reveal mx-auto mt-10 flex max-w-3xl flex-wrap justify-center gap-2">
           {tabs.map(([t], i) => (
             <button
@@ -376,20 +373,18 @@ function Product() {
       <Mini key="1"><Row a="Priya Sharma" b="People" /><Row a="Arjun Mehta" b="Engineering" /><Row a="Dev Rao" b="Operations" /></Mini>],
     ["Attendance and Leave", "Check-ins, attendance, shifts, leave types, holiday calendars and approvals.",
       <Mini key="2"><div className="grid grid-cols-7 gap-1">{Array.from({ length: 14 }).map((_, i) => <span key={i} className={`aspect-square rounded ${i % 7 > 4 ? "bg-surface-2" : i === 9 ? "bg-lavender/50" : "bg-primary/70"}`} />)}</div></Mini>],
-    ["Compensation", "Salary structures, grades, compensation components and payroll-related workflows.",
+    ["Compensation", "Salary structures, levels, compensation components and payroll-related workflows.",
       <Mini key="3">{[["Basic", 90], ["HRA", 36], ["Allowance", 32]].map(([k, v]) => <div key={k} className="mb-1.5 last:mb-0"><div className="flex justify-between text-ink"><span>{k}</span></div><div className="mt-1 h-1.5 rounded-full bg-surface-2"><div className="h-full rounded-full bg-lavender" style={{ width: `${v}%` }} /></div></div>)}</Mini>],
     ["Reimbursements", "Employee expense submission and manager approval.",
       <Mini key="4"><Row a="Travel claim" b="Pending" tone="bg-surface-2 text-muted-foreground" /><Row a="Client lunch" b="Approved" /></Mini>],
     ["Onboarding and Offboarding", "Manage employee journeys from joining through exit.",
-      <Mini key="5"><div className="flex items-center gap-1">{["Joined", "Active", "Notice", "Exit"].map((s, i) => <span key={s} className={`flex-1 rounded-full px-1 py-1 text-center ${i < 2 ? "bg-primary/80 text-primary-foreground" : "bg-card text-muted-foreground"}`}>{s}</span>)}</div></Mini>],
+      <Mini key="5"><div className="flex items-center gap-1">{[["Onboarded", "bg-primary/80 text-primary-foreground"], ["Onboarding in progress", "bg-accent text-accent-foreground"], ["Offboarding", "bg-card text-muted-foreground"]].map(([s, c]) => <span key={s} className={`flex-1 rounded-full px-1.5 py-1 text-center leading-tight ${c}`}>{s}</span>)}</div></Mini>],
     ["Policies and Access", "Define policies, roles and permissions according to organizational requirements.",
       <Mini key="6"><Row a="HR Admin" b="Full" /><Row a="Manager" b="Team" /><Row a="Employee" b="Self" tone="bg-surface-2 text-muted-foreground" /></Mini>],
   ];
   return (
     <section id="product" className="relative px-4 py-24">
       <SectionHead
-        step="01"
-        eyebrow="PRODUCT"
         title="People operations, connected from entry to exit."
         sub="Karya brings employee records, attendance, leave, compensation, expenses, policies and offboarding into one self-hosted HRMS."
       />
@@ -412,8 +407,8 @@ function Capabilities() {
   const items = [
     ["Employee Directory and Profiles", "Reporting hierarchies, custom employee fields and organized workforce records.", "◉"],
     ["Time and Attendance", "Check-in and check-out, attendance records and shift management.", "◷"],
-    ["Leave Operations", "Leave types and holiday calendars, with requests routed for approval.", "▤"],
-    ["Compensation Structures", "Salary templates, grades, compensation lines and cost or revenue centers.", "₹"],
+    ["Leave Operations", "Define leave types, holiday calendars, balances, and time-off rules that fit your organization.", "▤"],
+    ["Compensation Structures", "Create salary templates, levels, and compensation components that fit your organization.", "₹"],
     ["Reimbursements", "A clear expense submission path for employees and approvals for managers.", "⇄"],
     ["Exit Management", "Voluntary exits and offboarding through a defined workflow.", "↗"],
     ["Role-Based Access", "Granular roles that match access to responsibilities.", "◈"],
@@ -423,8 +418,6 @@ function Capabilities() {
   return (
     <section id="features" className="relative px-4 py-24">
       <SectionHead
-        step="03"
-        eyebrow="FEATURES"
         title="Everything your workforce needs, in one system."
         sub="From everyday attendance to compensation structures and employee exits, Karya keeps essential HR operations connected."
       />
@@ -452,7 +445,7 @@ function HowItWorks() {
   ];
   return (
     <section id="how-it-works" className="relative px-4 py-24">
-      <SectionHead step="04" eyebrow="HOW IT WORKS" title="How it works" sub="Four steps from a fresh install to everyday HR operations." />
+      <SectionHead title="How it works" sub="Four steps from a fresh install to everyday HR operations." />
       <div className="relative mx-auto mt-14 max-w-6xl">
         <div className="pointer-events-none absolute left-[12%] right-[12%] top-11 hidden h-px bg-gradient-to-r from-transparent via-lavender to-transparent lg:block" />
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -492,8 +485,7 @@ function Configured() {
         <div className="pointer-events-none absolute -right-32 -top-32 h-96 w-96 rounded-full glow-violet" />
         <div className="relative grid items-center gap-12 lg:grid-cols-[1fr_1.1fr]">
           <div>
-            <Eyebrow>05 · CONFIGURABLE</Eyebrow>
-            <h2 className="mt-5 text-3xl font-semibold tracking-tight text-ink sm:text-5xl">
+            <h2 className="text-3xl font-semibold tracking-tight text-ink sm:text-5xl">
               Built to be configured, <span className="font-display font-normal italic text-primary">not hardcoded.</span>
             </h2>
             <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
@@ -543,8 +535,6 @@ function WhyOpenSource() {
       <div className="pointer-events-none absolute left-1/2 top-1/2 h-[500px] w-[900px] -translate-x-1/2 -translate-y-1/2 rounded-full glow-lavender blur-3xl" />
       <div className="relative">
         <SectionHead
-          step="07"
-          eyebrow="OPEN SOURCE"
           title="Why open source and self-hosted?"
           sub="Karya gives organizations control over where their HR data lives, how the platform is configured, and how the software evolves."
         />
@@ -578,17 +568,14 @@ function WhyOpenSource() {
 
 function Developers() {
   const stack = ["Node.js", "Express 5", "Prisma 7", "MySQL 8", "React 19", "Vite", "Tailwind CSS 4"];
-  const card = "reveal rounded-2xl border border-border bg-card p-6 shadow-soft transition-all duration-500 hover:-translate-y-1 hover:shadow-float";
   return (
     <section id="developers" className="px-4 py-24">
       <SectionHead
-        step="09"
-        eyebrow="DEVELOPERS"
         title="Built for teams who want control."
         sub="The technical side of Karya: the stack, the architecture, and how to get it running."
       />
       <div className="mx-auto mt-14 grid max-w-6xl gap-5 lg:grid-cols-2">
-        <div className="reveal overflow-hidden rounded-2xl border border-border bg-ink shadow-float lg:row-span-2">
+        <div className="reveal overflow-hidden rounded-2xl border border-border bg-ink shadow-float">
           <div className="flex items-center gap-1.5 border-b border-primary-foreground/10 px-4 py-3">
             <span className="h-2.5 w-2.5 rounded-full bg-primary-foreground/20" />
             <span className="h-2.5 w-2.5 rounded-full bg-primary-foreground/20" />
@@ -610,23 +597,20 @@ function Developers() {
             </div>
           </div>
         </div>
-        <div className={card}>
-          <span className="font-mono text-xs text-primary">ARCHITECTURE</span>
-          <p className="mt-3 leading-relaxed text-ink">
-            Multi-tenant architecture with separate instance administration and organization-level workspaces.
+        <div className="reveal flex flex-col justify-center rounded-2xl border border-border bg-card p-8 shadow-soft">
+          <h3 className="text-xl font-semibold text-ink">Multi-tenant by design</h3>
+          <p className="mt-3 leading-relaxed text-muted-foreground">
+            A Node.js and Express API backed by MySQL through Prisma, with React front ends for instance administration
+            and each entity's workspace. One deployment, cleanly separated data.
           </p>
-          <a href="/docs/architecture" className="mt-4 inline-block text-sm font-semibold text-primary hover:text-ink">Read the architecture notes →</a>
-        </div>
-        <div className="grid gap-5 sm:grid-cols-2">
-          <div className={card}>
-            <span className="font-mono text-xs text-primary">API</span>
-            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">The API reference is being written and will be published in the docs.</p>
-            <a href="/docs/api-reference" className="mt-4 inline-block text-sm font-semibold text-primary hover:text-ink">API reference →</a>
-          </div>
-          <div className={card}>
-            <span className="font-mono text-xs text-primary">CONTRIBUTING</span>
-            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">Explore the repository, contribute improvements, report issues, and help shape Karya.</p>
-            <a href={GITHUB} className="mt-4 inline-block text-sm font-semibold text-primary hover:text-ink">View on GitHub →</a>
+          <ul className="mt-6 space-y-3 text-sm text-ink">
+            {["Docker-based deployment on your own infrastructure", "Role-based access, audit logs and field masking", "Source available to inspect, extend and fork"].map((t) => (
+              <li key={t} className="flex gap-3"><span className="text-primary">✓</span>{t}</li>
+            ))}
+          </ul>
+          <div className="mt-8 flex flex-wrap items-center gap-5">
+            <Btn href={GITHUB}>View source on GitHub <Arrow /></Btn>
+            <a href="/docs/architecture" className="text-sm font-semibold text-primary hover:text-ink">Architecture notes →</a>
           </div>
         </div>
       </div>
@@ -644,8 +628,8 @@ function DocsSummary() {
     ["Developer Guide", "Architecture, APIs, data models and contribution guidelines.", "/docs/architecture"],
   ];
   return (
-    <section className="px-4 py-24">
-      <SectionHead step="10" eyebrow="DOCS" title="Where to learn more." sub="The Karya knowledge guide covers deployment, configuration, everyday use and contributing." />
+    <section id="docs" className="px-4 py-24 scroll-mt-24">
+      <SectionHead title="Where to learn more." sub="The Karya knowledge guide covers deployment, configuration, everyday use and contributing." />
       <div className="mx-auto mt-14 grid max-w-6xl gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {cards.map(([t, d, href]) => (
           <a key={t} href={href} className="reveal group gradient-border rounded-2xl p-6 shadow-soft transition-all duration-500 hover:-translate-y-1 hover:shadow-float">
@@ -667,9 +651,9 @@ function DocsSummary() {
 const FAQS: [string, [string, string][]][] = [
   ["General", [
     ["What is Karya?", "Karya is an open-source, self-hostable HRMS. It brings employee records, attendance, leave, compensation, reimbursements, policies and exits into one system you run yourself."],
-    ["Who is Karya built for? Is it suitable for small teams and large companies?", "Karya is built for organizations that want to own their HR system: IT and DevOps teams who run it, HR teams and founders who configure it, and employees who use it every day. Its roles, fields and multi-tenant setup are meant to adapt to different sizes and structures."],
+    ["Who is Karya built for? Is it suitable for small teams and large companies?", "Karya is built for organizations that want to own their HR system: IT and DevOps teams who run it, HR and operations teams who configure it, and employees who use it every day. Its roles, fields and multi-tenant setup are meant to adapt to different sizes and structures."],
     ["What does \"open source\" mean here?", "The source code is public. You can inspect it, run it, modify it and fork it under the terms of its open-source license."],
-    ["Is Karya really free? Are there any hidden costs?", "There are no license or per-seat fees. Your costs are the infrastructure you host it on and the time your team spends running it."],
+    ["Is Karya really free? Are there any hidden costs?", "Yes, Karya is free and open source, with no hidden costs. If you need help with deployment, setup, or other technical support, additional charges may apply. [Contact us] to learn more."],
     ["Is there a hosted or cloud version, or only self-hosting?", "Karya is currently self-hosted only. No hosted or cloud version is offered at this time."],
   ]],
   ["Self-hosting", [
@@ -680,10 +664,8 @@ const FAQS: [string, [string, string][]][] = [
     ["Do I need a technical team to run it?", "You need someone comfortable deploying and maintaining a Docker-based application. Day-to-day HR work does not require technical skills."],
   ]],
   ["Features", [
-    ["Can I define my own roles and permissions?", "Yes. Karya uses role-based access control so you can match access to responsibilities."],
     ["Can I customize fields and forms to match my company?", "Yes. You can customize the fields captured for your people and organization."],
-    ["Does it handle multiple legal entities or countries?", "Karya is multi-tenant, so one installation can run several organizations. Guidance on legal entities and multi-country setups will be covered in the Core Concepts docs."],
-    ["How does the exit process work?", "Karya supports voluntary exits and offboarding through a defined workflow, so each step of an employee's exit is tracked."],
+    ["Does it handle multiple legal entities or countries?", "Karya is multi-tenant, so one installation can run several entities. Guidance on legal entities and multi-country setups will be covered in the Core Concepts docs."],
   ]],
   ["Security and data", [
     ["Where is my data stored, and who can see it?", "Your data is stored on servers you control. Inside Karya, who can see what is decided by the roles you configure, and sensitive fields such as salary can be masked."],
@@ -691,8 +673,8 @@ const FAQS: [string, [string, string][]][] = [
     ["Is Karya compliant with data-protection laws like GDPR or India's DPDP?", "Karya does not claim any formal certification or compliance. Because you host it, you control where data lives and who can access it, which can support your own compliance work. Please assess it against your legal requirements."],
     ["How do I report a security vulnerability?", "Please report it privately to the maintainers through the GitHub repository or the contact form rather than opening a public issue. A formal security policy will be published."],
   ]],
-  ["Support and community", [
-    ["What support is available if I get stuck?", "Start with the docs, then use GitHub issues and discussions to ask questions and report problems. Karya is community-supported."],
+  ["Support", [
+    ["What support is available if I get stuck?", "Start with the docs, then use GitHub Issues and Discussions to ask questions, report problems, or share feedback. If you need additional help, [contact us]."],
   ]],
 ];
 
@@ -706,7 +688,11 @@ function FaqItem({ q, a }: { q: string; a: string }) {
       </button>
       <div className={`grid transition-all duration-500 ease-out ${open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
         <div className="overflow-hidden">
-          <p className="pb-5 leading-relaxed text-muted-foreground">{a}</p>
+          <p className="pb-5 leading-relaxed text-muted-foreground">
+            {a.split(/\[([^\]]+)\]/).map((part, i) =>
+              i % 2 ? <a key={i} href="#contact" className="font-semibold text-primary underline-offset-4 hover:underline">{part}</a> : part,
+            )}
+          </p>
         </div>
       </div>
     </div>
@@ -717,7 +703,7 @@ function Faq() {
   const [cat, setCat] = useState(0);
   return (
     <section id="faqs" className="px-4 py-24">
-      <SectionHead step="12" eyebrow="FAQS" title="Frequently asked questions." />
+      <SectionHead title="Frequently asked questions." />
       <div className="reveal mx-auto mt-10 flex max-w-3xl flex-wrap justify-center gap-2">
         {FAQS.map(([c], i) => (
           <button
@@ -743,8 +729,7 @@ function FinalCta() {
     <section className="px-4 py-16">
       <div className="reveal relative mx-auto max-w-6xl overflow-hidden rounded-3xl bg-cta px-6 py-20 text-center shadow-float sm:px-16">
         <div className="pointer-events-none absolute -left-20 top-0 h-80 w-80 rounded-full glow-lavender blur-3xl animate-drift" />
-        <span className="relative text-[11px] font-semibold tracking-[0.18em] text-lavender">OPEN SOURCE</span>
-        <h2 className="relative mx-auto mt-4 max-w-2xl text-3xl font-semibold tracking-tight text-primary-foreground sm:text-5xl">
+        <h2 className="relative mx-auto max-w-2xl text-3xl font-semibold tracking-tight text-primary-foreground sm:text-5xl">
           Self-host Karya today.
         </h2>
         <p className="relative mx-auto mt-5 max-w-xl text-primary-foreground/80">
@@ -766,24 +751,24 @@ function MultiTenant() {
     <section className="px-4 py-24">
       <div className="reveal mx-auto grid max-w-6xl items-center gap-12 rounded-3xl border border-border bg-surface p-8 sm:p-14 lg:grid-cols-2">
         <div>
-          <Eyebrow>06 · ARCHITECTURE</Eyebrow>
-          <h2 className="mt-5 text-3xl font-semibold tracking-tight text-ink sm:text-5xl">
-            One installation. <span className="font-display font-normal italic text-primary">Distinct organizations.</span>
+          <h2 className="text-3xl font-semibold tracking-tight text-ink sm:text-5xl">
+            One installation. <span className="font-display font-normal italic text-primary">Distinct entities.</span>
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
-            Karya separates instance administration from each organization's workspace, making one deployment useful for
+            Karya separates organization-level administration from each entity's workspace, making one deployment useful for
             a single business, agency, or holding company.
           </p>
         </div>
         <div className="flex flex-col items-center">
           <div className={`${node} w-full max-w-xs`}>
-            <div className="font-semibold text-ink">Instance administration</div>
+            <div className="font-semibold text-ink">Instance Admin</div>
+            <div className="text-xs text-muted-foreground">Organization</div>
             <div className="mt-1 font-mono text-xs text-primary">/superadmin</div>
           </div>
           <div className="h-8 w-px bg-lavender" />
           <div className="h-px w-1/2 bg-lavender" />
           <div className="grid w-full max-w-md grid-cols-2 gap-4">
-            {[["Organization A", "/org-a"], ["Organization B", "/org-b"]].map(([o, u]) => (
+            {[["Entity A", "/entity-a"], ["Entity B", "/entity-b"]].map(([o, u]) => (
               <div key={o} className="flex flex-col items-center">
                 <div className="h-6 w-px bg-lavender" />
                 <div className={`${node} w-full`}>
@@ -802,12 +787,12 @@ function MultiTenant() {
 function Audience() {
   const items = [
     ["IT & DevOps", "Deploy with Docker, maintain the instance, and keep employee data within your infrastructure.", "</>"],
-    ["HR & Founders", "Set up employee structures, policies, access, and organization-level operations.", "▦"],
+    ["HR & Operations", "Set up employee structures, policies, access, and day-to-day people operations.", "▦"],
     ["Employees", "Check in, request leave, view pay slips, and submit reimbursements through one workspace.", "◉"],
   ];
   return (
     <section className="relative px-4 py-24">
-      <SectionHead step="08" eyebrow="WHO IT'S FOR" title="One system, clear paths for every team." />
+      <SectionHead title="One system, clear paths for every team." />
       <div className="mx-auto mt-14 grid max-w-6xl gap-5 md:grid-cols-3">
         {items.map(([t, d, i]) => (
           <div key={t} className="reveal relative overflow-hidden rounded-3xl border border-border bg-card p-7 shadow-soft transition-all duration-500 hover:-translate-y-1 hover:shadow-float">
@@ -829,8 +814,7 @@ function About() {
     <section id="about" className="px-4 py-24">
       <div className="reveal mx-auto grid max-w-6xl gap-10 rounded-3xl border border-border bg-surface p-8 sm:p-14 lg:grid-cols-2">
         <div>
-          <Eyebrow>11 · ABOUT KARYA</Eyebrow>
-          <h2 className="mt-5 text-3xl font-semibold tracking-tight text-ink sm:text-5xl">
+          <h2 className="text-3xl font-semibold tracking-tight text-ink sm:text-5xl">
             HR software that <span className="font-display font-normal italic text-primary">stays yours.</span>
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
@@ -862,8 +846,7 @@ function Contact() {
       <div className="pointer-events-none absolute right-0 top-10 h-96 w-96 rounded-full glow-violet blur-2xl" />
       <div className="relative mx-auto grid max-w-5xl gap-12 lg:grid-cols-[1fr_1.2fr]">
         <div className="reveal">
-          <Eyebrow>13 · CONTACT US</Eyebrow>
-          <h2 className="mt-5 text-3xl font-semibold tracking-tight text-ink sm:text-4xl">Let's talk about Karya.</h2>
+          <h2 className="text-3xl font-semibold tracking-tight text-ink sm:text-4xl">Let's talk about Karya.</h2>
           <p className="mt-4 leading-relaxed text-muted-foreground">
             Have a question about deploying Karya, using it for your organization, or contributing to the project? Get
             in touch.

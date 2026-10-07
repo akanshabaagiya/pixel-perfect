@@ -92,7 +92,7 @@ const NAV: [string, string][] = [
   ["Product", "/#product"],
   ["Features", "/#features"],
   ["How it works", "/#how-it-works"],
-  ["Docs", "/docs"],
+  ["Docs", "/#docs"],
   ["Developers", "/#developers"],
   ["FAQs", "/#faqs"],
 ];
@@ -152,13 +152,12 @@ export function Nav() {
 export function Footer() {
   const cols: [string, [string, string][]][] = [
     ["Product", [["Product", "/#product"], ["Features", "/#features"], ["How it works", "/#how-it-works"], ["Developers", "/#developers"]]],
-    ["Resources", [["Docs", "/docs"], ["Roadmap", GITHUB], ["Changelog", "/docs/changelog"], ["Community / Discussions", GITHUB]]],
-    ["Trust", [["Security", "/#faqs"], ["Privacy", "/#faqs"], ["License", "/#open-source"]]],
+    ["Resources", [["Docs", "/docs"], ["Roadmap", GITHUB], ["License", "/#open-source"]]],
     ["Project", [["About", "/#about"], ["Contact", "/#contact"], ["GitHub", GITHUB]]],
   ];
   return (
     <footer className="border-t border-border px-4 pb-10 pt-16">
-      <div className="mx-auto grid max-w-6xl gap-10 sm:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1fr_1fr]">
+      <div className="mx-auto grid max-w-6xl gap-10 sm:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1fr]">
         <div>
           <Logo />
           <p className="mt-4 max-w-xs text-sm text-muted-foreground">
