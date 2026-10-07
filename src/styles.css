@@ -133,6 +133,25 @@
   border: 1px solid transparent;
   background: linear-gradient(var(--card), var(--card)) padding-box, var(--gradient-border) border-box;
 }
+@utility docs-scroll {
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+  mask-image: linear-gradient(to bottom, transparent 0, #000 14px, #000 calc(100% - 28px), transparent 100%);
+  &:hover {
+    scrollbar-color: color-mix(in oklab, var(--ink) 22%, transparent) transparent;
+  }
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 999px;
+    background: transparent;
+  }
+  &:hover::-webkit-scrollbar-thumb {
+    background: color-mix(in oklab, var(--ink) 22%, transparent);
+  }
+}
 @utility text-gradient {
   background: linear-gradient(120deg, var(--ink) 20%, var(--violet) 70%, var(--lavender));
   -webkit-background-clip: text;

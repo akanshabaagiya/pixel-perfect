@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState, type ReactNode } from "react";
 
-export const GITHUB = "https://github.com";
+export const GITHUB = "https://github.com/mittarv/hrms";
 
 export function useReveal(dep?: unknown) {
   useEffect(() => {
@@ -180,7 +180,7 @@ export function Footer() {
           </div>
         ))}
       </div>
-      <div className="mx-auto mt-14 max-w-6xl border-t border-border pt-6 text-sm text-muted-foreground">Karya · AGPL-3.0</div>
+      <div className="mx-auto mt-14 max-w-6xl border-t border-border pt-6 text-sm text-muted-foreground">Karya</div>
     </footer>
   );
 }
