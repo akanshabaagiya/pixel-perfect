@@ -62,11 +62,10 @@ export function Eyebrow({ children }: { children: ReactNode }) {
   );
 }
 
-export function SectionHead({ eyebrow, title, sub, step }: { eyebrow: string; title: string; sub?: string; step?: string }) {
+export function SectionHead({ title, sub }: { title: string; sub?: string }) {
   return (
     <div className="reveal mx-auto max-w-2xl text-center">
-      <Eyebrow>{step ? `${step} · ${eyebrow}` : eyebrow}</Eyebrow>
-      <h2 className="mt-5 text-3xl font-semibold tracking-tight text-ink sm:text-5xl">{title}</h2>
+      <h2 className="text-3xl font-semibold tracking-tight text-ink sm:text-5xl">{title}</h2>
       {sub && <p className="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg">{sub}</p>}
     </div>
   );
