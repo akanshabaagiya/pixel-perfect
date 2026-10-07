@@ -154,7 +154,7 @@ const SECTIONS: DocSection[] = [
                   "Job title",
                   "A position inside a department. Access permissions are attached to job titles.",
                 ],
-                ["Level", "A seniority grade such as L1 or L2, with a rank for ordering."],
+                ["Level", "A seniority level such as L1 or L2, with a rank for ordering."],
                 ["Employee type", "Full-time, Part-time, Contract, Intern, or your own types."],
                 ["Shift", "Working hours, working days and break time used by attendance."],
                 [
@@ -1943,7 +1943,7 @@ pnpm --filter @hrms/api start`,
                 ["Entity admin", "The single administrator of an entity."],
                 ["Exit case", "The record that tracks one employee's offboarding."],
                 ["Job title", "A position in a department; carries access permissions."],
-                ["Level", "A seniority grade with a code and rank."],
+                ["Level", "A seniority level with a code and rank."],
                 ["Organization", "The whole Karya installation."],
                 ["Payroll lock", "A closed period in which attendance and leave cannot change."],
                 [
