@@ -196,4 +196,4 @@ details[open] .faq-icon { transform: rotate(45deg); }
 .product-card-visual img { display: block; width: 100%; height: auto; max-width: none; }
 .product-card-attendance img { width: 160%; transform: translate(-24%, -35%); }
 .product-card-reimbursements { display: grid; align-items: center; }
-.product-card-reimbursements img { width: 115%; transform: translateX(-8%); }
+.product-card-reimbursements img { width: 100%; }

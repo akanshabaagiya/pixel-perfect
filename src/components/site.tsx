@@ -40,10 +40,10 @@ export function Btn({
     primary: "bg-primary text-primary-foreground hover:bg-primary/90 shadow-soft",
     ghost: "border border-border bg-card text-ink hover:border-lavender",
     light: "bg-card text-ink hover:bg-surface",
-    "outline-light": "border border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10",
+    "outline-light": "border border-primary-foreground/30 bg-transparent text-primary-foreground hover:bg-primary-foreground/10",
   }[variant];
   return (
-    <Button asChild className={`h-auto group inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold transition-all duration-300 hover:-translate-y-0.5 ${styles}`}
+    <Button asChild variant="ghost" className={`h-auto group inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold transition-all duration-300 hover:-translate-y-0.5 ${styles}`}
     >
       <a href={href}>{children}</a>
     </Button>
