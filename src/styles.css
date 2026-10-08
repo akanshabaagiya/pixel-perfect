@@ -67,7 +67,7 @@
   --card-foreground: oklch(0.23 0.06 287);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.23 0.06 287);
-  --primary: oklch(0.57 0.16 283); /* #7567D9 */
+  --primary: oklch(0.47 0.14 268); /* #7567D9 */
   --primary-foreground: oklch(0.99 0.004 290);
   --violet: oklch(0.57 0.16 283);
   --lavender: oklch(0.74 0.1 285); /* #A9A0E8 */
@@ -75,15 +75,15 @@
   --secondary-foreground: oklch(0.3 0.08 285);
   --muted: oklch(0.963 0.011 293);
   --muted-foreground: oklch(0.44 0.02 285); /* ~#5F6068, readable supporting text */
-  --accent: oklch(0.945 0.025 288);
-  --accent-foreground: oklch(0.35 0.12 284);
+  --accent: oklch(0.945 0.025 267);
+  --accent-foreground: oklch(0.35 0.12 267);
   --destructive: oklch(0.6 0.18 25);
   --destructive-foreground: oklch(0.99 0 0);
   --success: oklch(0.66 0.12 160);
   --warning: oklch(0.76 0.12 75);
   --border: oklch(0.92 0.012 290);
   --input: oklch(0.92 0.012 290);
-  --ring: oklch(0.74 0.1 285);
+  --ring: oklch(0.64 0.12 267);
   --chart-1: oklch(0.57 0.16 283);
   --chart-2: oklch(0.74 0.1 285);
   --chart-3: oklch(0.82 0.06 260);
@@ -98,11 +98,11 @@
   --sidebar-border: oklch(0.92 0.012 290);
   --sidebar-ring: oklch(0.74 0.1 285);
 
-  --glow-violet: radial-gradient(circle at 50% 40%, oklch(0.57 0.16 283 / 0.18), transparent 60%);
+  --glow-violet: radial-gradient(circle at 50% 40%, oklch(0.54 0.12 267 / 0.14), transparent 60%);
   --glow-lavender: radial-gradient(circle at 50% 50%, oklch(0.8 0.08 270 / 0.35), transparent 65%);
-  --gradient-cta: radial-gradient(120% 140% at 15% 0%, oklch(0.62 0.14 283) 0%, transparent 55%),
-    radial-gradient(100% 120% at 100% 100%, oklch(0.45 0.13 278) 0%, transparent 60%),
-    linear-gradient(135deg, oklch(0.36 0.1 285), oklch(0.3 0.08 280));
+  --gradient-cta: radial-gradient(120% 140% at 15% 0%, oklch(0.55 0.13 280) 0%, transparent 55%),
+    radial-gradient(100% 120% at 100% 100%, oklch(0.45 0.13 267) 0%, transparent 60%),
+    linear-gradient(135deg, oklch(0.34 0.09 267), oklch(0.28 0.07 272));
   --gradient-border: linear-gradient(135deg, oklch(0.74 0.1 285 / 0.7), oklch(1 0 0 / 0.4), oklch(0.82 0.06 260 / 0.6));
   --shadow-soft: 0 1px 2px oklch(0.23 0.06 287 / 0.04), 0 12px 32px -12px oklch(0.23 0.06 287 / 0.12);
   --shadow-float: 0 2px 4px oklch(0.23 0.06 287 / 0.04), 0 40px 80px -24px oklch(0.4 0.12 283 / 0.28);
@@ -153,7 +153,7 @@
   }
 }
 @utility text-gradient {
-  background: linear-gradient(120deg, var(--ink) 20%, var(--violet) 70%, var(--lavender));
+  background: linear-gradient(120deg, var(--ink) 20%, var(--primary) 70%, var(--lavender));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -176,3 +176,24 @@ details[open] .faq-icon { transform: rotate(45deg); }
 @media (prefers-reduced-motion: reduce) {
   *, .reveal { animation: none !important; transition: none !important; opacity: 1 !important; transform: none !important; }
 }
+
+/* Actual product UI is only framed and cropped, never recreated. */
+.product-screen {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 2 / 1;
+  overflow: hidden;
+  background: var(--surface);
+}
+.product-screen img { display: block; width: 100%; height: auto; }
+.product-card-visual {
+  height: 128px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  background: var(--surface);
+}
+.product-card-visual img { display: block; width: 100%; height: auto; max-width: none; }
+.product-card-attendance img { width: 160%; transform: translate(-24%, -35%); }
+.product-card-reimbursements { display: grid; align-items: center; }
+.product-card-reimbursements img { width: 115%; transform: translateX(-8%); }

@@ -2,6 +2,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState, type ReactNode } from "react";
 import { Arrow, BrowserFrame, Btn, Eyebrow, Footer, GITHUB, Nav, SectionHead, useReveal } from "@/components/site";
 
+import { ProductScreenshot } from "@/components/product-screenshot";
+import { Button } from "@/components/ui/button";
+
 const DOCS = "/docs";
 
 export const Route = createFileRoute("/")({
@@ -13,6 +16,8 @@ export const Route = createFileRoute("/")({
         content:
           "Karya is an open-source, self-hostable HRMS. Manage employees, attendance, leave, compensation and exits while keeping full control of your data.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
       { property: "og:title", content: "Karya | The Open-Source HRMS for Modern Teams" },
       {
         property: "og:description",
@@ -86,93 +91,9 @@ function Hero() {
 }
 
 function DashboardPreview() {
-  const nav = ["Overview", "Employees", "Attendance", "Leave", "Payroll", "Organization"];
-  const bars = [62, 78, 70, 88, 82, 74, 91];
   return (
     <BrowserFrame url="karya.yourcompany.com/overview">
-      <div className="flex bg-card text-[11px]">
-        <aside className="hidden w-36 shrink-0 border-r border-border bg-surface/60 p-3 sm:block">
-          <div className="mb-4 flex items-center gap-1.5 px-1">
-            <span className="h-5 w-5 rounded-md bg-ink" />
-            <span className="font-semibold text-ink">Acme Labs</span>
-          </div>
-          {nav.map((n, i) => (
-            <div
-              key={n}
-              className={`mb-0.5 rounded-md px-2 py-1.5 ${i === 0 ? "bg-accent font-semibold text-accent-foreground" : "text-muted-foreground"}`}
-            >
-              {n}
-            </div>
-          ))}
-        </aside>
-        <div className="min-w-0 flex-1 p-4">
-          <div className="flex items-center justify-between">
-            <div>
-              <div className="text-sm font-semibold text-ink">Good morning, Priya</div>
-              <div className="text-muted-foreground">Monday, 5 October</div>
-            </div>
-            <span className="rounded-full bg-accent px-2 py-1 font-medium text-accent-foreground">HR Admin</span>
-          </div>
-          <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-4">
-            {[
-              ["Employees", "248"],
-              ["Present today", "221"],
-              ["On leave", "12"],
-              ["Pending requests", "7"],
-            ].map(([k, v]) => (
-              <div key={k} className="rounded-lg border border-border p-2.5">
-                <div className="text-muted-foreground">{k}</div>
-                <div className="mt-1 text-lg font-semibold text-ink">{v}</div>
-              </div>
-            ))}
-          </div>
-          <div className="mt-3 grid gap-2 sm:grid-cols-5">
-            <div className="rounded-lg border border-border p-3 sm:col-span-3">
-              <div className="flex justify-between">
-                <span className="font-semibold text-ink">Attendance this week</span>
-                <span className="text-muted-foreground">%</span>
-              </div>
-              <div className="mt-3 flex h-24 items-end gap-2">
-                {bars.map((b, i) => (
-                  <div key={i} className="flex-1 rounded-t-md bg-lavender/60" style={{ height: `${b}%` }}>
-                    <div className="h-full rounded-t-md bg-primary/70" style={{ clipPath: `inset(${100 - b + 20}% 0 0 0)` }} />
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="rounded-lg border border-border p-3 sm:col-span-2">
-              <div className="font-semibold text-ink">Leave requests</div>
-              {[
-                ["Arjun M.", "Casual · 2d", "bg-warning"],
-                ["Sara K.", "Sick · 1d", "bg-success"],
-                ["Dev R.", "Earned · 5d", "bg-warning"],
-              ].map(([n, t, c]) => (
-                <div key={n} className="mt-2 flex items-center gap-2">
-                  <span className="h-6 w-6 shrink-0 rounded-full bg-accent" />
-                  <div className="min-w-0 flex-1">
-                    <div className="truncate font-medium text-ink">{n}</div>
-                    <div className="text-muted-foreground">{t}</div>
-                  </div>
-                  <span className={`h-1.5 w-1.5 rounded-full ${c}`} />
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="mt-2 grid grid-cols-2 gap-2">
-            <div className="rounded-lg border border-border p-3">
-              <div className="text-muted-foreground">October payroll</div>
-              <div className="mt-1 font-semibold text-ink">Processing · 3 days left</div>
-              <div className="mt-2 h-1.5 rounded-full bg-surface-2">
-                <div className="h-full w-3/4 rounded-full bg-primary" />
-              </div>
-            </div>
-            <div className="rounded-lg border border-border p-3">
-              <div className="text-muted-foreground">Departments</div>
-              <div className="mt-1 font-semibold text-ink">Engineering · Ops · Sales · HR</div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <ProductScreenshot kind="dashboard" priority />
     </BrowserFrame>
   );
 }
@@ -208,68 +129,15 @@ function Intro() {
 /* ---------- 02 showcase ---------- */
 
 function PeopleView() {
-  return (
-    <div className="overflow-hidden rounded-xl border border-border">
-      <div className="grid grid-cols-[2fr_1.5fr_1fr_1fr] bg-surface px-3 py-2 font-medium text-muted-foreground">
-        <span>Name</span><span>Role</span><span>Dept</span><span>Status</span>
-      </div>
-      {[
-        ["Priya Sharma", "HR Lead", "People", "Active"],
-        ["Arjun Mehta", "Backend Engineer", "Engineering", "Active"],
-        ["Sara Khan", "Designer", "Product", "On leave"],
-        ["Dev Rao", "Ops Manager", "Operations", "Active"],
-      ].map((r) => (
-        <div key={r[0]} className="grid grid-cols-[2fr_1.5fr_1fr_1fr] items-center border-t border-border px-3 py-2.5">
-          <span className="flex min-w-0 items-center gap-2 font-medium text-ink">
-            <span className="h-6 w-6 shrink-0 rounded-full bg-accent" />
-            <span className="truncate">{r[0]}</span>
-          </span>
-          <span className="truncate text-muted-foreground">{r[1]}</span>
-          <span className="truncate text-muted-foreground">{r[2]}</span>
-          <span>
-            <span className={`rounded-full px-2 py-0.5 ${r[3] === "Active" ? "bg-accent text-accent-foreground" : "bg-surface-2 text-muted-foreground"}`}>{r[3]}</span>
-          </span>
-        </div>
-      ))}
-    </div>
-  );
+  return <ProductScreenshot kind="people" />;
 }
 
 function AttendanceView() {
-  return (
-    <div className="rounded-xl border border-border p-4 text-center">
-      <div className="text-muted-foreground">Checked in at</div>
-      <div className="mt-1 font-mono text-3xl font-medium text-ink">09:12</div>
-      <div className="mx-auto mt-4 grid max-w-xs grid-cols-7 gap-1">
-        {Array.from({ length: 28 }).map((_, i) => (
-          <span key={i} className={`aspect-square rounded ${i % 7 > 4 ? "bg-surface-2" : i === 17 ? "bg-lavender/50" : "bg-primary/70"}`} />
-        ))}
-      </div>
-    </div>
-  );
+  return <ProductScreenshot kind="attendance" />;
 }
 
 function LeaveView() {
-  return (
-    <div>
-      <div className="grid grid-cols-3 gap-2">
-        {[["Casual", 8, 12], ["Sick", 5, 7], ["Earned", 14, 18]].map(([k, a, t]) => (
-          <div key={k as string} className="rounded-xl border border-border p-3">
-            <div className="text-muted-foreground">{k}</div>
-            <div className="mt-1 text-xl font-semibold text-ink">{a}<span className="text-xs text-muted-foreground">/{t}</span></div>
-            <div className="mt-2 h-1 rounded-full bg-surface-2"><div className="h-full rounded-full bg-primary" style={{ width: `${((a as number) / (t as number)) * 100}%` }} /></div>
-          </div>
-        ))}
-      </div>
-      <div className="mt-3 flex flex-wrap items-center justify-between gap-2 rounded-xl border border-border p-3">
-        <span className="text-ink"><b>Sara Khan</b> · 12–14 Oct · Casual</span>
-        <span className="flex gap-1.5">
-          <span className="rounded-full border border-border px-2 py-0.5 text-muted-foreground">Decline</span>
-          <span className="rounded-full bg-ink px-2 py-0.5 text-primary-foreground">Approve</span>
-        </span>
-      </div>
-    </div>
-  );
+  return <ProductScreenshot kind="leave" />;
 }
 
 function PayrollView() {
@@ -286,25 +154,7 @@ function PayrollView() {
 }
 
 function ProfileView() {
-  return (
-    <div className="rounded-xl border border-border p-4">
-      <div className="flex items-center gap-3">
-        <span className="h-10 w-10 rounded-full bg-accent" />
-        <div>
-          <div className="text-sm font-semibold text-ink">Arjun Mehta</div>
-          <div className="text-muted-foreground">Backend Engineer · Engineering</div>
-        </div>
-      </div>
-      <div className="mt-4 grid grid-cols-2 gap-2">
-        {[["Reports to", "Neha Iyer"], ["Level", "L3"], ["Cost center", "ENG-01"], ["Salary", "••••••"]].map(([k, v]) => (
-          <div key={k} className="rounded-lg border border-border p-2.5">
-            <div className="text-muted-foreground">{k}</div>
-            <div className="mt-0.5 font-medium text-ink">{v}</div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
+  return <ProductScreenshot kind="people" />;
 }
 
 function Showcase() {
@@ -325,20 +175,20 @@ function Showcase() {
         <SectionHead title="See Karya in action." sub="A single workspace for the everyday work behind your people operations." />
         <div className="reveal mx-auto mt-10 flex max-w-3xl flex-wrap justify-center gap-2">
           {tabs.map(([t], i) => (
-            <button
+            <Button variant="ghost"
               key={t}
               onClick={() => setActive(i)}
-              className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${i === active ? "bg-ink text-primary-foreground" : "border border-border bg-card text-ink hover:border-lavender"}`}
+              className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${i === active ? "bg-primary text-primary-foreground" : "border border-border bg-card text-ink hover:border-lavender"}`}
             >
               {t}
-            </button>
+            </Button>
           ))}
         </div>
         <p className="mx-auto mt-5 max-w-xl text-center text-muted-foreground">{desc}</p>
         <div className="reveal mx-auto mt-8 max-w-4xl">
           {view ? (
             <BrowserFrame url={`karya.yourcompany.com/${name.toLowerCase().replace(" ", "-")}`}>
-              <div className="bg-card p-5 text-[11px] sm:p-8">{view}</div>
+              <div className="bg-card text-[11px]">{view}</div>
             </BrowserFrame>
           ) : (
             <DashboardPreview />
@@ -352,7 +202,7 @@ function Showcase() {
 /* ---------- 01 product ---------- */
 
 function Mini({ children }: { children: ReactNode }) {
-  return <div className="rounded-xl border border-border bg-surface/60 p-3 text-[10px]">{children}</div>;
+  return <div className="product-card-visual flex flex-col justify-center p-3 text-[10px]">{children}</div>;
 }
 
 function Row({ a, b, tone = "bg-accent text-accent-foreground" }: { a: string; b: string; tone?: string }) {
@@ -372,13 +222,13 @@ function Product() {
     ["Employee Management", "Employee directory, profiles, organizational structure and workforce information.",
       <Mini key="1"><Row a="Priya Sharma" b="People" /><Row a="Arjun Mehta" b="Engineering" /><Row a="Dev Rao" b="Operations" /></Mini>],
     ["Attendance and Leave", "Check-ins, attendance, shifts, leave types, holiday calendars and approvals.",
-      <Mini key="2"><div className="grid grid-cols-7 gap-1">{Array.from({ length: 14 }).map((_, i) => <span key={i} className={`aspect-square rounded ${i % 7 > 4 ? "bg-surface-2" : i === 9 ? "bg-lavender/50" : "bg-primary/70"}`} />)}</div></Mini>],
+      <ProductScreenshot key="2" kind="attendance" card />],
     ["Compensation", "Salary structures, levels, compensation components and payroll-related workflows.",
       <Mini key="3">{[["Basic", 90], ["HRA", 36], ["Allowance", 32]].map(([k, v]) => <div key={k} className="mb-1.5 last:mb-0"><div className="flex justify-between text-ink"><span>{k}</span></div><div className="mt-1 h-1.5 rounded-full bg-surface-2"><div className="h-full rounded-full bg-lavender" style={{ width: `${v}%` }} /></div></div>)}</Mini>],
     ["Reimbursements", "Employee expense submission and manager approval.",
-      <Mini key="4"><Row a="Travel claim" b="Pending" tone="bg-surface-2 text-muted-foreground" /><Row a="Client lunch" b="Approved" /></Mini>],
+      <ProductScreenshot key="4" kind="reimbursements" card />],
     ["Onboarding and Offboarding", "Manage employee journeys from joining through exit.",
-      <Mini key="5"><div className="flex items-center gap-1">{[["Onboarded", "bg-primary/80 text-primary-foreground"], ["Onboarding in progress", "bg-accent text-accent-foreground"], ["Offboarding", "bg-card text-muted-foreground"]].map(([s, c]) => <span key={s} className={`flex-1 rounded-full px-1.5 py-1 text-center leading-tight ${c}`}>{s}</span>)}</div></Mini>],
+      <Mini key="5"><div className="flex flex-col gap-1.5">{[["Onboarded", "bg-primary/80 text-primary-foreground"], ["Onboarding in progress", "bg-accent text-accent-foreground"], ["Offboarding", "bg-card text-muted-foreground"]].map(([s, c]) => <span key={s} className={`flex-1 rounded-full px-1.5 py-1 text-center leading-tight ${c}`}>{s}</span>)}</div></Mini>],
     ["Policies and Access", "Define policies, roles and permissions according to organizational requirements.",
       <Mini key="6"><Row a="HR Admin" b="Full" /><Row a="Manager" b="Team" /><Row a="Employee" b="Self" tone="bg-surface-2 text-muted-foreground" /></Mini>],
   ];
@@ -709,7 +559,7 @@ function Faq() {
           <button
             key={c}
             onClick={() => setCat(i)}
-            className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${i === cat ? "bg-ink text-primary-foreground" : "border border-border bg-card text-ink hover:border-lavender"}`}
+            className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${i === cat ? "bg-primary text-primary-foreground" : "border border-border bg-card text-ink hover:border-lavender"}`}
           >
             {c}
           </button>
