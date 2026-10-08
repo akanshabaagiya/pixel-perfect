@@ -150,7 +150,7 @@ export function Nav() {
 export function Footer() {
   const cols: [string, [string, string][]][] = [
     ["Product", [["Product", "/#product"], ["Features", "/#features"], ["How it works", "/#how-it-works"], ["Developers", "/#developers"]]],
-    ["Resources", [["Docs", "/docs"], ["Roadmap", GITHUB], ["License", "/#open-source"]]],
+    ["Resources", [["Docs", "/docs"], ["Roadmap", "/docs/roadmap"], ["License", "/#open-source"]]],
     ["Project", [["About", "/#about"], ["Contact", "/#contact"], ["GitHub", GITHUB]]],
   ];
   return (
