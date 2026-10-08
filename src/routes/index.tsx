@@ -146,7 +146,7 @@ function PayrollView() {
       {[["Basic", 50], ["HRA", 20], ["Special allowance", 18], ["Provident fund", 12]].map(([k, v]) => (
         <div key={k as string} className="mb-2.5 last:mb-0">
           <div className="flex justify-between text-ink"><span>{k}</span><span className="text-muted-foreground">{v}%</span></div>
-          <div className="mt-1 h-1.5 rounded-full bg-surface-2"><div className="h-full rounded-full bg-lavender" style={{ width: `${(v as number) * 1.8}%` }} /></div>
+          <div className="mt-1 h-1.5 rounded-full bg-surface-2"><div className="h-full rounded-full bg-primary/80" style={{ width: `${(v as number) * 1.8}%` }} /></div>
         </div>
       ))}
     </div>
@@ -224,7 +224,7 @@ function Product() {
     ["Attendance and Leave", "Check-ins, attendance, shifts, leave types, holiday calendars and approvals.",
       <ProductScreenshot key="2" kind="attendance" card />],
     ["Compensation", "Salary structures, levels, compensation components and payroll-related workflows.",
-      <Mini key="3">{[["Basic", 90], ["HRA", 36], ["Allowance", 32]].map(([k, v]) => <div key={k} className="mb-1.5 last:mb-0"><div className="flex justify-between text-ink"><span>{k}</span></div><div className="mt-1 h-1.5 rounded-full bg-surface-2"><div className="h-full rounded-full bg-lavender" style={{ width: `${v}%` }} /></div></div>)}</Mini>],
+      <Mini key="3">{[["Basic", 90], ["HRA", 36], ["Allowance", 32]].map(([k, v]) => <div key={k} className="mb-1.5 last:mb-0"><div className="flex justify-between text-ink"><span>{k}</span></div><div className="mt-1 h-1.5 rounded-full bg-surface-2"><div className="h-full rounded-full bg-primary/80" style={{ width: `${v}%` }} /></div></div>)}</Mini>],
     ["Reimbursements", "Employee expense submission and manager approval.",
       <ProductScreenshot key="4" kind="reimbursements" card />],
     ["Onboarding and Offboarding", "Manage employee journeys from joining through exit.",
