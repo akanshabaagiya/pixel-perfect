@@ -24,7 +24,7 @@ export function Logo() {
         alt="Karya"
         width={504}
         height={145}
-        className="h-8 w-auto"
+        className="h-6 w-auto"
       />
     </Link>
   );
