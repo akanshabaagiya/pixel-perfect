@@ -18,11 +18,14 @@ export function useReveal(dep?: unknown) {
 
 export function Logo() {
   return (
-    <Link to="/" className="flex items-center gap-2">
-      <span className="grid h-8 w-8 place-items-center rounded-lg bg-ink text-sm font-bold text-primary-foreground">
-        K
-      </span>
-      <span className="text-lg font-semibold tracking-tight text-ink">Karya</span>
+    <Link to="/" className="flex items-center">
+      <img
+        src="/brand/karya-logo.png"
+        alt="Karya"
+        width={504}
+        height={145}
+        className="h-8 w-auto"
+      />
     </Link>
   );
 }
