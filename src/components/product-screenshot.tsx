@@ -1,6 +1,6 @@
 import dashboard from "@/assets/karya-dashboard.webp";
 import attendance from "@/assets/karya-attendance.webp";
-import reimbursements from "@/assets/karya-reimbursements.png.asset.json";
+import reimbursements from "@/assets/karya-reimbursements.webp";
 import people from "@/assets/karya-people.webp";
 import leave from "@/assets/karya-leave.webp";
 import profile from "@/assets/karya-profile.webp";
@@ -8,7 +8,7 @@ import profile from "@/assets/karya-profile.webp";
 const screenshots = {
   dashboard,
   attendance,
-  reimbursements: reimbursements.url,
+  reimbursements,
   people,
   leave,
   profile,
