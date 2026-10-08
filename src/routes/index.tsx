@@ -154,7 +154,7 @@ function PayrollView() {
 }
 
 function ProfileView() {
-  return <ProductScreenshot kind="people" />;
+  return <ProductScreenshot kind="profile" />;
 }
 
 function Showcase() {
