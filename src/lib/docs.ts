@@ -374,7 +374,7 @@ docker build -f docker/frontend.Dockerfile -t hrms-frontend .`,
                   "The API (`node dist/main.js`) as the unprivileged `node` user",
                   "4000",
                 ],
-                ["`hrms-api-migrate`", "`prisma migrate deploy`, then exits", "—"],
+                ["`hrms-api-migrate`", "`prisma migrate deploy`, then exits", "-"],
                 [
                   "`hrms-frontend`",
                   "nginx serving the entity workspace at `/` and Superadmin at `/superadmin/`",
