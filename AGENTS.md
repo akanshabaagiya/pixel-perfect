@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep uploaded product screenshots in CDN asset pointers and render them through the shared ProductScreenshot component so image framing stays consistent without altering the actual product UI.
