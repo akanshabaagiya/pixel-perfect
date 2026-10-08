@@ -1959,6 +1959,75 @@ pnpm --filter @hrms/api start`,
         ],
       },
       {
+        ...s("Roadmap", "Where Karya is headed."),
+        body: [
+          {
+            p: "Karya is built to make HR simpler, more flexible, and easier to own. Here's what's available today and what we're working on next.",
+          },
+          { h: "Available today" },
+          { h3: "Organization & HR Setup" },
+          {
+            list: [
+              "**Multi-entity management**: Set up and manage multiple entities under one organization.",
+              "**Organization settings**: Configure authentication, email, branding, calendars, and other organization-wide preferences.",
+              "**Organizational structure**: Set up departments, job titles, levels, and employment types.",
+              "**Policies & holidays**: Create and manage HR policies and holiday calendars.",
+            ],
+          },
+          { h3: "Employee Management" },
+          {
+            list: [
+              "**Employee directory**: Keep employee information organized and easily accessible.",
+              "**Employee lifecycle management**: Manage employees from onboarding through offboarding.",
+              "**Leave & attendance**: Manage leave requests, balances, attendance, regularization, and related policies.",
+            ],
+          },
+          { h3: "Compensation & Reimbursements" },
+          {
+            list: [
+              "**Salary structures**: Define and manage employee salary structures.",
+              "**Reimbursements**: Manage employee reimbursement requests and approvals.",
+            ],
+          },
+          { h3: "Access & Administration" },
+          {
+            list: [
+              "**Role-based access**: Give employees access based on their roles and responsibilities.",
+              "**Activity tracking**: Keep track of important actions and changes across the platform.",
+              "**Data privacy controls**: Protect sensitive employee information with configurable visibility and masking.",
+              "**Custom employee fields**: Add fields that match your organization's specific requirements.",
+            ],
+          },
+          { h: "Coming next" },
+          { h3: "Payroll & Payments" },
+          {
+            list: [
+              "**Payroll processing**: Calculate and process employee salaries with ease.",
+              "**Payslips**: Generate and provide employees with their payslips.",
+              "**Payroll history**: Keep a clear record of previous payroll runs and payments.",
+            ],
+          },
+          { h3: "Compliance & Tax" },
+          {
+            list: [
+              "**Form 16**: Generate and manage Form 16 for employees.",
+              "**Tax documents**: Keep employee tax-related documents organized and accessible.",
+            ],
+          },
+          { h3: "Faster Onboarding" },
+          {
+            list: [
+              "**Bulk employee onboarding**: Add multiple employees at once.",
+              "**Employee invitations**: Invite employees to join and complete their profiles directly.",
+            ],
+          },
+          { h: "What's ahead" },
+          {
+            p: "Karya will continue to expand with features that make everyday HR operations easier, from deeper payroll and compliance capabilities to better automation, reporting, integrations, and workforce management.",
+          },
+        ],
+      },
+      {
         ...s("Changelog", "Release history."),
         body: [
           {

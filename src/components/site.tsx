@@ -18,11 +18,14 @@ export function useReveal(dep?: unknown) {
 
 export function Logo() {
   return (
-    <Link to="/" className="flex items-center gap-2">
-      <span className="grid h-8 w-8 place-items-center rounded-lg bg-ink text-sm font-bold text-primary-foreground">
-        K
-      </span>
-      <span className="text-lg font-semibold tracking-tight text-ink">Karya</span>
+    <Link to="/" className="flex items-center">
+      <img
+        src="/brand/karya-logo.png"
+        alt="Karya"
+        width={504}
+        height={145}
+        className="h-6 w-auto"
+      />
     </Link>
   );
 }
@@ -150,7 +153,7 @@ export function Nav() {
 export function Footer() {
   const cols: [string, [string, string][]][] = [
     ["Product", [["Product", "/#product"], ["Features", "/#features"], ["How it works", "/#how-it-works"], ["Developers", "/#developers"]]],
-    ["Resources", [["Docs", "/docs"], ["Roadmap", GITHUB], ["License", "/#open-source"]]],
+    ["Resources", [["Docs", "/docs"], ["Roadmap", "/docs/roadmap"], ["License", "/#open-source"]]],
     ["Project", [["About", "/#about"], ["Contact", "/#contact"], ["GitHub", GITHUB]]],
   ];
   return (
