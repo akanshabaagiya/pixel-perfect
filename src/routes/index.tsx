@@ -10,15 +10,15 @@ const DOCS = "/docs";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Karya | The Open-Source HRMS for Modern Teams" },
+      { title: "Kaarya | The Open-Source HRMS for Modern Teams" },
       {
         name: "description",
         content:
-          "Karya is an open-source, self-hostable HRMS. Manage employees, attendance, leave, compensation and exits while keeping full control of your data.",
+          "Kaarya is an open-source, self-hostable HRMS. Manage employees, attendance, leave, compensation and exits while keeping full control of your data.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { property: "og:title", content: "Karya | The Open-Source HRMS for Modern Teams" },
+      { property: "og:title", content: "Kaarya | The Open-Source HRMS for Modern Teams" },
       {
         property: "og:description",
         content: "Self-host your HR infrastructure and keep complete control of your data.",
@@ -92,7 +92,7 @@ function Hero() {
 
 function DashboardPreview() {
   return (
-    <BrowserFrame url="karya.yourcompany.com/overview">
+    <BrowserFrame url="kaarya.yourcompany.com/overview">
       <ProductScreenshot kind="dashboard" priority />
     </BrowserFrame>
   );
@@ -111,7 +111,7 @@ function Intro() {
     <section id="product" className="relative px-4 py-24">
       <SectionHead
         title="People operations, connected from entry to exit."
-        sub="Karya brings the everyday systems behind employee records, attendance, leave, compensation, expenses, and offboarding into one self-hosted HRMS."
+        sub="Kaarya brings the everyday systems behind employee records, attendance, leave, compensation, expenses, and offboarding into one self-hosted HRMS."
       />
       <div className="mx-auto mt-14 grid max-w-5xl gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {pillars.map(([t, d], i) => (
@@ -172,7 +172,7 @@ function Showcase() {
     <section className="relative px-4 py-24">
       <div className="pointer-events-none absolute left-1/2 top-1/2 h-[500px] w-[900px] -translate-x-1/2 -translate-y-1/2 rounded-full glow-lavender blur-3xl" />
       <div className="relative">
-        <SectionHead title="See Karya in action." sub="A single workspace for the everyday work behind your people operations." />
+        <SectionHead title="See Kaarya in action." sub="A single workspace for the everyday work behind your people operations." />
         <div className="reveal mx-auto mt-10 flex max-w-3xl flex-wrap justify-center gap-2">
           {tabs.map(([t], i) => (
             <Button variant="ghost"
@@ -187,7 +187,7 @@ function Showcase() {
         <p className="mx-auto mt-5 max-w-xl text-center text-muted-foreground">{desc}</p>
         <div className="reveal mx-auto mt-8 max-w-4xl">
           {view ? (
-            <BrowserFrame url={`karya.yourcompany.com/${name.toLowerCase().replace(" ", "-")}`}>
+            <BrowserFrame url={`kaarya.yourcompany.com/${name.toLowerCase().replace(" ", "-")}`}>
               <div className="bg-card text-[11px]">{view}</div>
             </BrowserFrame>
           ) : (
@@ -236,7 +236,7 @@ function Product() {
     <section id="product" className="relative px-4 py-24">
       <SectionHead
         title="People operations, connected from entry to exit."
-        sub="Karya brings employee records, attendance, leave, compensation, expenses, policies and offboarding into one self-hosted HRMS."
+        sub="Kaarya brings employee records, attendance, leave, compensation, expenses, policies and offboarding into one self-hosted HRMS."
       />
       <div className="mx-auto mt-14 grid max-w-6xl gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {mods.map(([t, d, v]) => (
@@ -269,7 +269,7 @@ function Capabilities() {
     <section id="features" className="relative px-4 py-24">
       <SectionHead
         title="Everything your workforce needs, in one system."
-        sub="From everyday attendance to compensation structures and employee exits, Karya keeps essential HR operations connected."
+        sub="From everyday attendance to compensation structures and employee exits, Kaarya keeps essential HR operations connected."
       />
       <div className="mx-auto mt-14 grid max-w-6xl gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {items.map(([t, d, i]) => (
@@ -288,7 +288,7 @@ function Capabilities() {
 
 function HowItWorks() {
   const steps = [
-    ["Deploy", "Deploy Karya on infrastructure you control."],
+    ["Deploy", "Deploy Kaarya on infrastructure you control."],
     ["Configure", "Set up your organization, policies, roles, fields and workflows."],
     ["Invite people", "Onboard employees, managers and administrators into the workspace."],
     ["Run operations", "Manage attendance, leave, compensation, expenses, policies and employee lifecycle operations."],
@@ -339,11 +339,11 @@ function Configured() {
               Built to be configured, <span className="font-display font-normal italic text-primary">not hardcoded.</span>
             </h2>
             <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
-              Every organization works differently. Karya lets you define how your HR operations work instead of forcing
+              Every organization works differently. Kaarya lets you define how your HR operations work instead of forcing
               your processes into fixed workflows.
             </p>
             <p className="mt-6 rounded-2xl border border-border bg-card px-5 py-4 font-semibold text-ink shadow-soft">
-              Your organization defines the rules. Karya provides the system.
+              Your organization defines the rules. Kaarya provides the system.
             </p>
           </div>
           <div className="relative">
@@ -386,7 +386,7 @@ function WhyOpenSource() {
       <div className="relative">
         <SectionHead
           title="Why open source and self-hosted?"
-          sub="Karya gives organizations control over where their HR data lives, how the platform is configured, and how the software evolves."
+          sub="Kaarya gives organizations control over where their HR data lives, how the platform is configured, and how the software evolves."
         />
         <div className="reveal mx-auto mt-14 max-w-4xl overflow-x-auto">
           <div className="min-w-[560px] overflow-hidden rounded-3xl border border-border bg-card shadow-float">
@@ -394,7 +394,7 @@ function WhyOpenSource() {
               <div className="p-5" />
               <div className="bg-accent p-5 font-semibold text-ink">
                 <span className="mr-2 inline-grid h-6 w-6 place-items-center rounded-md bg-ink text-xs text-primary-foreground">K</span>
-                Karya
+                Kaarya
               </div>
               <div className="p-5 font-semibold text-muted-foreground">Typical SaaS HRMS</div>
               {rows.map(([k, a, b]) => (
@@ -422,7 +422,7 @@ function Developers() {
     <section id="developers" className="px-4 py-24">
       <SectionHead
         title="Built for teams who want control."
-        sub="The technical side of Karya: the stack, the architecture, and how to get it running."
+        sub="The technical side of Kaarya: the stack, the architecture, and how to get it running."
       />
       <div className="mx-auto mt-14 grid max-w-6xl gap-5 lg:grid-cols-2">
         <div className="reveal overflow-hidden rounded-2xl border border-border bg-ink shadow-float">
@@ -434,9 +434,9 @@ function Developers() {
           </div>
           <pre className="overflow-x-auto p-6 font-mono text-sm leading-7 text-primary-foreground/85">
             <span className="text-lavender">$</span> git clone {"<repository-url>"}{"\n"}
-            <span className="text-lavender">$</span> cd karya{"\n"}
+            <span className="text-lavender">$</span> cd kaarya{"\n"}
             <span className="text-lavender">$</span> docker-compose up -d{"\n"}
-            <span className="text-success">✓ Karya is ready on your infrastructure</span>
+            <span className="text-success">✓ Kaarya is ready on your infrastructure</span>
           </pre>
           <div className="border-t border-primary-foreground/10 p-6">
             <div className="text-[11px] font-semibold tracking-[0.18em] text-lavender">TECHNOLOGY</div>
@@ -472,14 +472,14 @@ function Developers() {
 
 function DocsSummary() {
   const cards = [
-    ["Get Started", "Learn the basics and deploy your first Karya instance.", "/docs/what-is-karya"],
-    ["Self-host Karya", "Requirements, installation, configuration, upgrades and backups.", "/docs/requirements"],
+    ["Get Started", "Learn the basics and deploy your first Kaarya instance.", "/docs/what-is-kaarya"],
+    ["Self-host Kaarya", "Requirements, installation, configuration, upgrades and backups.", "/docs/requirements"],
     ["Core Concepts", "Organizations, entities, roles, departments and access.", "/docs/organization-vs-legal-entity"],
     ["Developer Guide", "Architecture, APIs, data models and contribution guidelines.", "/docs/architecture"],
   ];
   return (
     <section id="docs" className="px-4 py-24 scroll-mt-24">
-      <SectionHead title="Where to learn more." sub="The Karya knowledge guide covers deployment, configuration, everyday use and contributing." />
+      <SectionHead title="Where to learn more." sub="The Kaarya knowledge guide covers deployment, configuration, everyday use and contributing." />
       <div className="mx-auto mt-14 grid max-w-6xl gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {cards.map(([t, d, href]) => (
           <a key={t} href={href} className="reveal group gradient-border rounded-2xl p-6 shadow-soft transition-all duration-500 hover:-translate-y-1 hover:shadow-float">
@@ -500,14 +500,14 @@ function DocsSummary() {
 
 const FAQS: [string, [string, string][]][] = [
   ["General", [
-    ["What is Karya?", "Karya is an open-source, self-hostable HRMS. It brings employee records, attendance, leave, compensation, reimbursements, policies and exits into one system you run yourself."],
-    ["Who is Karya built for? Is it suitable for small teams and large companies?", "Karya is built for organizations that want to own their HR system: IT and DevOps teams who run it, HR and operations teams who configure it, and employees who use it every day. Its roles, fields and multi-tenant setup are meant to adapt to different sizes and structures."],
+    ["What is Kaarya?", "Kaarya is an open-source, self-hostable HRMS. It brings employee records, attendance, leave, compensation, reimbursements, policies and exits into one system you run yourself."],
+    ["Who is Kaarya built for? Is it suitable for small teams and large companies?", "Kaarya is built for organizations that want to own their HR system: IT and DevOps teams who run it, HR and operations teams who configure it, and employees who use it every day. Its roles, fields and multi-tenant setup are meant to adapt to different sizes and structures."],
     ["What does \"open source\" mean here?", "The source code is public. You can inspect it, run it, modify it and fork it under the terms of its open-source license."],
-    ["Is Karya really free? Are there any hidden costs?", "Yes, Karya is free and open source, with no hidden costs. If you need help with deployment, setup, or other technical support, additional charges may apply. [Contact us] to learn more."],
-    ["Is there a hosted or cloud version, or only self-hosting?", "Karya is currently self-hosted only. No hosted or cloud version is offered at this time."],
+    ["Is Kaarya really free? Are there any hidden costs?", "Yes, Kaarya is free and open source, with no hidden costs. If you need help with deployment, setup, or other technical support, additional charges may apply. [Contact us] to learn more."],
+    ["Is there a hosted or cloud version, or only self-hosting?", "Kaarya is currently self-hosted only. No hosted or cloud version is offered at this time."],
   ]],
   ["Self-hosting", [
-    ["What do I need to self-host Karya?", "Karya is deployed with Docker. Detailed system requirements are being written and will be published in the Self-hosting docs."],
+    ["What do I need to self-host Kaarya?", "Kaarya is deployed with Docker. Detailed system requirements are being written and will be published in the Self-hosting docs."],
     ["How long does setup take?", "The quick start is three commands. Total setup time depends on your infrastructure and configuration, and a full installation guide is on the way."],
     ["How do I update to a new version?", "An upgrade guide is being prepared and will be published in the Self-hosting docs."],
     ["How do I back up and restore my data?", "Your data lives in your own database, so you stay in control of backups. A dedicated backup and restore guide is being prepared."],
@@ -515,12 +515,12 @@ const FAQS: [string, [string, string][]][] = [
   ]],
   ["Features", [
     ["Can I customize fields and forms to match my company?", "Yes. You can customize the fields captured for your people and organization."],
-    ["Does it handle multiple legal entities or countries?", "Karya is multi-tenant, so one installation can run several entities. Guidance on legal entities and multi-country setups will be covered in the Core Concepts docs."],
+    ["Does it handle multiple legal entities or countries?", "Kaarya is multi-tenant, so one installation can run several entities. Guidance on legal entities and multi-country setups will be covered in the Core Concepts docs."],
   ]],
   ["Security and data", [
-    ["Where is my data stored, and who can see it?", "Your data is stored on servers you control. Inside Karya, who can see what is decided by the roles you configure, and sensitive fields such as salary can be masked."],
+    ["Where is my data stored, and who can see it?", "Your data is stored on servers you control. Inside Kaarya, who can see what is decided by the roles you configure, and sensitive fields such as salary can be masked."],
     ["How is access controlled and audited?", "Access is controlled through roles, and audit logs keep a record of actions for accountability and review."],
-    ["Is Karya compliant with data-protection laws like GDPR or India's DPDP?", "Karya does not claim any formal certification or compliance. Because you host it, you control where data lives and who can access it, which can support your own compliance work. Please assess it against your legal requirements."],
+    ["Is Kaarya compliant with data-protection laws like GDPR or India's DPDP?", "Kaarya does not claim any formal certification or compliance. Because you host it, you control where data lives and who can access it, which can support your own compliance work. Please assess it against your legal requirements."],
     ["How do I report a security vulnerability?", "Please report it privately to the maintainers through the GitHub repository or the contact form rather than opening a public issue. A formal security policy will be published."],
   ]],
   ["Support", [
@@ -580,7 +580,7 @@ function FinalCta() {
       <div className="reveal relative mx-auto max-w-6xl overflow-hidden rounded-3xl bg-cta px-6 py-20 text-center shadow-float sm:px-16">
         <div className="pointer-events-none absolute -left-20 top-0 h-80 w-80 rounded-full glow-lavender blur-3xl animate-drift" />
         <h2 className="relative mx-auto max-w-2xl text-3xl font-semibold tracking-tight text-primary-foreground sm:text-5xl">
-          Self-host Karya today.
+          Self-host Kaarya today.
         </h2>
         <p className="relative mx-auto mt-5 max-w-xl text-primary-foreground/80">
           Take control of your HR infrastructure, explore the source, and build your people operations around the way
@@ -605,7 +605,7 @@ function MultiTenant() {
             One installation. <span className="font-display font-normal italic text-primary">Distinct entities.</span>
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
-            Karya separates organization-level administration from each entity's workspace, making one deployment useful for
+            Kaarya separates organization-level administration from each entity's workspace, making one deployment useful for
             a single business, agency, or holding company.
           </p>
         </div>
@@ -668,7 +668,7 @@ function About() {
             HR software that <span className="font-display font-normal italic text-primary">stays yours.</span>
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
-            Karya is an <span className="font-semibold text-ink">open-source</span> HRMS for organizations that
+            Kaarya is an <span className="font-semibold text-ink">open-source</span> HRMS for organizations that
             prefer transparency, adaptability, and ownership over proprietary lock-in.
           </p>
         </div>
@@ -696,9 +696,9 @@ function Contact() {
       <div className="pointer-events-none absolute right-0 top-10 h-96 w-96 rounded-full glow-violet blur-2xl" />
       <div className="relative mx-auto grid max-w-5xl gap-12 lg:grid-cols-[1fr_1.2fr]">
         <div className="reveal">
-          <h2 className="text-3xl font-semibold tracking-tight text-ink sm:text-4xl">Let's talk about Karya.</h2>
+          <h2 className="text-3xl font-semibold tracking-tight text-ink sm:text-4xl">Let's talk about Kaarya.</h2>
           <p className="mt-4 leading-relaxed text-muted-foreground">
-            Have a question about deploying Karya, using it for your organization, or contributing to the project? Get
+            Have a question about deploying Kaarya, using it for your organization, or contributing to the project? Get
             in touch.
           </p>
         </div>

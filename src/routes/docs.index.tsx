@@ -4,10 +4,10 @@ import { DOC_SECTIONS } from "@/lib/docs";
 export const Route = createFileRoute("/docs/")({
   head: () => ({
     meta: [
-      { title: "Karya Documentation" },
-      { name: "description", content: "Everything you need to deploy, configure, use and contribute to Karya." },
-      { property: "og:title", content: "Karya Documentation" },
-      { property: "og:description", content: "Deploy, configure, use and contribute to Karya." },
+      { title: "Kaarya Documentation" },
+      { name: "description", content: "Everything you need to deploy, configure, use and contribute to Kaarya." },
+      { property: "og:title", content: "Kaarya Documentation" },
+      { property: "og:description", content: "Deploy, configure, use and contribute to Kaarya." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
     ],
@@ -18,9 +18,9 @@ export const Route = createFileRoute("/docs/")({
 function DocsIndex() {
   return (
     <main>
-      <h1 className="text-4xl font-semibold tracking-tight text-ink sm:text-5xl">Karya Documentation</h1>
+      <h1 className="text-4xl font-semibold tracking-tight text-ink sm:text-5xl">Kaarya Documentation</h1>
       <p className="mt-4 max-w-xl text-lg text-muted-foreground">
-        Everything you need to deploy, configure, use and contribute to Karya.
+        Everything you need to deploy, configure, use and contribute to Kaarya.
       </p>
       <div className="mt-10 grid gap-5 sm:grid-cols-2">
         {DOC_SECTIONS.map((sec) => (
