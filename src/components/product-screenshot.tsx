@@ -21,12 +21,12 @@ export function ProductScreenshot({ kind, card = false, priority = false }: {
   priority?: boolean;
 }) {
   const alt = {
-    dashboard: "Kaaya dashboard with updates, leave information and employee profile",
-    attendance: "Kaaya attendance with check-in, monthly calendar and shift roster",
-    reimbursements: "Kaaya reimbursement claims and their approval status",
-    people: "Kaaya employee directory with departments, job titles and profile completion",
-    leave: "Kaaya leave tracker with leave requests, types and approval status",
-    profile: "Kaaya employee profile with job, personal, identity, bank and statutory details",
+    dashboard: "Kaarya dashboard with updates, leave information and employee profile",
+    attendance: "Kaarya attendance with check-in, monthly calendar and shift roster",
+    reimbursements: "Kaarya reimbursement claims and their approval status",
+    people: "Kaarya employee directory with departments, job titles and profile completion",
+    leave: "Kaarya leave tracker with leave requests, types and approval status",
+    profile: "Kaarya employee profile with job, personal, identity, bank and statutory details",
   }[kind];
   return (
     <div className={card ? `product-card-visual product-card-${kind}` : `product-screen product-screen-${kind}`}>
