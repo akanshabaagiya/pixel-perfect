@@ -45,13 +45,13 @@ const SECTIONS: DocSection[] = [
     title: "Getting Started",
     pages: [
       {
-        ...s("What is Karya?", "An overview of the open-source, self-hosted HRMS."),
+        ...s("What is Kaaya?", "An overview of the open-source, self-hosted HRMS."),
         body: [
           {
-            p: "Karya is an open-source, self-hostable Human Resource Management System. It brings employee records, attendance, leave, compensation, reimbursements, policies and offboarding into one system that runs on infrastructure you control.",
+            p: "Kaaya is an open-source, self-hostable Human Resource Management System. It brings employee records, attendance, leave, compensation, reimbursements, policies and offboarding into one system that runs on infrastructure you control.",
           },
           {
-            p: "Karya is multi-tenant. Instance administration is kept separate from organization-level workspaces, so one installation can serve a single business or several organizations.",
+            p: "Kaaya is multi-tenant. Instance administration is kept separate from organization-level workspaces, so one installation can serve a single business or several organizations.",
           },
           {
             list: [
@@ -64,7 +64,7 @@ const SECTIONS: DocSection[] = [
               "Role-based access, audit logs and sensitive-field masking",
             ],
           },
-          { h: "How a Karya installation is organized" },
+          { h: "How a Kaaya installation is organized" },
           {
             p: "Inside the product, the whole installation is called the **organization**. It is administered from the **Superadmin** app at `/superadmin`. Each company or business unit that runs its HR on the installation is an **entity**, with its own workspace at `/{entity-slug}`, its own people and its own settings.",
           },
@@ -89,7 +89,7 @@ const SECTIONS: DocSection[] = [
           },
           { h: "Current scope" },
           {
-            p: "Karya is under active development. The documentation describes what the current code does and marks topics that are only partially available.",
+            p: "Kaaya is under active development. The documentation describes what the current code does and marks topics that are only partially available.",
           },
           {
             table: {
@@ -108,10 +108,10 @@ const SECTIONS: DocSection[] = [
         ],
       },
       {
-        ...s("Concepts and terminology", "Key terms used across Karya."),
+        ...s("Concepts and terminology", "Key terms used across Kaaya."),
         body: [
           {
-            p: "Karya uses a small set of terms consistently across the Superadmin app, the entity workspace and the API. Some terms differ from what other HR systems use, so read this page before configuring an installation.",
+            p: "Kaaya uses a small set of terms consistently across the Superadmin app, the entity workspace and the API. Some terms differ from what other HR systems use, so read this page before configuring an installation.",
           },
           { h: "Tenancy" },
           {
@@ -120,7 +120,7 @@ const SECTIONS: DocSection[] = [
               rows: [
                 [
                   "Organization",
-                  "The whole Karya installation. There is exactly one per deployment, administered from Superadmin.",
+                  "The whole Kaaya installation. There is exactly one per deployment, administered from Superadmin.",
                 ],
                 [
                   "Superadmin",
@@ -202,18 +202,18 @@ const SECTIONS: DocSection[] = [
         ],
       },
       {
-        ...s("Quick start", "Run Karya locally with Docker."),
+        ...s("Quick start", "Run Kaaya locally with Docker."),
         body: [
           {
             p: "The supported deployment path is based on Docker. Clone the repository, then start the services.",
           },
-          { code: "git clone <repository-url>\ncd karya\ndocker-compose up -d" },
+          { code: "git clone <repository-url>\ncd kaaya\ndocker-compose up -d" },
           {
             p: "Detailed steps for creating the instance administrator and first organization will be added here.",
           },
           { h: "Local development setup" },
           {
-            note: "The Docker Compose file starts the infrastructure only: MySQL 8.4 on port 3306 and Mailpit (a local mail catcher) on ports 1025 and 8025. The Karya API and web apps run from source with pnpm.",
+            note: "The Docker Compose file starts the infrastructure only: MySQL 8.4 on port 3306 and Mailpit (a local mail catcher) on ports 1025 and 8025. The Kaaya API and web apps run from source with pnpm.",
             tone: "warning",
           },
           { p: "You need Node.js 22 or later, pnpm 11 or later, Docker, and Git." },
@@ -231,7 +231,7 @@ const SECTIONS: DocSection[] = [
           },
           { h: "Configure email" },
           {
-            p: "Karya sends one-time sign-in codes and invitations by email, so SMTP must be configured before you can add an entity. For local development, point SMTP at Mailpit (host `localhost`, port `1025`) and read the messages at `http://localhost:8025`.",
+            p: "Kaaya sends one-time sign-in codes and invitations by email, so SMTP must be configured before you can add an entity. For local development, point SMTP at Mailpit (host `localhost`, port `1025`) and read the messages at `http://localhost:8025`.",
           },
           { h: "Create your first entity" },
           {
@@ -254,7 +254,7 @@ const SECTIONS: DocSection[] = [
     title: "Self-hosting",
     pages: [
       {
-        ...s("Requirements", "What you need to run Karya in production."),
+        ...s("Requirements", "What you need to run Kaaya in production."),
         body: [
           { h: "Software" },
           {
@@ -307,7 +307,7 @@ const SECTIONS: DocSection[] = [
         ],
       },
       {
-        ...s("Installation", "Choose how to deploy Karya."),
+        ...s("Installation", "Choose how to deploy Kaaya."),
         body: [
           {
             p: "A production installation has four parts: a MySQL database, the API, the two web apps (entity workspace and Superadmin) served as static files, and a reverse proxy in front of them.",
@@ -350,8 +350,8 @@ const SECTIONS: DocSection[] = [
       {
         ...s("Docker installation"),
         body: [
-          { p: "Karya ships with a Docker Compose setup." },
-          { code: "git clone <repository-url>\ncd karya\ndocker-compose up -d" },
+          { p: "Kaaya ships with a Docker Compose setup." },
+          { code: "git clone <repository-url>\ncd kaaya\ndocker-compose up -d" },
           { p: "Configuration options and production guidance are still being documented." },
           { h: "Production images" },
           {
@@ -410,7 +410,7 @@ docker build -f docker/frontend.Dockerfile -t hrms-frontend .`,
         ],
       },
       {
-        ...s("Manual installation", "Build and run Karya from source without Docker."),
+        ...s("Manual installation", "Build and run Kaaya from source without Docker."),
         body: [
           { p: "Use this method on hosts where you run Node.js directly." },
           {
@@ -467,7 +467,7 @@ pnpm --filter @hrms/api start`,
             },
           },
           {
-            note: "`JWT_SECRET` also derives the key that encrypts stored Google client secrets. Changing it signs everyone out and makes those stored secrets unreadable; Karya then falls back to the shared sign-in relay. Store it with your other secrets and back it up.",
+            note: "`JWT_SECRET` also derives the key that encrypts stored Google client secrets. Changing it signs everyone out and makes those stored secrets unreadable; Kaaya then falls back to the shared sign-in relay. Store it with your other secrets and back it up.",
             tone: "warning",
           },
           { h: "Public URLs" },
@@ -503,7 +503,7 @@ pnpm --filter @hrms/api start`,
                 ["`SMTP_USERNAME` or `SMTP_USER`", "-", "SMTP user name."],
                 ["`SMTP_PASSWORD` or `SMTP_PASS`", "-", "SMTP password."],
                 ["`SMTP_FROM_EMAIL`", "SMTP user", "Sender address."],
-                ["`SMTP_FROM_NAME`", "`Karya`", "Sender name."],
+                ["`SMTP_FROM_NAME`", "`Kaaya`", "Sender name."],
               ],
             },
           },
@@ -551,10 +551,10 @@ pnpm --filter @hrms/api start`,
         ],
       },
       {
-        ...s("File storage", "Where Karya keeps logos and employee documents."),
+        ...s("File storage", "Where Kaaya keeps logos and employee documents."),
         body: [
           {
-            p: "Karya stores entity logos, employee documents and reimbursement receipts. Choose a storage driver with `STORAGE_DRIVER`.",
+            p: "Kaaya stores entity logos, employee documents and reimbursement receipts. Choose a storage driver with `STORAGE_DRIVER`.",
           },
           {
             table: {
@@ -590,7 +590,7 @@ pnpm --filter @hrms/api start`,
         ...s("Email and SMTP", "Configure outgoing email for sign-in codes and notifications."),
         body: [
           {
-            p: "Email is required. Karya emails one-time sign-in codes, invitations and workflow notifications, and Superadmin blocks adding an entity until SMTP is configured.",
+            p: "Email is required. Kaaya emails one-time sign-in codes, invitations and workflow notifications, and Superadmin blocks adding an entity until SMTP is configured.",
           },
           { h: "Two ways to configure SMTP" },
           {
@@ -642,7 +642,7 @@ pnpm --filter @hrms/api start`,
         body: [
           { h: "Superadmins" },
           {
-            p: "Superadmins always sign in with Google. By default Karya uses a shared Google sign-in relay, so you do not need to register an OAuth client. The relay returns a short-lived signed token that the API verifies; each token can be used once.",
+            p: "Superadmins always sign in with Google. By default Kaaya uses a shared Google sign-in relay, so you do not need to register an OAuth client. The relay returns a short-lived signed token that the API verifies; each token can be used once.",
           },
           {
             p: "To use your own Google OAuth client instead, set `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET`, or enter them under **Security and access → Google Sign-in**. Register `{SUPERADMIN_APP_URL}/auth/complete` as an authorized redirect URI.",
@@ -652,7 +652,7 @@ pnpm --filter @hrms/api start`,
             p: "Employees and entity admins sign in with a one-time code by email. Each entity can also allow Google sign-in, or require it. Entity Google sign-in uses `{WEB_APP_URL}/login/google/callback` as the redirect URI and does not use the relay.",
           },
           {
-            p: "Karya looks for Google credentials in this order: the entity's own client, then environment variables, then the client saved in Superadmin.",
+            p: "Kaaya looks for Google credentials in this order: the entity's own client, then environment variables, then the client saved in Superadmin.",
           },
           {
             note: "For how the shared relay works and what it can and cannot see, read **Google sign-in relay**.",
@@ -667,7 +667,7 @@ pnpm --filter @hrms/api start`,
         ),
         body: [
           {
-            p: "Google only sends a user back to web addresses registered on an OAuth client. Without help, every Karya installation would need its own Google Cloud project and client before anyone could sign in to Superadmin. The **Google sign-in relay** removes that step: it is a small, separate service run by MittArv that holds one shared Google OAuth client for every installation.",
+            p: "Google only sends a user back to web addresses registered on an OAuth client. Without help, every Kaaya installation would need its own Google Cloud project and client before anyone could sign in to Superadmin. The **Google sign-in relay** removes that step: it is a small, separate service run by MittArv that holds one shared Google OAuth client for every installation.",
           },
           {
             p: "The relay is used only for **superadmin** sign-in. Employees and entity admins never pass through it; entity Google sign-in goes straight to Google with a Google client configured in your installation.",
@@ -676,12 +676,12 @@ pnpm --filter @hrms/api start`,
           {
             steps: [
               "A superadmin opens `/superadmin` and chooses **Sign in with Google**.",
-              "Karya sends the browser to the relay with two things: the installation's ID and the address to return to, `{SUPERADMIN_APP_URL}/auth/complete`.",
+              "Kaaya sends the browser to the relay with two things: the installation's ID and the address to return to, `{SUPERADMIN_APP_URL}/auth/complete`.",
               "The relay checks that this installation is allowed to use that return address, then sends the browser on to Google.",
-              "The superadmin signs in on Google's own page. Karya and the relay never see the Google password.",
+              "The superadmin signs in on Google's own page. Kaaya and the relay never see the Google password.",
               "Google returns to the relay, which confirms the Google account and its verified email address.",
               "The relay sends the browser back to your Superadmin with a signed sign-in token that is valid for about 90 seconds.",
-              "Your Karya API checks the token's signature against the relay's public keys, confirms it was issued for your Superadmin address, and accepts each token only once. It then signs the superadmin in.",
+              "Your Kaaya API checks the token's signature against the relay's public keys, confirms it was issued for your Superadmin address, and accepts each token only once. It then signs the superadmin in.",
             ],
           },
           { h: "First sign-in on a new installation" },
@@ -711,7 +711,7 @@ pnpm --filter @hrms/api start`,
                 ],
                 [
                   "Never sees",
-                  "Google passwords, your database, employee records, or anything inside Karya after sign-in.",
+                  "Google passwords, your database, employee records, or anything inside Kaaya after sign-in.",
                 ],
               ],
             },
@@ -723,13 +723,13 @@ pnpm --filter @hrms/api start`,
               "The request that starts a sign-in expires after 5 minutes.",
               "Sign-in tokens expire after about 90 seconds and are accepted only once.",
               "Each token names the Superadmin address it was issued for, so a token issued for one installation is rejected by every other.",
-              "Tokens are signed with the relay's private key. Karya checks them with the public keys the relay publishes, so no shared secret is ever copied into your installation.",
+              "Tokens are signed with the relay's private key. Kaaya checks them with the public keys the relay publishes, so no shared secret is ever copied into your installation.",
               "Both relay endpoints are rate-limited per IP address.",
             ],
           },
           { h: "Using your own Google client instead" },
           {
-            p: "You do not have to use the relay. Register your own Google OAuth client and enter it under **Security and access → Google Sign-in**, or set `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET`. Superadmin sign-in then goes straight to Google and the relay is not involved. If your own client's settings ever become unreadable, Karya falls back to the relay so you are not locked out.",
+            p: "You do not have to use the relay. Register your own Google OAuth client and enter it under **Security and access → Google Sign-in**, or set `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET`. Superadmin sign-in then goes straight to Google and the relay is not involved. If your own client's settings ever become unreadable, Kaaya falls back to the relay so you are not locked out.",
           },
           {
             p: "To point an installation at a different relay, set `GOOGLE_AUTH_RELAY_URL`, and `GOOGLE_AUTH_RELAY_ISSUER_URL` if the token issuer differs. See **Environment configuration**.",
@@ -740,7 +740,7 @@ pnpm --filter @hrms/api start`,
         ...s("Upgrading", "Move an installation to a newer version safely."),
         body: [
           {
-            note: "Karya does not publish versioned releases or upgrade notes. Upgrades follow the repository's default branch. Read the commit history before upgrading and test on a staging copy first.",
+            note: "Kaaya does not publish versioned releases or upgrade notes. Upgrades follow the repository's default branch. Read the commit history before upgrading and test on a staging copy first.",
             tone: "warning",
           },
           { h: "Upgrade steps" },
@@ -761,10 +761,10 @@ pnpm --filter @hrms/api start`,
         ],
       },
       {
-        ...s("Backups", "Protect and restore your Karya data."),
+        ...s("Backups", "Protect and restore your Kaaya data."),
         body: [
           {
-            p: "Karya has no built-in backup tool. Back up these three things on a schedule and keep copies off the server.",
+            p: "Kaaya has no built-in backup tool. Back up these three things on a schedule and keep copies off the server.",
           },
           {
             table: {
@@ -790,7 +790,7 @@ pnpm --filter @hrms/api start`,
           },
           {
             code: `mysqldump --single-transaction --routines --triggers \\
-  -h <host> -u <user> -p <database> > karya-$(date +%F).sql`,
+  -h <host> -u <user> -p <database> > kaaya-$(date +%F).sql`,
             title: "Example database backup",
           },
           { h: "Restore" },
@@ -800,10 +800,10 @@ pnpm --filter @hrms/api start`,
               "Restore the database dump into an empty database.",
               "Restore uploaded files to the same path or bucket.",
               "Start the API with the same `JWT_SECRET` as when the backup was taken.",
-              "Run `pnpm db:deploy` if you restored into a newer version of Karya.",
+              "Run `pnpm db:deploy` if you restored into a newer version of Kaaya.",
             ],
           },
-          { h: "Data that Karya removes on its own" },
+          { h: "Data that Kaaya removes on its own" },
           {
             list: [
               "Audit log entries older than the entity's retention setting (1, 2 or 3 years).",
@@ -821,11 +821,11 @@ pnpm --filter @hrms/api start`,
       {
         ...s(
           "Organization vs legal entity",
-          "How Karya models the organization, entities and legal entities.",
+          "How Kaaya models the organization, entities and legal entities.",
         ),
         body: [
           {
-            p: "Karya separates three ideas that other systems often merge into one.",
+            p: "Kaaya separates three ideas that other systems often merge into one.",
           },
           {
             table: {
@@ -1031,10 +1031,10 @@ pnpm --filter @hrms/api start`,
         ],
       },
       {
-        ...s("Access roles", "How Karya decides what each person can do."),
+        ...s("Access roles", "How Kaaya decides what each person can do."),
         body: [
           {
-            p: "Karya grants access through **job titles**, not through a long list of roles. Every person's access is built from four layers.",
+            p: "Kaaya grants access through **job titles**, not through a long list of roles. Every person's access is built from four layers.",
           },
           {
             steps: [
@@ -1119,7 +1119,7 @@ pnpm --filter @hrms/api start`,
           { h: "Sign in" },
           {
             steps: [
-              "Open your company's Karya address and choose your entity if asked.",
+              "Open your company's Kaaya address and choose your entity if asked.",
               "Enter your work email and choose **Continue**.",
               "Enter the 6-digit one-time code from your email. Codes expire after 10 minutes. If your entity uses Google sign-in, use that instead.",
             ],
@@ -1161,7 +1161,7 @@ pnpm --filter @hrms/api start`,
         ...s("Manager", "Approving leave and following your team."),
         body: [
           {
-            p: "In Karya, anyone whose job title includes leave or attendance approval can approve requests and can be chosen as a reporting manager.",
+            p: "In Kaaya, anyone whose job title includes leave or attendance approval can approve requests and can be chosen as a reporting manager.",
           },
           { h: "Approve leave" },
           {
@@ -1692,7 +1692,7 @@ pnpm --filter @hrms/api start`,
         ...s("Architecture"),
         body: [
           {
-            p: "Karya uses a multi-tenant architecture with separate instance administration and organization-level workspaces.",
+            p: "Kaaya uses a multi-tenant architecture with separate instance administration and organization-level workspaces.",
           },
           {
             list: [
@@ -1748,10 +1748,10 @@ pnpm --filter @hrms/api start`,
         ],
       },
       {
-        ...s("API reference", "Conventions and endpoints of the Karya HTTP API."),
+        ...s("API reference", "Conventions and endpoints of the Kaaya HTTP API."),
         body: [
           {
-            note: "There is no published OpenAPI specification. The API serves Karya's own apps and may change between versions.",
+            note: "There is no published OpenAPI specification. The API serves Kaaya's own apps and may change between versions.",
           },
           { h: "Conventions" },
           {
@@ -1803,7 +1803,7 @@ pnpm --filter @hrms/api start`,
         ],
       },
       {
-        ...s("Data model", "How Karya stores its data."),
+        ...s("Data model", "How Kaaya stores its data."),
         body: [
           {
             p: "The schema lives in `apps/api/prisma/schema.prisma`. Every table uses the `hrms_ce_` prefix.",
@@ -1919,7 +1919,7 @@ pnpm --filter @hrms/api start`,
     title: "Reference",
     pages: [
       {
-        ...s("Glossary", "Definitions of terms used in Karya."),
+        ...s("Glossary", "Definitions of terms used in Kaaya."),
         body: [
           {
             table: {
@@ -1944,7 +1944,7 @@ pnpm --filter @hrms/api start`,
                 ["Exit case", "The record that tracks one employee's offboarding."],
                 ["Job title", "A position in a department; carries access permissions."],
                 ["Level", "A seniority level with a code and rank."],
-                ["Organization", "The whole Karya installation."],
+                ["Organization", "The whole Kaaya installation."],
                 ["Payroll lock", "A closed period in which attendance and leave cannot change."],
                 [
                   "Reporting manager",
@@ -1959,10 +1959,10 @@ pnpm --filter @hrms/api start`,
         ],
       },
       {
-        ...s("Roadmap", "Where Karya is headed."),
+        ...s("Roadmap", "Where Kaaya is headed."),
         body: [
           {
-            p: "Karya is built to make HR simpler, more flexible, and easier to own. Here's what's available today and what we're working on next.",
+            p: "Kaaya is built to make HR simpler, more flexible, and easier to own. Here's what's available today and what we're working on next.",
           },
           { h: "Available today" },
           { h3: "Organization & HR Setup" },
@@ -2023,7 +2023,7 @@ pnpm --filter @hrms/api start`,
           },
           { h: "What's ahead" },
           {
-            p: "Karya will continue to expand with features that make everyday HR operations easier, from deeper payroll and compliance capabilities to better automation, reporting, integrations, and workforce management.",
+            p: "Kaaya will continue to expand with features that make everyday HR operations easier, from deeper payroll and compliance capabilities to better automation, reporting, integrations, and workforce management.",
           },
         ],
       },
@@ -2031,7 +2031,7 @@ pnpm --filter @hrms/api start`,
         ...s("Changelog", "Release history."),
         body: [
           {
-            p: "Karya does not publish versioned releases. Changes land continuously on the repository's default branch, and the commit history is the authoritative record until releases begin.",
+            p: "Kaaya does not publish versioned releases. Changes land continuously on the repository's default branch, and the commit history is the authoritative record until releases begin.",
           },
           {
             p: "When releases start, this page will follow the Keep a Changelog format: each release lists Added, Changed, Deprecated, Removed, Fixed and Security changes, with upgrade notes for any required migrations.",

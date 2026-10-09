@@ -13,10 +13,10 @@ export const Route = createFileRoute("/docs/$slug")({
     const doc = loaderData ? findDoc(loaderData.slug) : undefined;
     if (!doc)
       return {
-        meta: [{ title: "Not found | Karya Docs" }, { name: "robots", content: "noindex" }],
+        meta: [{ title: "Not found | Kaaya Docs" }, { name: "robots", content: "noindex" }],
       };
-    const title = `${doc.title} | Karya Docs`;
-    const desc = doc.summary ?? `${doc.title} in the Karya documentation (${doc.section}).`;
+    const title = `${doc.title} | Kaaya Docs`;
+    const desc = doc.summary ?? `${doc.title} in the Kaaya documentation (${doc.section}).`;
     return {
       meta: [
         { title },

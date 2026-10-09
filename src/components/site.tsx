@@ -20,8 +20,8 @@ export function Logo() {
   return (
     <Link to="/" className="flex items-center">
       <img
-        src="/brand/karya-logo.png"
-        alt="Karya"
+        src="/brand/kaaya-logo.png"
+        alt="Kaaya"
         width={504}
         height={145}
         className="h-6 w-auto"
@@ -180,7 +180,7 @@ export function Footer() {
           </div>
         ))}
       </div>
-      <div className="mx-auto mt-14 max-w-6xl border-t border-border pt-6 text-sm text-muted-foreground">Karya</div>
+      <div className="mx-auto mt-14 max-w-6xl border-t border-border pt-6 text-sm text-muted-foreground">Kaaya</div>
     </footer>
   );
 }
