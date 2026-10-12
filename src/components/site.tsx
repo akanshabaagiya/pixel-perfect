@@ -91,11 +91,11 @@ export function BrowserFrame({ url, children }: { url: string; children: ReactNo
 
 const NAV: [string, string][] = [
   ["Product", "/#product"],
-  ["Features", "/#features"],
   ["How it works", "/#how-it-works"],
+  ["Why Kaarya", "/#open-source"],
   ["Docs", "/#docs"],
-  ["Developers", "/#developers"],
   ["FAQs", "/#faqs"],
+  ["Contact", "/#contact"],
 ];
 
 export function Nav() {
@@ -152,7 +152,7 @@ export function Nav() {
 
 export function Footer() {
   const cols: [string, [string, string][]][] = [
-    ["Product", [["Product", "/#product"], ["Features", "/#features"], ["How it works", "/#how-it-works"], ["Developers", "/#developers"]]],
+    ["Product", [["Features", "/#product"], ["How it works", "/#how-it-works"], ["Why Kaarya", "/#open-source"]]],
     ["Resources", [["Docs", "/docs"], ["Roadmap", "/docs/roadmap"], ["License", "/#open-source"]]],
     ["Project", [["About", "/#about"], ["Contact", "/#contact"], ["GitHub", GITHUB]]],
   ];

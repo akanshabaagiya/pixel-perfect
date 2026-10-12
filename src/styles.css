@@ -5,8 +5,8 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Instrument Serif", ui-serif, Georgia, serif;
+  --font-sans: Calibri, "Segoe UI", Arial, sans-serif;
+  --font-display: Calibri, "Segoe UI", Arial, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -176,24 +176,3 @@ details[open] .faq-icon { transform: rotate(45deg); }
 @media (prefers-reduced-motion: reduce) {
   *, .reveal { animation: none !important; transition: none !important; opacity: 1 !important; transform: none !important; }
 }
-
-/* Actual product UI is only framed and cropped, never recreated. */
-.product-screen {
-  display: grid;
-  place-items: center;
-  aspect-ratio: 2 / 1;
-  overflow: hidden;
-  background: var(--surface);
-}
-.product-screen img { display: block; width: 100%; height: auto; }
-.product-card-visual {
-  height: 128px;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-xl);
-  background: var(--surface);
-}
-.product-card-visual img { display: block; width: 100%; height: auto; max-width: none; }
-.product-card-attendance img { width: 160%; transform: translate(-24%, -35%); }
-.product-card-reimbursements { display: grid; align-items: center; }
-.product-card-reimbursements img { width: 100%; }
