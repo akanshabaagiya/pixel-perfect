@@ -1,9 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, type ReactNode } from "react";
-import { Arrow, BrowserFrame, Btn, Eyebrow, Footer, GITHUB, Nav, SectionHead, useReveal } from "@/components/site";
-
-import { ProductScreenshot } from "@/components/product-screenshot";
-import { Button } from "@/components/ui/button";
+import { useState } from "react";
+import { Arrow, Btn, Eyebrow, Footer, GITHUB, Nav, SectionHead, useReveal } from "@/components/site";
+import { CalendarDays, ClipboardCheck, Receipt, Server, Settings2, ShieldCheck, UserCheck, UserPlus, Users, Wallet, type LucideIcon } from "lucide-react";
 
 const DOCS = "/docs";
 
@@ -35,14 +33,10 @@ function Index() {
       <Nav />
       <Hero />
       <Product />
-      <Showcase />
-      <Capabilities />
       <HowItWorks />
       <Configured />
       <MultiTenant />
       <WhyOpenSource />
-      <Audience />
-      <Developers />
       <DocsSummary />
       <About />
       <Faq />
@@ -57,143 +51,25 @@ function Index() {
 
 function Hero() {
   return (
-    <section className="relative px-4 pb-20 pt-32 sm:pt-40 lg:pb-28">
+    <section className="relative px-4 pb-20 pt-32 sm:pt-44 lg:pb-28">
       <div className="pointer-events-none absolute -left-40 top-10 h-[420px] w-[520px] rounded-full glow-lavender blur-3xl animate-drift" />
       <div className="pointer-events-none absolute right-[-10%] top-20 h-[700px] w-[800px] rounded-full glow-violet blur-2xl" />
-      <div className="relative mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-[45fr_55fr] lg:gap-10">
-        <div className="animate-fade-up min-w-0">
-          <Eyebrow>OPEN-SOURCE HRMS</Eyebrow>
-          <h1 className="mt-6 text-4xl font-semibold leading-[1.05] tracking-tight text-ink sm:text-6xl xl:text-7xl">
-            The Open-Source HRMS for{" "}
-            <span className="font-display font-normal italic text-gradient">Modern Teams.</span>
-          </h1>
-          <p className="mt-6 max-w-lg text-lg leading-relaxed text-muted-foreground">
-            Self-hostable, multi-tenant human resource management. Control your data, manage your people, and scale
-            your operations without per-seat fees.
-          </p>
-          <div className="mt-9 flex flex-wrap gap-3">
-            <Btn href={GITHUB}>
-              Start now <Arrow />
-            </Btn>
-          </div>
-          <p className="mt-6 text-sm font-medium text-muted-foreground">
-            Self-hosted · Multi-tenant · Docker-ready · Open source
-          </p>
+      <div className="animate-fade-up relative mx-auto max-w-3xl text-center">
+        <Eyebrow>OPEN-SOURCE HRMS</Eyebrow>
+        <h1 className="mt-6 text-4xl font-semibold leading-[1.05] tracking-tight text-ink sm:text-6xl xl:text-7xl">
+          HR management that <span className="font-display italic text-gradient">works your way.</span>
+        </h1>
+        <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
+          Manage employee information, attendance, leave, compensation, and everyday HR operations with an open-source
+          HRMS you can host on your own infrastructure.
+        </p>
+        <div className="mt-9 flex flex-wrap items-center justify-center gap-6">
+          <Btn href="#contact">Request a Demo <Arrow /></Btn>
+          <a href="#product" className="text-sm font-semibold text-primary transition-colors hover:text-ink">Explore Features →</a>
         </div>
-        <div className="animate-fade-up min-w-0 [animation-delay:150ms]">
-          <div className="animate-float">
-            <DashboardPreview />
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function DashboardPreview() {
-  return (
-    <BrowserFrame url="kaarya.yourcompany.com/overview">
-      <ProductScreenshot kind="dashboard" priority />
-    </BrowserFrame>
-  );
-}
-
-/* ---------- 01 intro ---------- */
-
-function Intro() {
-  const pillars = [
-    ["Employee records", "Profiles, hierarchies and custom fields."],
-    ["Time & leave", "Attendance, shifts, leave types and holidays."],
-    ["Compensation & expenses", "Salary templates and reimbursements."],
-    ["Exits", "Structured offboarding workflows."],
-  ];
-  return (
-    <section id="product" className="relative px-4 py-24">
-      <SectionHead
-        title="People operations, connected from entry to exit."
-        sub="Kaarya brings the everyday systems behind employee records, attendance, leave, compensation, expenses, and offboarding into one self-hosted HRMS."
-      />
-      <div className="mx-auto mt-14 grid max-w-5xl gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {pillars.map(([t, d], i) => (
-          <div key={t} className="reveal rounded-2xl border border-border bg-card p-5 shadow-soft">
-            <span className="font-mono text-xs text-primary">0{i + 1}</span>
-            <h3 className="mt-3 font-semibold text-ink">{t}</h3>
-            <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{d}</p>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-/* ---------- 02 showcase ---------- */
-
-function PeopleView() {
-  return <ProductScreenshot kind="people" />;
-}
-
-function AttendanceView() {
-  return <ProductScreenshot kind="attendance" />;
-}
-
-function LeaveView() {
-  return <ProductScreenshot kind="leave" />;
-}
-
-function PayrollView() {
-  return (
-    <div className="rounded-xl border border-border p-4">
-      {[["Basic", 50], ["HRA", 20], ["Special allowance", 18], ["Provident fund", 12]].map(([k, v]) => (
-        <div key={k as string} className="mb-2.5 last:mb-0">
-          <div className="flex justify-between text-ink"><span>{k}</span><span className="text-muted-foreground">{v}%</span></div>
-          <div className="mt-1 h-1.5 rounded-full bg-surface-2"><div className="h-full rounded-full bg-primary/80" style={{ width: `${(v as number) * 1.8}%` }} /></div>
-        </div>
-      ))}
-    </div>
-  );
-}
-
-function ProfileView() {
-  return <ProductScreenshot kind="profile" />;
-}
-
-function Showcase() {
-  const tabs: [string, string, ReactNode][] = [
-    ["Overview", "A daily snapshot of headcount, attendance, pending leave and payroll status.", null],
-    ["People", "A searchable employee directory with roles, departments and status.", <PeopleView key="p" />],
-    ["Attendance", "Employee check-ins and a monthly view of attendance records.", <AttendanceView key="a" />],
-    ["Leave", "Leave balances by type, with requests routed for approval.", <LeaveView key="l" />],
-    ["Payroll", "Compensation structures broken down into salary components.", <PayrollView key="c" />],
-    ["Employee info", "Profiles with reporting lines, levels, cost centers and masked sensitive fields.", <ProfileView key="e" />],
-  ];
-  const [active, setActive] = useState(0);
-  const [name, desc, view] = tabs[active] as [string, string, ReactNode];
-  return (
-    <section className="relative px-4 py-24">
-      <div className="pointer-events-none absolute left-1/2 top-1/2 h-[500px] w-[900px] -translate-x-1/2 -translate-y-1/2 rounded-full glow-lavender blur-3xl" />
-      <div className="relative">
-        <SectionHead title="See Kaarya in action." sub="A single workspace for the everyday work behind your people operations." />
-        <div className="reveal mx-auto mt-10 flex max-w-3xl flex-wrap justify-center gap-2">
-          {tabs.map(([t], i) => (
-            <Button variant="ghost"
-              key={t}
-              onClick={() => setActive(i)}
-              className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${i === active ? "bg-primary text-primary-foreground" : "border border-border bg-card text-ink hover:border-lavender"}`}
-            >
-              {t}
-            </Button>
-          ))}
-        </div>
-        <p className="mx-auto mt-5 max-w-xl text-center text-muted-foreground">{desc}</p>
-        <div className="reveal mx-auto mt-8 max-w-4xl">
-          {view ? (
-            <BrowserFrame url={`kaarya.yourcompany.com/${name.toLowerCase().replace(" ", "-")}`}>
-              <div className="bg-card text-[11px]">{view}</div>
-            </BrowserFrame>
-          ) : (
-            <DashboardPreview />
-          )}
-        </div>
+        <p className="mt-8 text-sm font-medium text-muted-foreground">
+          Self-hosted · Multi-tenant · Docker-ready · Open source
+        </p>
       </div>
     </section>
   );
@@ -201,80 +77,27 @@ function Showcase() {
 
 /* ---------- 01 product ---------- */
 
-function Mini({ children }: { children: ReactNode }) {
-  return <div className="product-card-visual flex flex-col justify-center p-3 text-[10px]">{children}</div>;
-}
-
-function Row({ a, b, tone = "bg-accent text-accent-foreground" }: { a: string; b: string; tone?: string }) {
-  return (
-    <div className="flex items-center justify-between gap-2 rounded-lg bg-card px-2 py-1.5 [&+&]:mt-1.5">
-      <span className="flex min-w-0 items-center gap-1.5 font-medium text-ink">
-        <span className="h-4 w-4 shrink-0 rounded-full bg-accent" />
-        <span className="truncate">{a}</span>
-      </span>
-      <span className={`shrink-0 rounded-full px-1.5 py-0.5 ${tone}`}>{b}</span>
-    </div>
-  );
-}
-
 function Product() {
-  const mods: [string, string, ReactNode][] = [
-    ["Employee Management", "Employee directory, profiles, organizational structure and workforce information.",
-      <Mini key="1"><Row a="Priya Sharma" b="People" /><Row a="Arjun Mehta" b="Engineering" /><Row a="Dev Rao" b="Operations" /></Mini>],
-    ["Attendance and Leave", "Check-ins, attendance, shifts, leave types, holiday calendars and approvals.",
-      <ProductScreenshot key="2" kind="attendance" card />],
-    ["Compensation", "Salary structures, levels, compensation components and payroll-related workflows.",
-      <Mini key="3">{[["Basic", 90], ["HRA", 36], ["Allowance", 32]].map(([k, v]) => <div key={k} className="mb-1.5 last:mb-0"><div className="flex justify-between text-ink"><span>{k}</span></div><div className="mt-1 h-1.5 rounded-full bg-surface-2"><div className="h-full rounded-full bg-primary/80" style={{ width: `${v}%` }} /></div></div>)}</Mini>],
-    ["Reimbursements", "Employee expense submission and manager approval.",
-      <ProductScreenshot key="4" kind="reimbursements" card />],
-    ["Onboarding and Offboarding", "Manage employee journeys from joining through exit.",
-      <Mini key="5"><div className="flex flex-col gap-1.5">{[["Onboarded", "bg-primary/80 text-primary-foreground"], ["Onboarding in progress", "bg-accent text-accent-foreground"], ["Offboarding", "bg-card text-muted-foreground"]].map(([s, c]) => <span key={s} className={`flex-1 rounded-full px-1.5 py-1 text-center leading-tight ${c}`}>{s}</span>)}</div></Mini>],
-    ["Policies and Access", "Define policies, roles and permissions according to organizational requirements.",
-      <Mini key="6"><Row a="HR Admin" b="Full" /><Row a="Manager" b="Team" /><Row a="Employee" b="Self" tone="bg-surface-2 text-muted-foreground" /></Mini>],
+  const mods: [string, string, LucideIcon][] = [
+    ["Employee Management", "Keep employee profiles, job details, and organizational information organized in one place.", Users],
+    ["Attendance and Leave", "Track attendance, manage leave balances, and configure leave types and holiday calendars.", CalendarDays],
+    ["Compensation", "Organize salary structures, levels, and compensation components around your organization's requirements.", Wallet],
+    ["Reimbursements", "Let employees submit expense claims and track their reimbursement status.", Receipt],
+    ["Onboarding and Offboarding", "Manage employee joining, onboarding progress, and exit processes in a structured way.", UserCheck],
+    ["Policies and Access", "Manage organizational policies, access roles, permissions, and audit records.", ShieldCheck],
   ];
   return (
-    <section id="product" className="relative px-4 py-24">
+    <section id="product" className="relative scroll-mt-24 px-4 py-24">
       <SectionHead
-        title="People operations, connected from entry to exit."
-        sub="Kaarya brings employee records, attendance, leave, compensation, expenses, policies and offboarding into one self-hosted HRMS."
+        title="Everything you need to manage your people."
+        sub="Kaarya brings essential HR operations together in one place, from employee records and attendance to compensation and employee exits."
       />
       <div className="mx-auto mt-14 grid max-w-6xl gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {mods.map(([t, d, v]) => (
-          <div key={t} className="reveal group rounded-2xl border border-border bg-card p-5 shadow-soft transition-all duration-500 hover:-translate-y-1 hover:border-lavender hover:shadow-float">
-            {v}
-            <h3 className="mt-5 font-semibold text-ink">{t}</h3>
-            <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{d}</p>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-/* ---------- 03 features ---------- */
-
-function Capabilities() {
-  const items = [
-    ["Employee Directory and Profiles", "Reporting hierarchies, custom employee fields and organized workforce records.", "◉"],
-    ["Time and Attendance", "Check-in and check-out, attendance records and shift management.", "◷"],
-    ["Leave Operations", "Define leave types, holiday calendars, balances, and time-off rules that fit your organization.", "▤"],
-    ["Compensation Structures", "Create salary templates, levels, and compensation components that fit your organization.", "₹"],
-    ["Reimbursements", "A clear expense submission path for employees and approvals for managers.", "⇄"],
-    ["Exit Management", "Voluntary exits and offboarding through a defined workflow.", "↗"],
-    ["Role-Based Access", "Granular roles that match access to responsibilities.", "◈"],
-    ["Audit Logs", "Records of who did what, for accountability and review.", "≡"],
-    ["Sensitive-Field Masking", "Field-level controls that protect data such as salaries.", "◐"],
-  ];
-  return (
-    <section id="features" className="relative px-4 py-24">
-      <SectionHead
-        title="Everything your workforce needs, in one system."
-        sub="From everyday attendance to compensation structures and employee exits, Kaarya keeps essential HR operations connected."
-      />
-      <div className="mx-auto mt-14 grid max-w-6xl gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {items.map(([t, d, i]) => (
-          <div key={t} className="reveal group gradient-border rounded-2xl p-6 shadow-soft transition-all duration-500 hover:-translate-y-1 hover:shadow-float">
-            <span className="grid h-10 w-10 place-items-center rounded-xl bg-accent font-mono text-sm text-accent-foreground transition-all duration-500 group-hover:-translate-y-0.5 group-hover:bg-primary group-hover:text-primary-foreground">{i}</span>
+        {mods.map(([t, d, Icon]) => (
+          <div key={t} className="reveal group rounded-2xl border border-border bg-card p-6 shadow-soft transition-all duration-500 hover:-translate-y-1 hover:border-lavender hover:shadow-float">
+            <span className="grid h-11 w-11 place-items-center rounded-xl bg-accent text-primary transition-colors duration-500 group-hover:bg-primary group-hover:text-primary-foreground">
+              <Icon className="h-5 w-5" strokeWidth={1.75} aria-hidden />
+            </span>
             <h3 className="mt-5 font-semibold text-ink">{t}</h3>
             <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{d}</p>
           </div>
@@ -287,27 +110,33 @@ function Capabilities() {
 /* ---------- 04 how it works ---------- */
 
 function HowItWorks() {
-  const steps = [
-    ["Deploy", "Deploy Kaarya on infrastructure you control."],
-    ["Configure", "Set up your organization, policies, roles, fields and workflows."],
-    ["Invite people", "Onboard employees, managers and administrators into the workspace."],
-    ["Run operations", "Manage attendance, leave, compensation, expenses, policies and employee lifecycle operations."],
+  const steps: [string, string, LucideIcon][] = [
+    ["Set up Kaarya", "Deploy Kaarya on infrastructure your organization controls.", Server],
+    ["Configure your workspace", "Add your organization details and set up the roles, policies, and settings that fit your needs.", Settings2],
+    ["Add your people", "Invite employees, managers, and administrators to their workspace.", UserPlus],
+    ["Manage everyday HR", "Keep employee information, attendance, leave, compensation, and other essential HR operations organized.", ClipboardCheck],
   ];
   return (
-    <section id="how-it-works" className="relative px-4 py-24">
-      <SectionHead title="How it works" sub="Four steps from a fresh install to everyday HR operations." />
+    <section id="how-it-works" className="relative scroll-mt-24 px-4 py-24">
+      <SectionHead
+        title="Get started with Kaarya in four simple steps."
+        sub="Set up Kaarya around your organization, bring your people on board, and start managing everyday HR operations."
+      />
       <div className="relative mx-auto mt-14 max-w-6xl">
-        <div className="pointer-events-none absolute left-[12%] right-[12%] top-11 hidden h-px bg-gradient-to-r from-transparent via-lavender to-transparent lg:block" />
+        <div className="pointer-events-none absolute left-[12%] right-[12%] top-12 hidden h-px bg-gradient-to-r from-transparent via-lavender to-transparent lg:block" />
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {steps.map(([t, d], i) => (
+          {steps.map(([t, d, Icon], i) => (
             <div
               key={t}
               style={{ transitionDelay: `${i * 120}ms` }}
               className="reveal group relative rounded-2xl border border-border bg-card p-6 shadow-soft transition-all duration-500 hover:-translate-y-1 hover:border-lavender hover:shadow-float"
             >
-              <span className="grid h-10 w-10 place-items-center rounded-full bg-ink font-mono text-xs text-primary-foreground transition-colors duration-500 group-hover:bg-primary">
-                0{i + 1}
-              </span>
+              <div className="flex items-center justify-between">
+                <span className="grid h-11 w-11 place-items-center rounded-xl bg-accent text-primary transition-colors duration-500 group-hover:bg-primary group-hover:text-primary-foreground">
+                  <Icon className="h-5 w-5" strokeWidth={1.75} aria-hidden />
+                </span>
+                <span className="text-sm font-semibold text-muted-foreground">Step {i + 1}</span>
+              </div>
               <h3 className="mt-5 text-lg font-semibold text-ink">{t}</h3>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{d}</p>
             </div>
@@ -375,10 +204,10 @@ function Configured() {
 
 function WhyOpenSource() {
   const rows = [
-    ["Pricing", "No per-seat fees", "Per employee, per month"],
-    ["Data location", "Your servers", "Vendor cloud"],
-    ["Customisation", "Roles, fields, flows, source code", "Limited to plan settings"],
-    ["Lock-in", "Export anything, fork anytime", "Vendor-controlled"],
+    ["Pricing model", "No per-seat license fees", "Usually priced per employee"],
+    ["Data location and control", "Infrastructure you control", "The vendor's cloud"],
+    ["Customization", "Configure roles, fields and policies, or change the source", "Limited to what the vendor offers"],
+    ["Vendor lock-in", "Open source code you can run and fork", "Tied to the vendor"],
   ];
   return (
     <section id="open-source" className="relative px-4 py-24">
@@ -407,60 +236,6 @@ function WhyOpenSource() {
                 </div>
               ))}
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ---------- 09 developers ---------- */
-
-function Developers() {
-  const stack = ["Node.js", "Express 5", "Prisma 7", "MySQL 8", "React 19", "Vite", "Tailwind CSS 4"];
-  return (
-    <section id="developers" className="px-4 py-24">
-      <SectionHead
-        title="Built for teams who want control."
-        sub="The technical side of Kaarya: the stack, the architecture, and how to get it running."
-      />
-      <div className="mx-auto mt-14 grid max-w-6xl gap-5 lg:grid-cols-2">
-        <div className="reveal overflow-hidden rounded-2xl border border-border bg-ink shadow-float">
-          <div className="flex items-center gap-1.5 border-b border-primary-foreground/10 px-4 py-3">
-            <span className="h-2.5 w-2.5 rounded-full bg-primary-foreground/20" />
-            <span className="h-2.5 w-2.5 rounded-full bg-primary-foreground/20" />
-            <span className="h-2.5 w-2.5 rounded-full bg-primary-foreground/20" />
-            <span className="ml-3 font-mono text-xs text-primary-foreground/60">Quick start</span>
-          </div>
-          <pre className="overflow-x-auto p-6 font-mono text-sm leading-7 text-primary-foreground/85">
-            <span className="text-lavender">$</span> git clone {"<repository-url>"}{"\n"}
-            <span className="text-lavender">$</span> cd kaarya{"\n"}
-            <span className="text-lavender">$</span> docker-compose up -d{"\n"}
-            <span className="text-success">✓ Kaarya is ready on your infrastructure</span>
-          </pre>
-          <div className="border-t border-primary-foreground/10 p-6">
-            <div className="text-[11px] font-semibold tracking-[0.18em] text-lavender">TECHNOLOGY</div>
-            <div className="mt-4 flex flex-wrap gap-2">
-              {stack.map((s) => (
-                <span key={s} className="rounded-full border border-primary-foreground/15 px-3 py-1 font-mono text-xs text-primary-foreground/85">{s}</span>
-              ))}
-            </div>
-          </div>
-        </div>
-        <div className="reveal flex flex-col justify-center rounded-2xl border border-border bg-card p-8 shadow-soft">
-          <h3 className="text-xl font-semibold text-ink">Multi-tenant by design</h3>
-          <p className="mt-3 leading-relaxed text-muted-foreground">
-            A Node.js and Express API backed by MySQL through Prisma, with React front ends for instance administration
-            and each entity's workspace. One deployment, cleanly separated data.
-          </p>
-          <ul className="mt-6 space-y-3 text-sm text-ink">
-            {["Docker-based deployment on your own infrastructure", "Role-based access, audit logs and field masking", "Source available to inspect, extend and fork"].map((t) => (
-              <li key={t} className="flex gap-3"><span className="text-primary">✓</span>{t}</li>
-            ))}
-          </ul>
-          <div className="mt-8 flex flex-wrap items-center gap-5">
-            <Btn href={GITHUB}>View source on GitHub <Arrow /></Btn>
-            <a href="/docs/architecture" className="text-sm font-semibold text-primary hover:text-ink">Architecture notes →</a>
           </div>
         </div>
       </div>
@@ -634,29 +409,6 @@ function MultiTenant() {
   );
 }
 
-function Audience() {
-  const items = [
-    ["IT & DevOps", "Deploy with Docker, maintain the instance, and keep employee data within your infrastructure.", "</>"],
-    ["HR & Operations", "Set up employee structures, policies, access, and day-to-day people operations.", "▦"],
-    ["Employees", "Check in, request leave, view pay slips, and submit reimbursements through one workspace.", "◉"],
-  ];
-  return (
-    <section className="relative px-4 py-24">
-      <SectionHead title="One system, clear paths for every team." />
-      <div className="mx-auto mt-14 grid max-w-6xl gap-5 md:grid-cols-3">
-        {items.map(([t, d, i]) => (
-          <div key={t} className="reveal relative overflow-hidden rounded-3xl border border-border bg-card p-7 shadow-soft transition-all duration-500 hover:-translate-y-1 hover:shadow-float">
-            <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full glow-violet opacity-60" />
-            <span className="relative grid h-10 w-10 place-items-center rounded-xl bg-accent font-mono text-sm text-accent-foreground">{i}</span>
-            <h3 className="relative mt-6 text-lg font-semibold text-ink">{t}</h3>
-            <p className="relative mt-2 leading-relaxed text-muted-foreground">{d}</p>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
-
 /* ---------- 07 about ---------- */
 
 function About() {
@@ -711,7 +463,7 @@ function Contact() {
           <input placeholder="Organization" className={`${field} sm:col-span-2`} />
           <textarea required rows={4} placeholder="Message" className={`${field} resize-none sm:col-span-2`} />
           <button className="group inline-flex items-center justify-center gap-2 rounded-full bg-ink px-5 py-3 text-sm font-semibold text-primary-foreground transition-all hover:-translate-y-0.5 hover:bg-primary sm:col-span-2">
-            {sent ? "Thanks, we'll be in touch." : <>Send message <span className="transition-transform group-hover:translate-x-1">→</span></>}
+            {sent ? "Online sending isn't set up yet" : <>Send message <span className="transition-transform group-hover:translate-x-1">→</span></>}
           </button>
         </form>
       </div>
