@@ -9,4 +9,4 @@
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
 
-- Keep uploaded product screenshots in CDN asset pointers and render them through the shared ProductScreenshot component so image framing stays consistent without altering the actual product UI.
+- Home page visuals use lucide line icons in shared accent icon containers, not product screenshots, so the page stays light and consistent.
