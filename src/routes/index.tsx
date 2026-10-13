@@ -1,5 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { DemoForm } from "@/components/demo-form";
+import { emptyDemoRequest, type DemoRequest } from "@/lib/demo-request";
 import { Arrow, Btn, Eyebrow, Footer, GITHUB, Nav, SectionHead, useReveal } from "@/components/site";
 import { CalendarDays, ClipboardCheck, Receipt, Server, Settings2, ShieldCheck, UserCheck, UserPlus, Users, Wallet, type LucideIcon } from "lucide-react";
 
@@ -28,10 +31,19 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   useReveal();
+  const [details, setDetails] = useState<DemoRequest>(emptyDemoRequest);
+  const [continued, setContinued] = useState(false);
+  const continueDemo = (request: DemoRequest) => {
+    setDetails(request);
+    setContinued(true);
+    window.location.hash = "contact";
+    document.getElementById("contact")?.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" });
+    document.getElementById("contact-title")?.focus({ preventScroll: true });
+  };
   return (
     <div className="relative overflow-x-hidden">
       <Nav />
-      <Hero />
+      <Hero details={details} onChange={setDetails} onContinue={continueDemo} />
       <Product />
       <HowItWorks />
       <Configured />
@@ -40,7 +52,7 @@ function Index() {
       <DocsSummary />
       <About />
       <Faq />
-      <Contact />
+      <Contact details={details} onChange={setDetails} continued={continued} />
       <FinalCta />
       <Footer />
     </div>
@@ -49,27 +61,32 @@ function Index() {
 
 /* ---------- hero ---------- */
 
-function Hero() {
+function Hero({ details, onChange, onContinue }: { details: DemoRequest; onChange: (details: DemoRequest) => void; onContinue: (details: DemoRequest) => void }) {
   return (
-    <section className="relative px-4 pb-20 pt-32 sm:pt-44 lg:pb-28">
-      <div className="pointer-events-none absolute -left-40 top-10 h-[420px] w-[520px] rounded-full glow-lavender blur-3xl animate-drift" />
-      <div className="pointer-events-none absolute right-[-10%] top-20 h-[700px] w-[800px] rounded-full glow-violet blur-2xl" />
-      <div className="animate-fade-up relative mx-auto max-w-3xl text-center">
+    <section className="hero-atmosphere relative px-4 pb-14 pt-28 sm:pt-32 lg:pb-16">
+      <div className="relative mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.15fr_1fr] lg:gap-16">
+      <div className="animate-fade-up">
         <Eyebrow>OPEN-SOURCE HRMS</Eyebrow>
         <h1 className="mt-6 text-4xl font-semibold leading-[1.05] tracking-tight text-ink sm:text-6xl xl:text-7xl">
           HR management that <span className="font-display italic text-gradient">works your way.</span>
         </h1>
-        <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
+        <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
           Manage employee information, attendance, leave, compensation, and everyday HR operations with an open-source
           HRMS you can host on your own infrastructure.
         </p>
-        <div className="mt-9 flex flex-wrap items-center justify-center gap-6">
+        <div className="mt-9 flex flex-wrap items-center gap-6">
           <Btn href="#contact">Request a Demo <Arrow /></Btn>
-          <a href="#product" className="text-sm font-semibold text-primary transition-colors hover:text-ink">Explore Features →</a>
         </div>
         <p className="mt-8 text-sm font-medium text-muted-foreground">
           Self-hosted · Multi-tenant · Docker-ready · Open source
         </p>
+      </div>
+      <div className="demo-entrance rounded-2xl border border-border bg-card p-6 shadow-float sm:p-8">
+        <span className="mb-4 grid h-11 w-11 place-items-center rounded-xl bg-accent text-primary"><Users className="h-5 w-5" aria-hidden /></span>
+        <h2 className="text-2xl font-semibold text-ink">Let's explore Karya for your team.</h2>
+        <p className="mb-6 mt-2 text-sm leading-relaxed text-muted-foreground">Tell us about your organization and what you’re looking for in your HR system.</p>
+        <DemoForm hero details={details} onChange={onChange} onContinue={onContinue} />
+      </div>
       </div>
     </section>
   );
@@ -132,7 +149,7 @@ function HowItWorks() {
               className="reveal group relative rounded-2xl border border-border bg-card p-6 shadow-soft transition-all duration-500 hover:-translate-y-1 hover:border-lavender hover:shadow-float"
             >
               <div className="flex items-center justify-between">
-                <span className="grid h-11 w-11 place-items-center rounded-xl bg-accent text-primary transition-colors duration-500 group-hover:bg-primary group-hover:text-primary-foreground">
+                <span className="workflow-icon grid h-11 w-11 place-items-center rounded-xl bg-accent text-primary transition-colors duration-500 group-hover:bg-primary group-hover:text-primary-foreground">
                   <Icon className="h-5 w-5" strokeWidth={1.75} aria-hidden />
                 </span>
                 <span className="text-sm font-semibold text-muted-foreground">Step {i + 1}</span>
@@ -179,18 +196,20 @@ function Configured() {
             <div className="absolute bottom-6 left-[27px] top-6 w-px bg-lavender" />
             <div className="space-y-3">
               {items.map(([t, d, i], idx) => (
-                <button
+                <Button variant="ghost"
                   key={t}
+                  onClick={() => setActive(idx)}
+                  aria-pressed={active === idx}
                   onMouseEnter={() => setActive(idx)}
                   onFocus={() => setActive(idx)}
-                  className={`relative flex w-full items-center gap-4 rounded-2xl border bg-card p-4 text-left shadow-soft transition-all duration-500 ${active === idx ? "translate-x-1 border-lavender shadow-float" : "border-border"}`}
+                  className={`relative flex h-auto w-full items-center justify-start gap-4 whitespace-normal rounded-2xl border bg-card p-4 text-left shadow-soft transition-all duration-500 ${active === idx ? "translate-x-1 border-lavender shadow-float" : "border-border"}`}
                 >
                   <span className={`grid h-10 w-10 shrink-0 place-items-center rounded-xl font-mono text-sm transition-colors duration-500 ${active === idx ? "bg-primary text-primary-foreground" : "bg-accent text-accent-foreground"}`}>{i}</span>
                   <span className="min-w-0">
                     <span className="block font-semibold text-ink">{t}</span>
                     <span className="block text-sm text-muted-foreground">{d}</span>
                   </span>
-                </button>
+                </Button>
               ))}
             </div>
           </div>
@@ -307,12 +326,12 @@ function FaqItem({ q, a }: { q: string; a: string }) {
   const [open, setOpen] = useState(false);
   return (
     <div className={`rounded-2xl border bg-card px-6 shadow-soft transition-colors duration-300 ${open ? "border-lavender" : "border-border"}`}>
-      <button onClick={() => setOpen(!open)} aria-expanded={open} className="flex w-full items-center justify-between gap-4 py-5 text-left font-medium text-ink">
+      <Button variant="ghost" onClick={() => setOpen(!open)} aria-expanded={open} className="flex h-auto w-full items-center justify-between gap-4 whitespace-normal py-5 text-left font-medium text-ink hover:bg-transparent">
         {q}
         <span className={`grid h-7 w-7 shrink-0 place-items-center rounded-full bg-accent text-accent-foreground transition-transform duration-300 ${open ? "rotate-45" : ""}`}>+</span>
-      </button>
+      </Button>
       <div className={`grid transition-all duration-500 ease-out ${open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
-        <div className="overflow-hidden">
+        <div className="overflow-hidden" inert={!open}>
           <p className="pb-5 leading-relaxed text-muted-foreground">
             {a.split(/\[([^\]]+)\]/).map((part, i) =>
               i % 2 ? <a key={i} href="#contact" className="font-semibold text-primary underline-offset-4 hover:underline">{part}</a> : part,
@@ -331,13 +350,14 @@ function Faq() {
       <SectionHead title="Frequently asked questions." />
       <div className="reveal mx-auto mt-10 flex max-w-3xl flex-wrap justify-center gap-2">
         {FAQS.map(([c], i) => (
-          <button
+          <Button variant="ghost"
             key={c}
             onClick={() => setCat(i)}
+            aria-pressed={i === cat}
             className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${i === cat ? "bg-primary text-primary-foreground" : "border border-border bg-card text-ink hover:border-lavender"}`}
           >
             {c}
-          </button>
+          </Button>
         ))}
       </div>
       <div key={cat} className="mx-auto mt-8 max-w-3xl space-y-3 animate-fade-up">
@@ -384,7 +404,7 @@ function MultiTenant() {
             a single business, agency, or holding company.
           </p>
         </div>
-        <div className="flex flex-col items-center">
+        <div className="architecture-flow flex flex-col items-center">
           <div className={`${node} w-full max-w-xs`}>
             <div className="font-semibold text-ink">Instance Admin</div>
             <div className="text-xs text-muted-foreground">Organization</div>
@@ -440,32 +460,23 @@ function About() {
   );
 }
 
-function Contact() {
-  const [sent, setSent] = useState(false);
-  const field = "w-full rounded-xl border border-input bg-card px-4 py-3 text-sm text-ink outline-none transition placeholder:text-muted-foreground focus:border-lavender focus:ring-4 focus:ring-ring/20";
+function Contact({ details, onChange, continued }: { details: DemoRequest; onChange: (details: DemoRequest) => void; continued: boolean }) {
   return (
-    <section id="contact" className="relative px-4 py-24">
+    <section id="contact" className="relative scroll-mt-24 px-4 py-24">
       <div className="pointer-events-none absolute right-0 top-10 h-96 w-96 rounded-full glow-violet blur-2xl" />
       <div className="relative mx-auto grid max-w-5xl gap-12 lg:grid-cols-[1fr_1.2fr]">
         <div className="reveal">
-          <h2 className="text-3xl font-semibold tracking-tight text-ink sm:text-4xl">Let's talk about Kaarya.</h2>
+          <h2 id="contact-title" tabIndex={-1} className="text-3xl font-semibold tracking-tight text-ink sm:text-4xl">Let's talk about Kaarya.</h2>
           <p className="mt-4 leading-relaxed text-muted-foreground">
             Have a question about deploying Kaarya, using it for your organization, or contributing to the project? Get
             in touch.
           </p>
         </div>
-        <form
-          onSubmit={(e) => { e.preventDefault(); setSent(true); }}
-          className="reveal glass grid gap-3 rounded-3xl border border-border p-6 shadow-soft sm:grid-cols-2"
-        >
-          <input required placeholder="Name" className={field} />
-          <input required type="email" placeholder="Email" className={field} />
-          <input placeholder="Organization" className={`${field} sm:col-span-2`} />
-          <textarea required rows={4} placeholder="Message" className={`${field} resize-none sm:col-span-2`} />
-          <button className="group inline-flex items-center justify-center gap-2 rounded-full bg-ink px-5 py-3 text-sm font-semibold text-primary-foreground transition-all hover:-translate-y-0.5 hover:bg-primary sm:col-span-2">
-            {sent ? "Online sending isn't set up yet" : <>Send message <span className="transition-transform group-hover:translate-x-1">→</span></>}
-          </button>
-        </form>
+        <div className="reveal glass rounded-3xl border border-border p-6 shadow-soft">
+          <p className="mb-5 text-sm leading-relaxed text-muted-foreground">Online sending isn't set up yet. For now, contact the maintainers through <a href={GITHUB} className="font-semibold text-primary underline underline-offset-4">GitHub</a>.</p>
+          {continued && <p role="status" className="mb-4 text-sm font-medium text-primary">Your demo details are here. Nothing has been sent.</p>}
+          <DemoForm details={details} onChange={onChange} />
+        </div>
       </div>
     </section>
   );

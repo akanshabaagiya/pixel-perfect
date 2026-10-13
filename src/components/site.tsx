@@ -57,7 +57,7 @@ export const Arrow = () => <span className="transition-transform duration-300 gr
 
 export function Eyebrow({ children }: { children: ReactNode }) {
   return (
-    <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3 py-1 text-[11px] font-semibold tracking-[0.18em] text-primary">
+      <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3 py-1.5 text-xs font-semibold tracking-[0.18em] text-primary">
       <span className="h-1.5 w-1.5 rounded-full bg-primary" />
       {children}
     </span>
@@ -119,14 +119,14 @@ export function Nav() {
             >
               View on GitHub
             </a>
-            <button
+            <Button variant="ghost"
               aria-label="Toggle menu"
               aria-expanded={open}
               onClick={() => setOpen((o) => !o)}
               className="grid h-9 w-9 place-items-center rounded-full border border-border bg-card text-ink lg:hidden"
             >
               {open ? "×" : "≡"}
-            </button>
+            </Button>
           </div>
         </div>
         <div
