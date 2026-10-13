@@ -10,3 +10,5 @@
 <!-- LOVABLE:END -->
 
 - Home page visuals use lucide line icons in shared accent icon containers, not product screenshots, so the page stays light and consistent.
+- Hero and contact forms share validated, in-memory request details; without a configured delivery service, hero submission hands off to Contact Us and never claims delivery.
+- Motion uses lightweight CSS and the existing intersection observer, with reduced-motion overrides, to avoid unnecessary animation dependencies.

@@ -1,4 +1,4 @@
 # Kaarya refinement tasks
-- [x] Integrate the uploaded product screenshots in the hero, product cards and showcase.
-- [x] Refine existing accents to blue-first while preserving the approved design.
-- [x] Verify requested content, navigation, screenshots and desktop/tablet/mobile layouts.- [x] Simplify home page: remove screenshots, demo CTA hero, merged features, 4-step how it works, Calibri font.
+- [x] Add a hero demo card with validated details handed to Contact Us, without fake sending.
+- [x] Refine lightweight entrance, card, workflow and architecture animations with reduced-motion support.
+- [x] Verify navigation, form handoff and desktop/tablet/mobile layouts; preserve screenshot-free content.
