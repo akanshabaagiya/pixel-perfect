@@ -35,7 +35,7 @@ export const Route = createFileRoute("/docs/$slug")({
 function DocNotFound() {
   return (
     <main>
-      <h1 className="text-3xl font-semibold text-ink">Page not found</h1>
+      <h1 className="text-3xl font-bold text-ink">Page not found</h1>
       <p className="mt-3 text-muted-foreground">This documentation topic does not exist.</p>
       <Link to="/docs" className="mt-6 inline-block text-sm font-semibold text-primary">
         Back to docs
@@ -105,7 +105,7 @@ function Block({ block }: { block: DocBlock }) {
   }
   if ("h3" in block) {
     return (
-      <h3 id={headingId(block.h3)} className="scroll-mt-28 pt-2 text-lg font-semibold text-ink">
+      <h3 id={headingId(block.h3)} className="scroll-mt-28 pt-2 text-lg font-bold text-ink">
         {block.h3}
       </h3>
     );
@@ -207,7 +207,7 @@ function DocPage() {
         </Link>{" "}
         / {doc.section}
       </p>
-      <h1 className="mt-3 text-4xl font-semibold tracking-tight text-ink">{doc.title}</h1>
+      <h1 className="mt-3 text-4xl font-bold tracking-tight text-ink">{doc.title}</h1>
       {availability ? (
         <span
           className={`mt-3 inline-block rounded-full px-3 py-1 text-xs font-semibold ${availability.className}`}

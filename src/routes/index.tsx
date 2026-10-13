@@ -67,7 +67,7 @@ function Hero({ details, onChange, onContinue }: { details: DemoRequest; onChang
       <div className="relative mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.15fr_1fr] lg:gap-16">
       <div className="animate-fade-up">
         <Eyebrow>OPEN-SOURCE HRMS</Eyebrow>
-        <h1 className="mt-6 text-4xl font-semibold leading-[1.05] tracking-tight text-ink sm:text-6xl xl:text-7xl">
+        <h1 className="mt-6 text-4xl font-bold leading-[1.05] tracking-tight text-ink sm:text-6xl xl:text-7xl">
           HR management that <span className="font-display italic text-gradient">works your way.</span>
         </h1>
         <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
@@ -83,7 +83,7 @@ function Hero({ details, onChange, onContinue }: { details: DemoRequest; onChang
       </div>
       <div className="demo-entrance rounded-2xl border border-border bg-card p-6 shadow-float sm:p-8">
         <span className="mb-4 grid h-11 w-11 place-items-center rounded-xl bg-accent text-primary"><Users className="h-5 w-5" aria-hidden /></span>
-        <h2 className="text-2xl font-semibold text-ink">Let's explore Karya for your team.</h2>
+        <h2 className="text-2xl font-bold text-ink">Let's explore Karya for your team.</h2>
         <p className="mb-6 mt-2 text-sm leading-relaxed text-muted-foreground">Tell us about your organization and what you’re looking for in your HR system.</p>
         <DemoForm hero details={details} onChange={onChange} onContinue={onContinue} />
       </div>
@@ -115,7 +115,7 @@ function Product() {
             <span className="grid h-11 w-11 place-items-center rounded-xl bg-accent text-primary transition-colors duration-500 group-hover:bg-primary group-hover:text-primary-foreground">
               <Icon className="h-5 w-5" strokeWidth={1.75} aria-hidden />
             </span>
-            <h3 className="mt-5 font-semibold text-ink">{t}</h3>
+            <h3 className="mt-5 font-bold text-ink">{t}</h3>
             <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{d}</p>
           </div>
         ))}
@@ -154,7 +154,7 @@ function HowItWorks() {
                 </span>
                 <span className="text-sm font-semibold text-muted-foreground">Step {i + 1}</span>
               </div>
-              <h3 className="mt-5 text-lg font-semibold text-ink">{t}</h3>
+              <h3 className="mt-5 text-lg font-bold text-ink">{t}</h3>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{d}</p>
             </div>
           ))}
@@ -181,7 +181,7 @@ function Configured() {
         <div className="pointer-events-none absolute -right-32 -top-32 h-96 w-96 rounded-full glow-violet" />
         <div className="relative grid items-center gap-12 lg:grid-cols-[1fr_1.1fr]">
           <div>
-            <h2 className="text-3xl font-semibold tracking-tight text-ink sm:text-5xl">
+            <h2 className="text-3xl font-bold tracking-tight text-ink sm:text-5xl">
               Built to be configured, <span className="font-display font-normal italic text-primary">not hardcoded.</span>
             </h2>
             <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
@@ -277,7 +277,7 @@ function DocsSummary() {
       <div className="mx-auto mt-14 grid max-w-6xl gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {cards.map(([t, d, href]) => (
           <a key={t} href={href} className="reveal group gradient-border rounded-2xl p-6 shadow-soft transition-all duration-500 hover:-translate-y-1 hover:shadow-float">
-            <h3 className="font-semibold text-ink">{t}</h3>
+            <h3 className="font-bold text-ink">{t}</h3>
             <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{d}</p>
             <span className="mt-4 inline-block text-sm font-semibold text-primary"><span className="inline-flex gap-1">Open <Arrow /></span></span>
           </a>
@@ -374,7 +374,7 @@ function FinalCta() {
     <section className="px-4 py-16">
       <div className="reveal relative mx-auto max-w-6xl overflow-hidden rounded-3xl bg-cta px-6 py-20 text-center shadow-float sm:px-16">
         <div className="pointer-events-none absolute -left-20 top-0 h-80 w-80 rounded-full glow-lavender blur-3xl animate-drift" />
-        <h2 className="relative mx-auto max-w-2xl text-3xl font-semibold tracking-tight text-primary-foreground sm:text-5xl">
+        <h2 className="relative mx-auto max-w-2xl text-3xl font-bold tracking-tight text-primary-foreground sm:text-5xl">
           Self-host Kaarya today.
         </h2>
         <p className="relative mx-auto mt-5 max-w-xl text-primary-foreground/80">
@@ -396,7 +396,7 @@ function MultiTenant() {
     <section className="px-4 py-24">
       <div className="reveal mx-auto grid max-w-6xl items-center gap-12 rounded-3xl border border-border bg-surface p-8 sm:p-14 lg:grid-cols-2">
         <div>
-          <h2 className="text-3xl font-semibold tracking-tight text-ink sm:text-5xl">
+          <h2 className="text-3xl font-bold tracking-tight text-ink sm:text-5xl">
             One installation. <span className="font-display font-normal italic text-primary">Distinct entities.</span>
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
@@ -436,7 +436,7 @@ function About() {
     <section id="about" className="px-4 py-24">
       <div className="reveal mx-auto grid max-w-6xl gap-10 rounded-3xl border border-border bg-surface p-8 sm:p-14 lg:grid-cols-2">
         <div>
-          <h2 className="text-3xl font-semibold tracking-tight text-ink sm:text-5xl">
+          <h2 className="text-3xl font-bold tracking-tight text-ink sm:text-5xl">
             HR software that <span className="font-display font-normal italic text-primary">stays yours.</span>
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
@@ -450,7 +450,7 @@ function About() {
             ["Operational breadth", "Bring employee profiles, time, leave, compensation, expenses, and exits together."],
           ].map(([t, d]) => (
             <div key={t} className="rounded-2xl border border-border bg-card p-6 shadow-soft">
-              <h3 className="font-semibold text-ink">{t}</h3>
+              <h3 className="font-bold text-ink">{t}</h3>
               <p className="mt-2 leading-relaxed text-muted-foreground">{d}</p>
             </div>
           ))}
@@ -466,7 +466,7 @@ function Contact({ details, onChange, continued }: { details: DemoRequest; onCha
       <div className="pointer-events-none absolute right-0 top-10 h-96 w-96 rounded-full glow-violet blur-2xl" />
       <div className="relative mx-auto grid max-w-5xl gap-12 lg:grid-cols-[1fr_1.2fr]">
         <div className="reveal">
-          <h2 id="contact-title" tabIndex={-1} className="text-3xl font-semibold tracking-tight text-ink sm:text-4xl">Let's talk about Kaarya.</h2>
+          <h2 id="contact-title" tabIndex={-1} className="text-3xl font-bold tracking-tight text-ink sm:text-4xl">Let's talk about Kaarya.</h2>
           <p className="mt-4 leading-relaxed text-muted-foreground">
             Have a question about deploying Kaarya, using it for your organization, or contributing to the project? Get
             in touch.
