@@ -3,16 +3,20 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { demoRequestSchema, type DemoRequest } from "@/lib/demo-request";
 
-export function DemoForm({ details, onChange, onContinue, hero = false }: {
+export function DemoForm({ details, onChange, onContinue, hero = false, compact = false }: {
   details: DemoRequest;
   onChange: (details: DemoRequest) => void;
   onContinue?: (details: DemoRequest) => void;
   hero?: boolean;
+  compact?: boolean;
 }) {
   const id = useId();
   const [error, setError] = useState("");
   const [unavailable, setUnavailable] = useState(false);
-  const field = "w-full rounded-xl border border-input bg-card px-4 py-3 text-base text-ink outline-none transition placeholder:text-muted-foreground focus:border-primary focus:ring-4 focus:ring-ring/20";
+  const label = compact ? "mb-1 block text-xs font-semibold text-ink" : "mb-1.5 block text-sm font-semibold text-ink";
+  const field = `w-full border border-input bg-card text-ink outline-none transition placeholder:text-muted-foreground focus:border-primary ${
+    compact ? "rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-ring/20" : "rounded-xl px-4 py-3 text-base focus:ring-4 focus:ring-ring/20"
+  }`;
   return (
     <form noValidate className="grid gap-4" onSubmit={(event) => {
       event.preventDefault();
