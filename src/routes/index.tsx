@@ -463,19 +463,19 @@ function About() {
 function Contact({ details, onChange, continued }: { details: DemoRequest; onChange: (details: DemoRequest) => void; continued: boolean }) {
   return (
     <section id="contact" className="relative scroll-mt-24 px-4 py-24">
-      <div className="pointer-events-none absolute right-0 top-10 h-96 w-96 rounded-full glow-violet blur-2xl" />
-      <div className="relative mx-auto grid max-w-5xl gap-12 lg:grid-cols-[1fr_1.2fr]">
+      <div className="pointer-events-none absolute right-0 top-10 h-72 w-72 rounded-full glow-violet blur-2xl" />
+      <div className="relative mx-auto grid max-w-4xl items-start gap-8 lg:grid-cols-2 lg:gap-14">
         <div className="reveal">
           <h2 id="contact-title" tabIndex={-1} className="text-3xl font-bold tracking-tight text-ink sm:text-4xl">Let's talk about Kaarya.</h2>
-          <p className="mt-4 leading-relaxed text-muted-foreground">
+          <p className="mt-4 max-w-md leading-relaxed text-muted-foreground">
             Have a question about deploying Kaarya, using it for your organization, or contributing to the project? Get
             in touch.
           </p>
         </div>
-        <div className="reveal glass rounded-3xl border border-border p-6 shadow-soft">
-          <p className="mb-5 text-sm leading-relaxed text-muted-foreground">Online sending isn't set up yet. For now, contact the maintainers through <a href={GITHUB} className="font-semibold text-primary underline underline-offset-4">GitHub</a>.</p>
-          {continued && <p role="status" className="mb-4 text-sm font-medium text-primary">Your demo details are here. Nothing has been sent.</p>}
-          <DemoForm details={details} onChange={onChange} />
+        <div className="reveal rounded-2xl border border-border bg-card p-5 shadow-soft">
+          <p className="mb-4 text-[13px] leading-relaxed text-muted-foreground">Online sending isn't set up yet. For now, contact the maintainers through <a href={GITHUB} className="font-semibold text-primary underline underline-offset-4">GitHub</a>.</p>
+          {continued && <p role="status" className="mb-3 text-[13px] font-medium text-primary">Your demo details are here. Nothing has been sent.</p>}
+          <DemoForm compact details={details} onChange={onChange} />
         </div>
       </div>
     </section>
