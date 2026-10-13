@@ -18,14 +18,14 @@ export const Route = createFileRoute("/docs/")({
 function DocsIndex() {
   return (
     <main>
-      <h1 className="text-4xl font-semibold tracking-tight text-ink sm:text-5xl">Kaarya Documentation</h1>
+      <h1 className="text-4xl font-bold tracking-tight text-ink sm:text-5xl">Kaarya Documentation</h1>
       <p className="mt-4 max-w-xl text-lg text-muted-foreground">
         Everything you need to deploy, configure, use and contribute to Kaarya.
       </p>
       <div className="mt-10 grid gap-5 sm:grid-cols-2">
         {DOC_SECTIONS.map((sec) => (
           <div key={sec.title} className="gradient-border rounded-2xl p-6 shadow-soft">
-            <h2 className="font-semibold text-ink">{sec.title}</h2>
+            <h2 className="font-bold text-ink">{sec.title}</h2>
             <ul className="mt-3 space-y-1.5">
               {sec.pages.map((p) => (
                 <li key={p.slug}>

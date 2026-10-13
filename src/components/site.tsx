@@ -67,7 +67,7 @@ export function Eyebrow({ children }: { children: ReactNode }) {
 export function SectionHead({ title, sub }: { title: string; sub?: string }) {
   return (
     <div className="reveal mx-auto max-w-2xl text-center">
-      <h2 className="text-3xl font-semibold tracking-tight text-ink sm:text-5xl">{title}</h2>
+      <h2 className="text-3xl font-bold tracking-tight text-ink sm:text-5xl">{title}</h2>
       {sub && <p className="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg">{sub}</p>}
     </div>
   );
