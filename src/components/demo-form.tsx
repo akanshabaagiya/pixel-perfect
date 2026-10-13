@@ -13,12 +13,12 @@ export function DemoForm({ details, onChange, onContinue, hero = false, compact 
   const id = useId();
   const [error, setError] = useState("");
   const [unavailable, setUnavailable] = useState(false);
-  const label = compact ? "mb-1 block text-xs font-semibold text-ink" : "mb-1.5 block text-sm font-semibold text-ink";
+  const labelClass = compact ? "mb-1 block text-xs font-semibold text-ink" : "mb-1.5 block text-sm font-semibold text-ink";
   const field = `w-full border border-input bg-card text-ink outline-none transition placeholder:text-muted-foreground focus:border-primary ${
     compact ? "rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-ring/20" : "rounded-xl px-4 py-3 text-base focus:ring-4 focus:ring-ring/20"
   }`;
   return (
-    <form noValidate className="grid gap-4" onSubmit={(event) => {
+    <form noValidate className={compact ? "grid gap-3" : "grid gap-4"} onSubmit={(event) => {
       event.preventDefault();
       const result = demoRequestSchema.safeParse(details);
       if (!result.success) {
@@ -35,18 +35,18 @@ export function DemoForm({ details, onChange, onContinue, hero = false, compact 
         ["organization", "Organization name", "text", "organization", 150],
       ] as const).map(([key, label, type, autoComplete, maxLength]) => (
         <div key={key}>
-          <label htmlFor={`${id}-${key}`} className="mb-1.5 block text-sm font-semibold text-ink">{label}</label>
+          <label htmlFor={`${id}-${key}`} className={labelClass}>{label}</label>
           <input id={`${id}-${key}`} name={key} type={type} autoComplete={autoComplete} required maxLength={maxLength}
             value={details[key]} onChange={(e) => onChange({ ...details, [key]: e.target.value })} className={field} />
         </div>
       ))}
       <div>
-        <label htmlFor={`${id}-message`} className="mb-1.5 block text-sm font-semibold text-ink">What would you like to know? <span className="font-normal text-muted-foreground">(optional)</span></label>
-        <textarea id={`${id}-message`} name="message" rows={hero ? 2 : 4} maxLength={1000} value={details.message}
+        <label htmlFor={`${id}-message`} className={labelClass}>What would you like to know? <span className="font-normal text-muted-foreground">(optional)</span></label>
+        <textarea id={`${id}-message`} name="message" rows={hero ? 2 : compact ? 3 : 4} maxLength={1000} value={details.message}
           onChange={(e) => onChange({ ...details, message: e.target.value })} className={`${field} resize-y`} />
       </div>
       {error && <p role="alert" className="text-sm text-destructive">{error}</p>}
-      <Button type="submit" className="group h-auto w-full rounded-full px-5 py-3 text-base font-semibold shadow-soft transition-transform hover:-translate-y-0.5">
+      <Button type="submit" className={`group h-auto w-full rounded-full font-semibold shadow-soft transition-transform hover:-translate-y-0.5 ${compact ? "px-4 py-2 text-sm" : "px-5 py-3 text-base"}`}>
         {hero ? "Request a Demo" : "Send message"}<ArrowRight className="transition-transform group-hover:translate-x-1" />
       </Button>
       {hero && <p className="text-center text-xs leading-relaxed text-muted-foreground">Continue to Contact Us with your details. Nothing is sent yet.</p>}
