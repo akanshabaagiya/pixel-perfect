@@ -81,10 +81,10 @@ function Hero({ details, onChange, onContinue }: { details: DemoRequest; onChang
           Self-hosted · Multi-tenant · Docker-ready · Open source
         </p>
       </div>
-      <div className="demo-entrance rounded-2xl border border-border bg-card p-6 shadow-float sm:p-8">
-        <span className="mb-4 grid h-11 w-11 place-items-center rounded-xl bg-accent text-primary"><Users className="h-5 w-5" aria-hidden /></span>
-        <h2 className="text-2xl font-bold text-ink">Let's explore Karya for your team.</h2>
-        <p className="mb-6 mt-2 text-sm leading-relaxed text-muted-foreground">Tell us about your organization and what you’re looking for in your HR system.</p>
+      <div className="demo-entrance max-w-md rounded-2xl border border-border bg-card p-4 shadow-soft sm:p-5 lg:justify-self-end">
+        <span className="mb-3 grid h-8 w-8 place-items-center rounded-lg bg-accent text-primary"><Users className="h-4 w-4" aria-hidden /></span>
+        <h2 className="text-base font-bold text-ink">Let's explore Karya for your team.</h2>
+        <p className="mb-4 mt-1 text-xs leading-relaxed text-muted-foreground">Tell us about your organization and what you're looking for in your HR system.</p>
         <DemoForm hero details={details} onChange={onChange} onContinue={onContinue} />
       </div>
       </div>
@@ -307,15 +307,9 @@ const FAQS: [string, [string, string][]][] = [
     ["How do I back up and restore my data?", "Your data lives in your own database, so you stay in control of backups. A dedicated backup and restore guide is being prepared."],
     ["Do I need a technical team to run it?", "You need someone comfortable deploying and maintaining a Docker-based application. Day-to-day HR work does not require technical skills."],
   ]],
-  ["Features", [
-    ["Can I customize fields and forms to match my company?", "Yes. You can customize the fields captured for your people and organization."],
-    ["Does it handle multiple legal entities or countries?", "Kaarya is multi-tenant, so one installation can run several entities. Guidance on legal entities and multi-country setups will be covered in the Core Concepts docs."],
-  ]],
   ["Security and data", [
     ["Where is my data stored, and who can see it?", "Your data is stored on servers you control. Inside Kaarya, who can see what is decided by the roles you configure, and sensitive fields such as salary can be masked."],
     ["How is access controlled and audited?", "Access is controlled through roles, and audit logs keep a record of actions for accountability and review."],
-    ["Is Kaarya compliant with data-protection laws like GDPR or India's DPDP?", "Kaarya does not claim any formal certification or compliance. Because you host it, you control where data lives and who can access it, which can support your own compliance work. Please assess it against your legal requirements."],
-    ["How do I report a security vulnerability?", "Please report it privately to the maintainers through the GitHub repository or the contact form rather than opening a public issue. A formal security policy will be published."],
   ]],
   ["Support", [
     ["What support is available if I get stuck?", "Start with the docs, then use GitHub Issues and Discussions to ask questions, report problems, or share feedback. If you need additional help, [contact us]."],
