@@ -310,8 +310,6 @@ const FAQS: [string, [string, string][]][] = [
   ["Security and data", [
     ["Where is my data stored, and who can see it?", "Your data is stored on servers you control. Inside Kaarya, who can see what is decided by the roles you configure, and sensitive fields such as salary can be masked."],
     ["How is access controlled and audited?", "Access is controlled through roles, and audit logs keep a record of actions for accountability and review."],
-    ["Is Kaarya compliant with data-protection laws like GDPR or India's DPDP?", "Kaarya does not claim any formal certification or compliance. Because you host it, you control where data lives and who can access it, which can support your own compliance work. Please assess it against your legal requirements."],
-    ["How do I report a security vulnerability?", "Please report it privately to the maintainers through the GitHub repository or the contact form rather than opening a public issue. A formal security policy will be published."],
   ]],
   ["Support", [
     ["What support is available if I get stuck?", "Start with the docs, then use GitHub Issues and Discussions to ask questions, report problems, or share feedback. If you need additional help, [contact us]."],
